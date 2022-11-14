@@ -83,6 +83,7 @@
 
             .login:active{
                 background: #FF511C;
+                color: #262626;
             }
 
             .hero-mainpg {
@@ -129,6 +130,39 @@
                 }
             }
 
+            .hero-text-small {
+                color: #FFFFFF;
+                font-weight: bold;
+                text-decoration: underline;
+            }
+
+            .scroll-down-container {
+                font-size: xx-large;
+                color: #FFFFFF;
+                padding-top: 25%;
+            }
+
+            .scroll-down-arrow {
+                animation: scroll-down 4s ease infinite;
+            }
+
+            @keyframes scroll-down {
+                0%
+                {
+                    padding-top: 0%;
+                }
+                50%
+                {
+                    padding-top: 10%;
+                }
+                100%
+                {
+                    padding-top: 00%;
+                }
+            }
+
+
+        
         </style>
     </head>
     <body style="margin: 0px 0px 0px 0px; background: #262626;">
@@ -151,6 +185,10 @@
         <!--Hero element start-->
         <section class="hero-mainpg">
             <h1>Welcome to <span class="cool-text">Webify</span></h1>
+            <p class="hero-text-small">For all website freelancing needs.</p>
+            <div class="scroll-down-container">
+                <p class="scroll-down-arrow">⌄<br>⌄<br>⌄</p>
+            </div>
         </section>
          <!--Hero end-->
     </body>
