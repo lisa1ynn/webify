@@ -139,25 +139,28 @@
             .scroll-down-container {
                 font-size: xx-large;
                 color: #FFFFFF;
-                padding-top: 25%;
+                margin-top: 10%;
+                margin-bottom: 10%;
             }
 
             .scroll-down-arrow {
                 animation: scroll-down 4s ease infinite;
+                position: relative;
+            
             }
 
             @keyframes scroll-down {
                 0%
                 {
-                    padding-top: 0%;
+                    opacity: 0%;
                 }
-                50%
+                10%
                 {
-                    padding-top: 10%;
+                    transform: translateY(0%); opacity: 1;
                 }
                 100%
                 {
-                    padding-top: 00%;
+                    transform: translateY(10%); opacity: 0;
                 }
             }
 
