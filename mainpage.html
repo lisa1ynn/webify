@@ -4,171 +4,9 @@
         <meta charset="utf-8">
         <title></title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <style>
-            /*all need to be added to general css sheet*/
-            .top-bar-container {
-                background-color: #262626;
-                position: sticky;
-                top: 0;
-                width: 100%;
-                text-align: center;
-                display: grid;
-                grid-template-columns: 1fr 3fr 1fr;
-            
-            }
-
-            .logo-bar {
-                width: 30px;
-                height: 30px;
-                padding-top: 14%;
-                margin: 0 auto;
-            }
-
-            .navigation-bar {
-                color: #FFFFFF;
-            }
-            .navigation-bar li {
-                display: inline-block;
-                padding: 5%;
-                font-size: large;
-            }
-
-            a:link {
-                color: #FFFFFF;
-                text-decoration: none;
-            }
-
-            a:visited {
-                color: #FFFFFF;
-            }
-
-            a:hover {
-                color: #7D80FF;
-                text-shadow: 2px 2px 4px black;
-            }
-
-
-            .login-button {
-                display: inline;
-                padding-top: 9%;
-                
-            }
-            .login {
-                padding: 5%;
-                border-radius: 30px;
-                width: 60%;
-                background: #FFFFFF;
-                color: #262626;
-                font-size: large;
-                border: none;
-                box-shadow: 0px 0px 0px black;
-            }
-
-            .login:hover {
-                color: #51578b;
-                animation: shadow 0.5s forwards;
- 
-            }
-
-            @keyframes shadow {
-                0%
-                {
-                    box-shadow: 0px 0px 0px black;
-                }
-                100%
-                {
-                    box-shadow: 0px 8px 20px black;
-                }
-            }
-
-            .login:active{
-                background: #FF511C;
-                color: #262626;
-            }
-
-            .hero-mainpg {
-                width: 100%;
-                position: relative;
-                text-align: center;
-                padding-top: 20%;
-            }
-
-            h1 {
-                color: #FFFFFF;
-                font-weight: bold;
-                font-size: xxx-large;
-            }
-
-            h1 > .cool-text {
-                animation: background-pan 3s linear infinite;
-                background: linear-gradient(
-                    to right,
-                    #DADDFF,
-                    #B5BBFF,
-                    #7D80FF,
-                    #FFA88E,
-                    #FF511C,
-                    #FFA88E,
-                    #7D80FF,
-                    #B5BBFF,
-                    #DADDFF
-                );
-                background-size: 200%;
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                white-space: nowrap;
-            }
-
-            @keyframes background-pan {
-                from
-                {
-                    background-position: 0% center;
-                }
-                to
-                {
-                    background-position: -200% center
-                }
-            }
-
-            .hero-text-small {
-                color: #FFFFFF;
-                font-weight: bold;
-                text-decoration: underline;
-            }
-
-            .scroll-down-container {
-                font-size: xx-large;
-                color: #FFFFFF;
-                margin-top: 10%;
-                margin-bottom: 10%;
-            }
-
-            .scroll-down-arrow {
-                animation: scroll-down 4s ease infinite;
-                position: relative;
-            
-            }
-
-            @keyframes scroll-down {
-                0%
-                {
-                    opacity: 0%;
-                }
-                10%
-                {
-                    transform: translateY(0%); opacity: 1;
-                }
-                100%
-                {
-                    transform: translateY(10%); opacity: 0;
-                }
-            }
-
-
-        
-        </style>
+        <link rel="stylesheet" href="/webify/general.css">
     </head>
-    <body style="margin: 0px 0px 0px 0px; background: #262626;">
+    <body>
         <!--menu bar start-->
         <header class="top-bar-container">
             <img class="logo-bar" src="" alt="Logo" >
@@ -179,6 +17,7 @@
                 <li><a href="#contact">Contact</a></li>
             </div>
             <div class="login-button">
+                <!--Need to just add the onClick function to open login / signup page-->
                 <button class="login">
                     Login
                 </button>
@@ -187,8 +26,10 @@
         <!--menu bar end-->
         <!--Hero element start-->
         <section class="hero-mainpg">
+            <!--Span element used to make the gradient text effect-->
             <h1>Welcome to <span class="cool-text">Webify</span></h1>
             <p class="hero-text-small">For all website freelancing needs.</p>
+            <!--Tells user to scroll down for more info-->
             <div class="scroll-down-container">
                 <p class="scroll-down-arrow">⌄<br>⌄<br>⌄</p>
             </div>
