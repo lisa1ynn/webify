@@ -89,7 +89,7 @@ a:hover {
     width: 100%;
     position: relative;
     text-align: center;
-    padding-top: 20%;
+    padding-top: 10%;
 }
 
 h1 {
@@ -99,6 +99,7 @@ h1 {
 }
 
 .cool-text {
+
     animation: background-pan 3s linear infinite;
     background: linear-gradient(
         to right,
@@ -141,7 +142,7 @@ h1 {
 .scroll-down-container {
     font-size: x-large;
     color: #FFFFFF;
-    margin-top: 20%;
+    margin-top: 10%;
     margin-bottom: 5%;
 }
 
