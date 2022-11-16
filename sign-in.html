@@ -1,13 +1,93 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Sign-in Webify</title>
-    <link />
+    <meta charset="utf-8" />
+    <title>Sign-in page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      .h3-signin {
+        color: #7d80ff;
+        position: relative;
+        text-align: center;
+      }
+      .signin-row {
+        display: flex;
+      }
+      .signin-col {
+        height: 100vh;
+        flex: 40%;
+      }
+      .signin-form {
+        width: 100%;
+        padding-top: 20%;
+      }
+      .signin-table {
+        margin: 0px auto;
+      }
+      .hero-signin {
+        background-color: #7d80ff;
+      }
+    </style>
+    <link rel="stylesheet" href="./general.css" />
   </head>
-
   <body>
-    <h1>Sign in to Webify now</h1>
-    <p>discription</p>
-    <form></form>
+    <!--Hero element start-->
+    <section>
+      <div class="signin-row">
+        <div class="signin-col hero-mainpg hero-signin">
+          <h1>
+            Welcome to
+            <span
+              class="cool-text"
+              style="background-color: #262626; padding: 3px"
+              >Webify</span
+            >
+          </h1>
+          <p class="hero-text-small">For all website freelancing needs.</p>
+        </div>
+
+        <div class="signin-col signin-form">
+          <h3 class="h3-signin">
+            Sign in to <span class="cool-text">Webify</span>
+          </h3>
+
+          <table class="signin-table">
+            <form action="/login.php">
+              <tr>
+                <td>
+                  <input
+                    type="text"
+                    id="email"
+                    name="e-mail"
+                    placeholder="E-mail"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Password"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="text-align: end">
+                    <a href="#">Forgot Password?</a>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><input type="submit" name="Sign-in"></input></td>
+              </tr>
+            </form>
+          </table>
+        </div>
+      </div>
+    </section>
+    <!--Hero end-->
   </body>
 </html>
