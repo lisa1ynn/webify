@@ -49,20 +49,21 @@ a:hover {
   display: inline;
   padding-top: 9%;
 }
-.login-btn {
-  padding: 5%;
+a.login-btn {
+  padding: 3% 10%;
   border-radius: 30px;
   width: 60%;
   background: #ffffff;
-  color: #262626;
+  color: #262626 !important;
   font-size: large;
   border: none;
   box-shadow: 0px 0px 0px black;
 }
 
 .login-btn:hover {
-  color: #51578b;
+  background: #ffa88e;
   animation: shadow 0.5s forwards;
+  text-shadow: none;
 }
 
 @keyframes shadow {
@@ -126,6 +127,9 @@ h1 {
 .hero-text-small {
   color: #ffffff;
   font-size: x-large;
+}
+.white-text-small {
+  color: #ffffff;
 }
 
 /*Indicator for user to scroll down*/
