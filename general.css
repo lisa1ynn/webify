@@ -28,167 +28,155 @@ input.buttonw {
 
 /*For top menu bar*/
 .top-bar-container {
-    background-color: #262626;
-    position: sticky;
-    top: 0;
-    width: 100%;
-    text-align: center;
-    display: grid;
-    grid-template-columns: 1fr 3fr 1fr;
-
+  background-color: #262626;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
 }
 
 .logo-bar {
-    width: 30px;
-    height: 30px;
-    padding-top: 14%;
-    margin: 0 auto;
+  width: 30px;
+  height: 30px;
+  padding-top: 14%;
+  margin: 0 auto;
 }
 
 .navigation-bar {
-    color: #FFFFFF;
+  color: #ffffff;
 }
 .navigation-bar li {
-    display: inline-block;
-    padding: 5%;
-    font-size: large;
+  display: inline-block;
+  padding: 5%;
+  font-size: large;
 }
 
 a:link {
-    color: #FFFFFF;
-    text-decoration: none;
+  color: #ffffff;
+  text-decoration: none;
 }
 
 a:visited {
-    color: #FFFFFF;
+  color: #ffffff;
 }
 
 a:hover {
-    color: #7D80FF;
-    text-shadow: 2px 2px 4px black;
+  color: #7d80ff;
+  text-shadow: 2px 2px 4px black;
 }
-
 
 .login-button {
-    display: inline;
-    padding-top: 9%;
-    
+  display: inline;
+  padding-top: 9%;
 }
-
-
-.login-btn {
-    padding: 5%;
-    border-radius: 30px;
-    width: 60%;
-    font-size: large;
-    box-shadow: 0px 0px 0px black;
-    color: #7D80FF; 
-    background-color:#DADDFF;
-    border-color:#7D80FF;
-    border-width:3px;
-    
+a.login-btn {
+  padding: 3% 10%;
+  border-radius: 30px;
+  width: 60%;
+  background: #ffffff;
+  color: #262626 !important;
+  font-size: large;
+  border: none;
+  box-shadow: 0px 0px 0px black;
 }
 
 .login-btn:hover {
-    color: #51578b;
-    animation: shadow 0.5s forwards;
-
+  background: #ffa88e;
+  animation: shadow 0.5s forwards;
+  text-shadow: none;
 }
 
 @keyframes shadow {
-    0%
-    {
-        box-shadow: 0px 0px 0px black;
-    }
-    100%
-    {
-        box-shadow: 0px 8px 20px black;
-    }
+  0% {
+    box-shadow: 0px 0px 0px black;
+  }
+  100% {
+    box-shadow: 0px 8px 20px black;
+  }
 }
 
-.login-btn:active{
-    background: #FF511C;
-    color: #262626;
+.login-btn:active {
+  background: #ff511c;
+  color: #262626;
 }
 /*For hero element below menu bar*/
 .hero-mainpg {
-    width: 100%;
-    position: relative;
-    text-align: center;
-    padding-top: 10%;
+  width: 100%;
+  position: relative;
+  text-align: center;
+  padding-top: 10%;
 }
 
 h1 {
-    color: #FFFFFF;
-    font-weight: bold;
-    font-size: xxx-large;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: xxx-large;
 }
 
 .cool-text {
-
-    animation: background-pan 3s linear infinite;
-    background: linear-gradient(
-        to right,
-        #DADDFF,
-        #B5BBFF,
-        #7D80FF,
-        #FFA88E,
-        #FF511C,
-        #FFA88E,
-        #7D80FF,
-        #B5BBFF,
-        #DADDFF
-    );
-    background-size: 200%;
-    /*background-clip twice to make sure VScode does not throw a warning, somehow more reliable as wewll*/
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    white-space: nowrap;
+  animation: background-pan 3s linear infinite;
+  background: linear-gradient(
+    to right,
+    #daddff,
+    #b5bbff,
+    #7d80ff,
+    #ffa88e,
+    #ff511c,
+    #ffa88e,
+    #7d80ff,
+    #b5bbff,
+    #daddff
+  );
+  background-size: 200%;
+  /*background-clip twice to make sure VScode does not throw a warning, somehow more reliable as wewll*/
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  white-space: nowrap;
 }
 
 @keyframes background-pan {
-    from
-    {
-        background-position: 0% center;
-    }
-    to
-    {
-        background-position: -200% center
-    }
+  from {
+    background-position: 0% center;
+  }
+  to {
+    background-position: -200% center;
+  }
 }
 
 .hero-text-small {
-    color: #FFFFFF;
-    font-weight: bold;
-    text-decoration: underline;
+  color: #ffffff;
+  font-size: x-large;
+}
+.white-text-small {
+  color: #ffffff;
 }
 
 /*Indicator for user to scroll down*/
 .scroll-down-container {
-    font-size: x-large;
-    color: #FFFFFF;
-    margin-top: 10%;
-    margin-bottom: 5%;
+  font-size: x-large;
+  color: #ffffff;
+  margin-top: 10%;
+  margin-bottom: 5%;
 }
 
 .scroll-down-arrow {
-    animation: scroll-down 4s ease infinite;
-    position: relative;
-
+  animation: scroll-down 4s ease infinite;
+  position: relative;
 }
 
 @keyframes scroll-down {
-    0%
-    {
-        opacity: 0%;
-    }
-    10%
-    {
-        transform: translateY(0%); opacity: 1;
-    }
-    100%
-    {
-        transform: translateY(10%); opacity: 0;
-    }
+  0% {
+    opacity: 0%;
+  }
+  10% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(10%);
+    opacity: 0;
+  }
 }

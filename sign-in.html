@@ -5,89 +5,105 @@
     <title>Sign-in page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
-      .h3-signin {
+      .signin-row {
+        display: flex;
+        min-height: 100vh;
+      }
+      .signin-col {
+        flex: 50%; 
+        padding-top: 250px !important;
+      }
+      .hero-signin-col {
+        background-color: #7d80ff;
+      }
+      .cool-text-background {
+        background-color: #262626; 
+        display: inline; 
+        padding: 3px 10px; 
+        border-radius: 15px;
+      }
+      .signin-form-col {
+        padding-top: 250px;
+      }
+      .h2-signin {
         color: #7d80ff;
         position: relative;
         text-align: center;
       }
-      .signin-row {
-        display: flex;
-      }
-      .signin-col {
-        height: 100vh;
-        flex: 40%;
-      }
-      .signin-form {
-        width: 100%;
-        padding-top: 20%;
-      }
       .signin-table {
         margin: 0px auto;
+        width: 250px;
       }
-      .hero-signin {
-        background-color: #7d80ff;
+      .signin-input {
+        width: 100%;
+        height: 25px;
+        margin-bottom: 15px;
+        border-radius: 15px;
+        padding: 2px 10px;
+      }
+      .to-sign-up {
+        margin-top: 80px;
+        text-align: center;
+      }
+      a:link {
+        color: #b5bbff !important;
+      }
+      a:visited {
+        color: #b5bbff !important;
       }
     </style>
     <link rel="stylesheet" href="./general.css" />
   </head>
   <body>
-    <!--Hero element start-->
+    <!--Hero element column start-->
     <section>
       <div class="signin-row">
-        <div class="signin-col hero-mainpg hero-signin">
+        <div class="signin-col hero-mainpg hero-signin-col">
           <h1>
             Welcome to
-            <span
+            <div class="cool-text-background"><span
               class="cool-text"
-              style="background-color: #262626; padding: 3px"
               >Webify</span
-            >
+            ></div>
           </h1>
           <p class="hero-text-small">For all website freelancing needs.</p>
         </div>
-
-        <div class="signin-col signin-form">
-          <h3 class="h3-signin">
+        <!--Hero element column end-->
+        <!--Signin form element start-->
+        <div class="signin-col signin-form-col">
+          <h2 class="h2-signin">
             Sign in to <span class="cool-text">Webify</span>
-          </h3>
+          </h2>
 
-          <table class="signin-table">
+          <div class="signin-table">
             <form action="/login.php">
-              <tr>
-                <td>
                   <input
-                    type="text"
+                    class="signin-input"
+                    type="email"
                     id="email"
                     name="e-mail"
-                    placeholder="E-mail"
+                    placeholder="  E-mail"
                   />
-                </td>
-              </tr>
-              <tr>
-                <td>
                   <input
+                    class="signin-input"
                     type="password"
                     id="password"
                     name="password"
-                    placeholder="Password"
+                    placeholder="  Password"
                   />
-                </td>
-              </tr>
-              <tr>
-                <td>
+                   <!--Add a error message if password is wrong-->
                   <div style="text-align: end">
                     <a href="#">Forgot Password?</a>
                   </div>
-                </td>
-              </tr>
-              <tr>
-                <td><input class="buttonw" type="submit" name="Sign-in"></input></td>
-              </tr>
+            <input class="buttonw" type="submit" name="Sign-in" value="Sign in now" ></input>                    
             </form>
-          </table>
+            <div class="to-sign-up white-text-small">No account, yet? <a href="./sign-up.html">Sign up</a></div>
+            <!--Hover does not work for some reason-->
+          </div>
+          </div>
+          <!--Signin form element end-->
         </div>
       </div>
     </section>
-    <!--Hero end-->
   </body>
 </html>
