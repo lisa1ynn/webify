@@ -35,6 +35,8 @@ input.buttonw {
   text-align: center;
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
+  font-family: sans-serif;
+  letter-spacing: 0.1em;
 }
 
 .logo-bar {
@@ -113,6 +115,8 @@ h1 {
   color: #ffffff;
   font-weight: bold;
   font-size: xxx-large;
+  font-family: sans-serif;
+  letter-spacing: 0.05em;
 }
 
 .cool-text {
@@ -147,9 +151,15 @@ h1 {
 }
 
 .hero-text-small {
-  color: #ffffff;
-  font-size: x-large;
+  color: #9a9a9a;
+  padding-top: 20px;
+  text-decoration: underline;
+  text-underline-offset: 1.5rem;
+  letter-spacing: 0.3em;
+  font-family: arial;
+  font-size: small;
 }
+
 .white-text-small {
   color: #ffffff;
 }
