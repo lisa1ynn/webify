@@ -1,0 +1,162 @@
+/*Making page consistent - no empty space on left side and background blends in w menu section*/
+body {
+  margin: 0px;
+  background: #262626;
+}
+
+/*For top menu bar*/
+.top-bar-container {
+  background-color: #262626;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  z-index: 2;
+}
+
+.logo-bar {
+  width: 30px;
+  height: 30px;
+  padding-top: 14%;
+  margin: 0 auto;
+}
+
+.navigation-bar {
+  color: #ffffff;
+}
+.navigation-bar li {
+  display: inline-block;
+  padding: 5%;
+  font-size: large;
+}
+
+a:link {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #ffffff;
+}
+
+a:hover {
+  color: #7d80ff;
+  text-shadow: 2px 2px 4px black;
+}
+
+.login-button {
+  display: inline;
+  padding-top: 9%;
+}
+a.login-btn {
+  padding: 3% 10%;
+  border-radius: 30px;
+  width: 60%;
+  background: #ffffff;
+  color: #262626 !important;
+  font-size: large;
+  border: none;
+  box-shadow: 0px 0px 0px black;
+}
+
+.login-btn:hover {
+  background: #ffa88e;
+  animation: shadow 0.5s forwards;
+  text-shadow: none;
+}
+
+@keyframes shadow {
+  0% {
+    box-shadow: 0px 0px 0px black;
+  }
+  100% {
+    box-shadow: 0px 8px 20px black;
+  }
+}
+
+.login-btn:active {
+  background: #ff511c;
+  color: #262626;
+}
+/*For hero element below menu bar*/
+.hero-mainpg {
+  width: 100%;
+  position: relative;
+  text-align: center;
+  padding-top: 10%;
+  z-index: 1;
+}
+
+h1 {
+  color: #ffffff;
+  font-weight: bold;
+  font-size: xxx-large;
+}
+
+.cool-text {
+  animation: background-pan 3s linear infinite;
+  background: linear-gradient(
+    to right,
+    #daddff,
+    #b5bbff,
+    #7d80ff,
+    #ffa88e,
+    #ff511c,
+    #ffa88e,
+    #7d80ff,
+    #b5bbff,
+    #daddff
+  );
+  background-size: 200%;
+  /*background-clip twice to make sure VScode does not throw a warning, somehow more reliable as wewll*/
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  white-space: nowrap;
+}
+
+@keyframes background-pan {
+  from {
+    background-position: 0% center;
+  }
+  to {
+    background-position: -200% center;
+  }
+}
+
+.hero-text-small {
+  color: #ffffff;
+  font-size: x-large;
+}
+.white-text-small {
+  color: #ffffff;
+}
+
+/*Indicator for user to scroll down*/
+.scroll-down-container {
+  font-size: x-large;
+  color: #ffffff;
+  margin-top: 10%;
+  margin-bottom: 5%;
+}
+
+.scroll-down-arrow {
+  animation: scroll-down 4s ease infinite;
+  position: relative;
+}
+
+@keyframes scroll-down {
+  0% {
+    opacity: 0%;
+  }
+  10% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(10%);
+    opacity: 0;
+  }
+}
