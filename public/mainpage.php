@@ -112,7 +112,7 @@
       <?php
       include '../private/initialize.php';
 
-      $result = $database->query("SELECT fname, lname, intro, skills, offer, fee, points, reviews, projects, profilep FROM freelancer;");
+      $result = $database->query("SELECT * FROM freelancer;");
 
       while ($row = $result->fetch_assoc()) {
         $array = $row;
