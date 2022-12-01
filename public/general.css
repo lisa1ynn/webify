@@ -4,82 +4,6 @@ body {
   background: #262626;
 }
 
-/*For top menu bar*/
-.top-bar-container {
-  background-color: #262626;
-  position: sticky;
-  top: 0;
-  width: 100%;
-  text-align: center;
-  display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
-  z-index: 2;
-}
-
-.logo-bar {
-  width: 30px;
-  height: 30px;
-  padding-top: 14%;
-  margin: 0 auto;
-}
-
-.navigation-bar {
-  color: #ffffff;
-}
-.navigation-bar li {
-  display: inline-block;
-  padding: 5%;
-  font-size: large;
-}
-
-a:link {
-  color: #ffffff;
-  text-decoration: none;
-}
-
-a:visited {
-  color: #ffffff;
-}
-
-a:hover {
-  color: #7d80ff;
-  text-shadow: 2px 2px 4px black;
-}
-
-.login-button {
-  display: inline;
-  padding-top: 9%;
-}
-a.login-btn {
-  padding: 3% 10%;
-  border-radius: 30px;
-  width: 60%;
-  background: #ffffff;
-  color: #262626 !important;
-  font-size: large;
-  border: none;
-  box-shadow: 0px 0px 0px black;
-}
-
-.login-btn:hover {
-  background: #ffa88e;
-  animation: shadow 0.5s forwards;
-  text-shadow: none;
-}
-
-@keyframes shadow {
-  0% {
-    box-shadow: 0px 0px 0px black;
-  }
-  100% {
-    box-shadow: 0px 8px 20px black;
-  }
-}
-
-.login-btn:active {
-  background: #ff511c;
-  color: #262626;
-}
 /*For hero element below menu bar*/
 .hero-mainpg {
   width: 100%;
@@ -87,12 +11,15 @@ a.login-btn {
   text-align: center;
   padding-top: 10%;
   z-index: 1;
+  box-shadow: 0px 0.5px 2px black;
 }
 
 h1 {
   color: #ffffff;
   font-weight: bold;
-  font-size: xxx-large;
+  font-size: xx-large;
+  font-family: sans-serif;
+  letter-spacing: 0.05em;
 }
 
 .cool-text {
@@ -127,8 +54,13 @@ h1 {
 }
 
 .hero-text-small {
-  color: #ffffff;
-  font-size: x-large;
+  color: #9a9a9a;
+  padding-top: 20px;
+  text-decoration: underline;
+  text-underline-offset: 1.5rem;
+  letter-spacing: 0.3em;
+  font-family: arial;
+  font-size: small;
 }
 .white-text-small {
   color: #ffffff;
