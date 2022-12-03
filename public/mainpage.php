@@ -137,9 +137,10 @@
     </style>
   </head>
   <body>
-    <!--menu bar start-->
+
+    <!--Imports menu bar on top-->
     <?php include './components/menubar.php'; ?>
-    <!--menu bar end-->
+
     <!--Hero element start-->
     <section class="hero-mainpg">
       <!--Span element used to make the gradient text effect-->
@@ -151,53 +152,32 @@
       </div>
     </section>
     <!--Hero end-->
+
     <section>
+    <!-- Filter Start -->
       <div id="filter-section">
-        <form id="filter-options-form">
+        <form id="filter-options-form" action="<?php $_SERVER['PHP_SELF']; ?>" method="post">
           <p>Select desired skills: </p>
-          <input type="checkbox" name="skills_all" id="skills_all" value="all" > <label for="skills_all">All</label>
-          <input type="checkbox" name="skills0" id="skills_JavaScript" value="JavaScript"> <label for="skills_JavaScript">JavaScript</label>
-          <input type="checkbox" name="skills1" id="skills_TypeScript" value="TypeScript"> <label for="skills_TypeScript">TypeScript</label>
-          <input type="checkbox" name="skills2" id="skills_HTML" value="HTML"> <label for="skills_HTML">HTML</label>
-          <input type="checkbox" name="skills3" id="skills_CSS" value="CSS"> <label for="skills_CSS">CSS</label>
-          <input type="checkbox" name="skills4" id="skills_React" value="React"> <label for="skills_React">React</label>
-          <input type="checkbox" name="skills5" id="skills_PHP" value="PHP"> <label for="skills_PHP">PHP</label>
-          <input type="checkbox" name="skills6" id="skills_SQL" value="SQL"> <label for="skills_SQL">SQL</label>
-          <input type="checkbox" name="skills7" id="skills_AWS" value="AWS"> <label for="skills_AWS">AWS</label>
-          <input type="checkbox" name="skills8" id="skills_MongoDB" value="MongoDB"> <label for="skills_MongoDB">MongoDB</label>
-          <input type="checkbox" name="skills9" id="skills_Ruby" value="Ruby"> <label for="skills_Ruby">Ruby</label>
+          <input type="checkbox" name="skills[]" id="skills_all" value="all" > <label for="skills_all">Show all</label>
+          <input type="checkbox" name="skills[]" id="skills_JavaScript" value="JavaScript"> <label for="skills_JavaScript">JavaScript</label>
+          <input type="checkbox" name="skills[]" id="skills_TypeScript" value="TypeScript"> <label for="skills_TypeScript">TypeScript</label>
+          <input type="checkbox" name="skills[]" id="skills_HTML" value="HTML"> <label for="skills_HTML">HTML</label>
+          <input type="checkbox" name="skills[]" id="skills_CSS" value="CSS"> <label for="skills_CSS">CSS</label>
+          <input type="checkbox" name="skills[]" id="skills_React" value="React"> <label for="skills_React">React</label>
+          <input type="checkbox" name="skills[]" id="skills_PHP" value="PHP"> <label for="skills_PHP">PHP</label>
+          <input type="checkbox" name="skills[]" id="skills_SQL" value="SQL"> <label for="skills_SQL">SQL</label>
+          <input type="checkbox" name="skills[]" id="skills_AWS" value="AWS"> <label for="skills_AWS">AWS</label>
+          <input type="checkbox" name="skills[]" id="skills_MongoDB" value="MongoDB"> <label for="skills_MongoDB">MongoDB</label>
+          <input type="checkbox" name="skills[]" id="skills_Ruby" value="Ruby"> <label for="skills_Ruby">Ruby</label>
           <input type="submit" name="submit" value="Search"/>
         </form>
       </div>
-
-      <script>
-      // url: http://localhost:8080/webify/public/mainpage.php?filters=all
-      const form = document.getElementById('filter-options-form');
-      form.addEventListener('submit', makeObject);
-
-      function makeObject(event) {
-        event.preventDefault()
-        const filterData = new FormData(event.target);
-
-        const filterDataObject = {};
-        filterData.forEach((value, key) => (filterDataObject[key] = value));
-
-        const filter = Object.values(filterDataObject)
-        const src = "mainpage.php?filters="+filter;
-        window.location.href=src;
-      }
-    </script>
-
-      <div class="freelancers-container">
+  <!-- Filter End -->
         <?php
-          include '../private/initialize.php';?>
-          <?php 
-
-          // gets rid of erro for trying to find 'filters' when no filters are seletected
-          error_reporting(E_ERROR); 
-
+          include '../private/initialize.php';
+  
           // make a linked list with skills and users
-          $users_skills = $database->query("SELECT skill, fname, lname, points, reviews, profilep, projects, fee
+          $users_skills = $database->query("SELECT skill, fname, lname, points, reviews, profilep, projects, fee, id
           FROM freelancer AS f, freelancerskill AS fs, skills AS s
             WHERE f.id = fs.freelancer_id
             AND fs.skill_id = s.id_skill
@@ -205,33 +185,46 @@
 
           $filter = array();
 
-          // if filters exist on url, use that as a source for $filter
-          try {
-            $filter = explode(",",$_GET['filters']);
+          if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            foreach($_POST['skills'] as $skill) {
+              $filter[] = $skill;
+            }
           }
-          // else default to show all
-          finally {
+          else {
             $filter[] = 'all';
           }
+          ?>
+        <p class="current-search">Currently showing skills: | <?php
+          foreach($filter as $skill) {
+            echo $skill." | ";
+          }
+        ?></p>
+        <div class="freelancers-container">
+          <?php
 
           // track unique users
           $users_tracker = array();
+          // adds freelancers from db to indivodual div elements
           while($user = $users_skills->fetch_assoc()){
             $user_row = $user;
-
             // get all users with desired skill
             if (in_array($user_row['skill'], $filter) || in_array('all', $filter)) {
-
             // need to check if user is unique
-              if (!in_array($user_row['lname'], $users_tracker)){
-
+              if (!in_array($user_row['id'], $users_tracker)){
                 // add unique users into tracker
-                $users_tracker[] = $user_row['lname'];
-
+                $users_tracker[] = $user_row['id'];
                 // calculates #/5 stars
                 $review = number_format($user_row['points']/$user_row['reviews'], 2);
+                $id = $user_row['id'];
             ?>
-                <div class="individual-freelancer" >
+                <div class="individual-freelancer" id="freelancer-individual" onclick="sendDataToPHPpage(<?php echo $id; ?>)">
+                  <script>
+                    function sendDataToPHPpage(id) {
+                      var identifier = id;
+                      const src = "freelancer.php?profile="+identifier;
+                      window.location.href=src;
+                    }
+                  </script>
                   <div class="freelancer-tbl-top" >
                     <img src="<?php echo 'data:image/png;base64,'.base64_encode($user_row['projects']).''; ?>" alt="Portfolio Image" class="freelance-img-projects">
                     <div class="user-name-picture-review-fee">
@@ -241,7 +234,7 @@
                       </div>
                       <div class="user-info">
                         <p class="review-rating"> <img src="./pictures/reviewstr.png" alt="Reviews: " class="review-str"> <?php echo $review; ?>/5</p>
-                        <p class="price">Fee: £<?php echo $user_row['fee']; ?> </p>
+                        <p class="price">Fee: £<?php echo $user_row['fee']; ?>/hr </p>
                       </div>
                     </div>
                     <div class="show-more">

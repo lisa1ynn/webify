@@ -88,8 +88,7 @@
     <header class="top-bar-container">
       <img class="logo-bar" src="" alt="Logo" />
       <div class="navigation-bar">
-        <li><a class="nav-item" href="#experts">Hire</a></li>
-        <li><a class="nav-item" href="#how works">Purpose</a></li>
+        <li><a class="nav-item" href="/webify/public/mainpage.php">Home</a></li>
         <li><a class="nav-item" href="#about">About</a></li>
         <li><a class="nav-item" href="#contact">Contact</a></li>
       </div>
