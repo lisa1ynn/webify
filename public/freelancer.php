@@ -142,6 +142,7 @@
                 AND fs.skill_id = s.id_skill
                 AND f.id = $id
                 ");
+                
             $profile_features = $profile_features_query->fetch_assoc();
 
             $review = number_format($profile_features['points']/$profile_features['reviews'], 2);
@@ -209,5 +210,8 @@
             </div>
 
         </section>
+    <?php
+    include './components/Footer.php'
+    ?>
     </body>
 </html>

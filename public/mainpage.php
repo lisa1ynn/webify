@@ -236,7 +236,7 @@
           $users_skills = $database->query("SELECT skill, fname, lname, points, reviews, profilep, projects, fee, id
             FROM freelancer AS f, freelancerskill AS fs, skills AS s
             WHERE f.id = fs.freelancer_id
-            AND fs.skill_id = s.id_skill
+            AND fs.skill_id = s.skill_id
           ");
 
           $filter = array();
