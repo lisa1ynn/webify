@@ -33,6 +33,7 @@
                 grid-template-rows: 70% 25%;
                 place-items: center;
                 height: 90%;
+                row-gap: 2rem;
             }
 
             .projects-img-container {
@@ -50,10 +51,8 @@
 
             .description-container {
                 width: 90%;
-                border: solid #FF511C;
                 border-radius: 20px;
                 margin-bottom: 2%;
-                box-shadow: 0px 8px 15px #151515;
             }
 
             .description-container > h1 {
@@ -100,7 +99,6 @@
                 height: 150px;
                 width: 150px;
                 border-radius: 100%;
-                border: solid #FF511C;
                 box-shadow: 0px 5px 10px #151515;
             }
 
@@ -113,6 +111,19 @@
             .profile-fee {
                 font-size: 1.5rem;
                 font-weight: bold;
+                margin-left: 2.5rem;
+            }
+
+            .profile-skill {
+                margin-left: 2.5rem;
+            }
+
+            .reviews {
+                margin-left: 2.5rem;
+            }
+
+            .post-review {
+                margin-left: 2.5rem;
             }
 
             .review-str {
@@ -139,7 +150,7 @@
             $profile_features_query = $database->query("SELECT skill, fname, lname, points, reviews, intro, profilep, projects, fee
                 FROM freelancer AS f, freelancerskill AS fs, skills AS s
                 WHERE f.id = fs.freelancer_id
-                AND fs.skill_id = s.id_skill
+                AND fs.skill_id = s.skill_id
                 AND f.id = $id
                 ");
                 
@@ -210,8 +221,5 @@
             </div>
 
         </section>
-    <?php
-    include './components/Footer.php'
-    ?>
     </body>
 </html>

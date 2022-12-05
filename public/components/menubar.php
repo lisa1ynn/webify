@@ -17,11 +17,14 @@
           box-shadow: 0px 0.5px 2px black;
         }
 
+        .logo-container {
+          place-items: center;
+        }
+
         .logo-bar {
-          width: 30px;
-          height: 30px;
-          padding-top: 14%;
-          margin: 0 auto;
+          width: 100px;
+          height: 80px;
+          padding-top: 6%;
         }
 
         .navigation-bar {
@@ -86,7 +89,9 @@
   <body>
     <!--menu bar start-->
     <header class="top-bar-container">
-      <img class="logo-bar" src="" alt="Logo" />
+      <div class="logo-container">
+        <img class="logo-bar" src="./pictures/logo.jpeg" alt="Logo" />
+      </div>
       <div class="navigation-bar">
         <li><a class="nav-item" href="/webify/public/mainpage.php">Home</a></li>
         <li><a class="nav-item" href="#about">About</a></li>
