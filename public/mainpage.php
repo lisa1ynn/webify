@@ -4,9 +4,9 @@
     <meta charset="utf-8" />
     <title>Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="./general.css" />
+    <link href="https://fonts.googleapis.com/css?family=Archivo:500|Open+Sans:300,700" rel="stylesheet">
+    <link rel="stylesheet" href="./general.css?v=<?php echo time(); ?>"/>
     <style>
-
       .freelancers-container {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(20rem, 2fr));
@@ -107,25 +107,6 @@
         text-shadow: 1px 2px 4px black;
       }
 
-      .hero-mainpg {
-        width: 100%;
-        position: relative;
-        text-align: center;
-        padding-top: 10%;
-        z-index: 1;
-        box-shadow: 0px 0.5px 2px black;
-        padding-bottom: 20px;
-      }     
-
-      .hero-text-small {
-        color: #9a9a9a;
-        padding-top: 20px;
-        text-decoration: underline;
-        text-underline-offset: 1.5rem;
-        letter-spacing: 0.3em;
-        font-family: arial;
-        font-size: small;
-      }
       .show-more > h1 {
         color: #ffffff;
         font-weight: bold;
@@ -134,7 +115,71 @@
         letter-spacing: 0.05em;
       }
 
+      .filters-form , .current-search {
+        color: #C0C0C0;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 300;
+      }
+
+      .filter-grid-struct {
+        display: grid;
+        grid-template-columns: 70% 20%;
+        place-items: left;
+      }
+
+      input[type=checkbox] {
+        visibility: hidden;
+      }
+
+      .filters-form > form > p {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-left: 10px;
+      }
+
+      .filters-form > label, input {
+        margin-left: 20px;
+      }
+
+      .filter-grid-options > label:hover {
+        color: #FF511C;
+        font-weight: bold;
+      }
+
+      .filter-grid-options > label:focus {
+        color: #FF511C;
+        font-weight: bold;
+      }
+
+      .search-btn {
+        padding: 10px;
+        border-radius: 20px;
+        background: #C0C0C0;
+        border: none;
+        color: #262626;
+        float: right;
+        font-weight: bold;
+        width: 100%;
+      }
+
+      .search-btn:hover {
+        background: #FF511C;
+        color: white;
+        box-shadow: 0px 2px 4px black;
+      }
+
+      .current-search {
+        margin-left: 10px;
+      }
+
+
     </style>
+    <script>
+      // removes alers showed if page is refreshed when filters are applied
+      if ( window.history.replaceState ) {
+          window.history.replaceState( null, null, window.location.href );
+      }
+    </script>
   </head>
   <body>
 
@@ -155,33 +200,44 @@
 
     <section>
     <!-- Filter Start -->
-      <div id="filter-section">
+      <div id="filter-section" class="filters-form">
         <form id="filter-options-form" action="<?php $_SERVER['PHP_SELF']; ?>" method="post">
           <p>Select desired skills: </p>
-          <input type="checkbox" name="skills[]" id="skills_all" value="all" > <label for="skills_all">Show all</label>
-          <input type="checkbox" name="skills[]" id="skills_JavaScript" value="JavaScript"> <label for="skills_JavaScript">JavaScript</label>
-          <input type="checkbox" name="skills[]" id="skills_TypeScript" value="TypeScript"> <label for="skills_TypeScript">TypeScript</label>
-          <input type="checkbox" name="skills[]" id="skills_HTML" value="HTML"> <label for="skills_HTML">HTML</label>
-          <input type="checkbox" name="skills[]" id="skills_CSS" value="CSS"> <label for="skills_CSS">CSS</label>
-          <input type="checkbox" name="skills[]" id="skills_React" value="React"> <label for="skills_React">React</label>
-          <input type="checkbox" name="skills[]" id="skills_PHP" value="PHP"> <label for="skills_PHP">PHP</label>
-          <input type="checkbox" name="skills[]" id="skills_SQL" value="SQL"> <label for="skills_SQL">SQL</label>
-          <input type="checkbox" name="skills[]" id="skills_AWS" value="AWS"> <label for="skills_AWS">AWS</label>
-          <input type="checkbox" name="skills[]" id="skills_MongoDB" value="MongoDB"> <label for="skills_MongoDB">MongoDB</label>
-          <input type="checkbox" name="skills[]" id="skills_Ruby" value="Ruby"> <label for="skills_Ruby">Ruby</label>
-          <input type="submit" name="submit" value="Search"/>
+          <div class="filter-grid-struct">
+            <div class="filter-grid-options">
+              <label for="skills_all" id='all' onclick="changeColor(id)"><input type="checkbox" name="skills[]" id="skills_all" value="All" >All </label>
+              <label for="skills_JavaScript" id='JS' onclick="changeColor(id)"><input type="checkbox" name="skills[]" id="skills_JavaScript" value="JavaScript">JavaScript </label>
+              <label for="skills_TypeScript" id='TS' onclick="changeColor(id)"><input type="checkbox" name="skills[]" id="skills_TypeScript" value="TypeScript">TypeScript </label>
+              <label for="skills_HTML" id='HTML' onclick="changeColor(id)"><input type="checkbox" name="skills[]" id="skills_HTML" value="HTML">HTML </label>
+              <label for="skills_CSS" id='CSS' onclick="changeColor(id)"><input type="checkbox" name="skills[]" id="skills_CSS" value="CSS">CSS </label>
+              <label for="skills_React" id='React' onclick="changeColor(id)"><input type="checkbox" name="skills[]" id="skills_React" value="React">React </label>
+              <label for="skills_PHP" id='PHP' onclick="changeColor(id)"><input type="checkbox" name="skills[]" id="skills_PHP" value="PHP">PHP </label>
+              <label for="skills_SQL" id='SQL' onclick="changeColor(id)"><input type="checkbox" name="skills[]" id="skills_SQL" value="SQL">SQL </label>
+              <label for="skills_AWS" id='AWS' onclick="changeColor(id)"><input type="checkbox" name="skills[]" id="skills_AWS" value="AWS">AWS </label>
+              <label for="skills_MongoDB" id='Mongo' onclick="changeColor(id)"><input type="checkbox" name="skills[]" id="skills_MongoDB" value="MongoDB">MongoDB </label>
+              <label for="skills_Ruby" id='Ruby' onclick="changeColor(id)"><input type="checkbox" name="skills[]" id="skills_Ruby" value="Ruby">Ruby </label>
+            </div>
+            <input type="submit" name="submit" value="Search" class="search-btn"/>
+          </div>
+          <script>
+            function changeColor(id) {
+              var text = document.getElementById(id)
+              console.log(id)
+              text.style.color = '#FF511C';
+              text.style.fontWeight = 'bold';
+            }
+          </script>
         </form>
       </div>
   <!-- Filter End -->
         <?php
           include '../private/initialize.php';
-  
-          // make a linked list with skills and users
+
           $users_skills = $database->query("SELECT skill, fname, lname, points, reviews, profilep, projects, fee, id
-          FROM freelancer AS f, freelancerskill AS fs, skills AS s
+            FROM freelancer AS f, freelancerskill AS fs, skills AS s
             WHERE f.id = fs.freelancer_id
             AND fs.skill_id = s.id_skill
-            ");
+          ");
 
           $filter = array();
 
@@ -189,10 +245,10 @@
             foreach($_POST['skills'] as $skill) {
               $filter[] = $skill;
             }
+          } else {
+              $filter[] = 'All';
           }
-          else {
-            $filter[] = 'all';
-          }
+
           ?>
         <p class="current-search">Currently showing skills: | <?php
           foreach($filter as $skill) {
@@ -208,7 +264,7 @@
           while($user = $users_skills->fetch_assoc()){
             $user_row = $user;
             // get all users with desired skill
-            if (in_array($user_row['skill'], $filter) || in_array('all', $filter)) {
+            if (in_array($user_row['skill'], $filter) || in_array('All', $filter)) {
             // need to check if user is unique
               if (!in_array($user_row['id'], $users_tracker)){
                 // add unique users into tracker
@@ -219,6 +275,7 @@
             ?>
                 <div class="individual-freelancer" id="freelancer-individual" onclick="sendDataToPHPpage(<?php echo $id; ?>)">
                   <script>
+                    // allows for individual freelancers to be shown
                     function sendDataToPHPpage(id) {
                       var identifier = id;
                       const src = "freelancer.php?profile="+identifier;
@@ -238,7 +295,6 @@
                       </div>
                     </div>
                     <div class="show-more">
-                      <!-- make dots to show image preview of different projects -->
                         <h1>. . .</h1>
                     </div>
                   </div>

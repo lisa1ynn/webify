@@ -11,7 +11,11 @@ body {
   text-align: center;
   padding-top: 10%;
   z-index: 1;
-  box-shadow: 0px 0.5px 2px black;
+  background-image: url('./pictures/mainpg-background.png');
+  background-position: center;
+  background-color: #262626;
+  box-shadow: 0px 1px black;
+  padding-bottom: 20px;
 }
 
 h1 {
@@ -61,9 +65,11 @@ h1 {
   letter-spacing: 0.3em;
   font-family: arial;
   font-size: small;
+  text-shadow: 0px 2px 4px #151515;
 }
 .white-text-small {
   color: #ffffff;
+  text-shadow: 0px 2px 4px #151515;
 }
 
 /*Indicator for user to scroll down*/
@@ -72,6 +78,7 @@ h1 {
   color: #ffffff;
   margin-top: 10%;
   margin-bottom: 5%;
+  text-shadow: 0px 2px 4px #151515;
 }
 
 .scroll-down-arrow {

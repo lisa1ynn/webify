@@ -97,11 +97,11 @@
             }
 
             .profile-picture {
-                height: 80%;
-                width: 80%;
+                height: 150px;
+                width: 150px;
                 border-radius: 100%;
                 border: solid #FF511C;
-                box-shadow: 0px 5px 10px #151515
+                box-shadow: 0px 5px 10px #151515;
             }
 
             .first-last {
@@ -121,6 +121,12 @@
             }
 
         </style>
+        <script>
+      // removes alers showed if pagae refresed or exited if review is made
+      if ( window.history.replaceState ) {
+          window.history.replaceState( null, null, window.location.href );
+      }
+    </script>
     </head>
     <body>
         <?php
