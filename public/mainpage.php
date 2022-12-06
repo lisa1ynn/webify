@@ -184,7 +184,10 @@
   <body>
 
     <!--Imports menu bar on top-->
-    <?php include './components/menubar.php'; ?>
+    <?php include './components/menubar.php'; 
+          // initializes the database for the rest of the page
+          include '../private/initialize.php';
+    ?>
 
     <!--Hero element start-->
     <section class="hero-mainpg">
@@ -197,29 +200,33 @@
       </div>
     </section>
     <!--Hero end-->
+    <?php
+    // query to get data for filters section
+    $skills_query_filter = $database->query("SELECT * FROM skills")
 
+    ?>
     <section>
     <!-- Filter Start -->
       <div id="filter-section" class="filters-form">
+        <!-- Once search is clicked, sends data localhost to be used -->
         <form id="filter-options-form" action="<?php $_SERVER['PHP_SELF']; ?>" method="post">
-          <p>Select desired skills: </p>
+          <p>Filter desired skills: </p>
+          <!-- Grid to display all filters in one column and search in another -->
           <div class="filter-grid-struct">
+            <!-- This one contains all filters to be used -->
             <div class="filter-grid-options">
               <label for="skills_all" id='all' onclick="changeColor(id)"><input type="checkbox" name="skills[]" id="skills_all" value="All" >All </label>
-              <label for="skills_JavaScript" id='JS' onclick="changeColor(id)"><input type="checkbox" name="skills[]" id="skills_JavaScript" value="JavaScript">JavaScript </label>
-              <label for="skills_TypeScript" id='TS' onclick="changeColor(id)"><input type="checkbox" name="skills[]" id="skills_TypeScript" value="TypeScript">TypeScript </label>
-              <label for="skills_HTML" id='HTML' onclick="changeColor(id)"><input type="checkbox" name="skills[]" id="skills_HTML" value="HTML">HTML </label>
-              <label for="skills_CSS" id='CSS' onclick="changeColor(id)"><input type="checkbox" name="skills[]" id="skills_CSS" value="CSS">CSS </label>
-              <label for="skills_React" id='React' onclick="changeColor(id)"><input type="checkbox" name="skills[]" id="skills_React" value="React">React </label>
-              <label for="skills_PHP" id='PHP' onclick="changeColor(id)"><input type="checkbox" name="skills[]" id="skills_PHP" value="PHP">PHP </label>
-              <label for="skills_SQL" id='SQL' onclick="changeColor(id)"><input type="checkbox" name="skills[]" id="skills_SQL" value="SQL">SQL </label>
-              <label for="skills_AWS" id='AWS' onclick="changeColor(id)"><input type="checkbox" name="skills[]" id="skills_AWS" value="AWS">AWS </label>
-              <label for="skills_MongoDB" id='Mongo' onclick="changeColor(id)"><input type="checkbox" name="skills[]" id="skills_MongoDB" value="MongoDB">MongoDB </label>
-              <label for="skills_Ruby" id='Ruby' onclick="changeColor(id)"><input type="checkbox" name="skills[]" id="skills_Ruby" value="Ruby">Ruby </label>
+              <?php
+              // to generate all skill filters to match db
+              while ($skill_row = $skills_query_filter->fetch_assoc()){
+                $skill_id = $skill_row['skill_id'];?>
+                <label for="skills_<?php echo $skill_row['skill'];?>" id='<?php echo $skill_id;?>' onclick="changeColor(id)"><input type="checkbox" name="skills[]" id="skills_<?php echo $skill_row['skill'];?>" value="<?php echo $skill_row['skill'];?>" ><?php echo $skill_row['skill'];?></label>
+              <?php } ?>
             </div>
             <input type="submit" name="submit" value="Search" class="search-btn"/>
           </div>
           <script>
+            // changes colour of clikced filters to make them noticable to user
             function changeColor(id) {
               var text = document.getElementById(id)
               console.log(id)
@@ -231,16 +238,16 @@
       </div>
   <!-- Filter End -->
         <?php
-          include '../private/initialize.php';
-
+          // inner join table to get skills that each user has and each users features
           $users_skills = $database->query("SELECT skill, fname, lname, points, reviews, profilep, projects, fee, id
             FROM freelancer AS f, freelancerskill AS fs, skills AS s
             WHERE f.id = fs.freelancer_id
             AND fs.skill_id = s.skill_id
           ");
 
+          // filters from section above will be stored in this
           $filter = array();
-
+          // stores filters
           if ($_SERVER["REQUEST_METHOD"] == "POST") {
             foreach($_POST['skills'] as $skill) {
               $filter[] = $skill;
@@ -250,6 +257,7 @@
           }
 
           ?>
+        <!-- Shows user which filters they have selected to be shown -->
         <p class="current-search">Currently showing skills: | <?php
           foreach($filter as $skill) {
             echo $skill." | ";
@@ -275,7 +283,7 @@
             ?>
                 <div class="individual-freelancer" id="freelancer-individual" onclick="sendDataToPHPpage(<?php echo $id; ?>)">
                   <script>
-                    // allows for individual freelancers to be shown
+                    // allows for individual freelancers to be shown, sends data to another php page
                     function sendDataToPHPpage(id) {
                       var identifier = id;
                       const src = "freelancer.php?profile="+identifier;

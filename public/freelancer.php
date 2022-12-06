@@ -27,6 +27,7 @@
                 height: 100%;
                 grid-template-columns: 70% 30%;
             }
+            
 
             .projects-description-area {
                 display: grid;
