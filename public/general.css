@@ -2,7 +2,7 @@
 body {
     margin: 0px; 
     background-color:#262626;
-    color:#FFFFFF;
+    color:black;
     font-family: sans-serif;
 }
 
@@ -194,4 +194,12 @@ h1 {
     transform: translateY(10%);
     opacity: 0;
   }
+}
+
+input.wrong-password {
+  border-color: red;
+}
+
+input.wrong-password::placeholder {
+  color: red;
 }
