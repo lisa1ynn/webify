@@ -1,22 +1,29 @@
 /*Making page consistent - no empty space on left side and background blends in w menu section*/
 body {
-    margin: 0px; 
-    background-color:#262626;
-    color:#FFFFFF;
-    font-family: sans-serif;
+  margin: 0px;
+  background-color: #262626;
+  color: #ffffff;
+  font-family: sans-serif;
 }
 
-
 /*Blue button*/
-button.blue {color: #DADDFF; background-color:#7D80FF;border-color:#DADDFF;border-width:3px;padding:2px;border-radius:2px;}
-
+button.blue {
+  color: #daddff;
+  background-color: #7d80ff;
+  border-color: #daddff;
+  border-width: 3px;
+  padding: 2px;
+  border-radius: 2px;
+}
 
 /*Line break*/
-hr {color:#7D80FF;}
+hr {
+  color: #7d80ff;
+}
 
 /*Input field*/
 .input-field {
-  background-color: #DADDFF;
+  background-color: #daddff;
   height: 25px;
   margin-bottom: 15px;
   border-radius: 15px;
@@ -25,7 +32,12 @@ hr {color:#7D80FF;}
 
 /*Button-style input*/
 .button-white {
-   color: #7D80FF; background-color:#DADDFF;border-color:#7D80FF;border-width:3px;padding:2% 7%;border-radius:30px;
+  color: #7d80ff;
+  background-color: #daddff;
+  border-color: #7d80ff;
+  border-width: 3px;
+  padding: 2% 7%;
+  border-radius: 30px;
 }
 
 /*For top menu bar*/
@@ -166,7 +178,8 @@ h1 {
 
 .white-text-small {
   color: #ffffff;
-  font-family: sans-serif;
+  font-family: "Courier New", Courier, monospace;
+  line-height: 150%;
 }
 
 /*Indicator for user to scroll down*/
@@ -194,4 +207,25 @@ h1 {
     transform: translateY(10%);
     opacity: 0;
   }
+}
+
+/* Components */
+
+.header {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  background-color: #333;
+}
+
+.header-ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.header-li {
+  display: inline-block;
+  margin-left: 20px;
+  font-size: xx-large;
 }

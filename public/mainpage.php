@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <title>Webify home</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="./general.css" />
+  <link rel="stylesheet" href="./general.css?v=<?php echo time(); ?>" />
   <style>
   .freelancers-container {
     display: grid;
@@ -91,8 +91,10 @@
       <li><a class="nav-item" href="#contact">Contact</a></li>
     </div>
     <div class="login-button">
-      <!--Need to just add the onClick function to open login / signup page-->
-      <a href="./sign-in.html" class="login-btn">Login</a>
+      <a href="./freelancer-onboarding/freelancer-onboarding-info.php" class="login-btn">Become a freelancer</a>
+    </div>
+    <div class="login-button">
+      <a href="./sign-in.php" class="login-btn">Login</a>
     </div>
   </header>
   <!--menu bar end-->
