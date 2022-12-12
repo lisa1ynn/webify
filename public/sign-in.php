@@ -101,6 +101,16 @@
     </div>
     </div>
   </section>
+  <script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const wrongPassword = urlParams.get('wrongPassword');
+
+  if (wrongPassword) {
+    const input = document.getElementById("password");
+
+    input.className = input.className + " wrong-password"
+  }
+  </script>
 </body>
 
 </html>

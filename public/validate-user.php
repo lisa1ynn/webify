@@ -28,9 +28,9 @@
 		// Checking if the passwords match
 		while ($row = $result->fetch_assoc()) {
 			if ($password == $row["password"]) {
-				echo "Login successful";
+				header("Location: mainpage.php");
 			} else {
-				echo "incorrect password";
+				header("Location: sign-in.html?wrongPassword=1");
 			};
 		}
 	} else {
