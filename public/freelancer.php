@@ -20,14 +20,25 @@
                 font-family: 'Archivo', sans-serif;
                 font-weight: 500;
             }
-
-            .main-area-profile-info {
-                display: grid;
-                width: 100%;
-                height: 100%;
-                grid-template-columns: 70% 30%;
+            @media screen and (max-width: 935px) {
+              .main-area-profile-info {
+                  display: flex;
+                  flex-direction: column;
+                  width: 100%;
+                  height: 100%;
+                  
+              }
             }
-            
+
+            @media screen and (min-width: 935px) {
+              .main-area-profile-info {
+                  display: flex;
+                  flex-direction: row;
+                  width: 100%;
+                  height: 100%;
+                  grid-template-columns: 60% 40%;
+              }
+            }
 
             .projects-description-area {
                 display: grid;
@@ -74,12 +85,13 @@
                 grid-template-rows: 30% 40% 30%;
                 border: solid #FF511C;
                 border-radius: 20px;
-                padding-left: 2%;
+                padding-left: 1%;
                 margin-top: 2%;
                 margin-bottom: 2%;
                 margin-right: 2%;
                 box-shadow: 0px 8px 15px #151515;
                 grid-row-gap: 5%;
+                width: 30%;
             }
 
             .profile-picture-name {
@@ -94,6 +106,7 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                margin-bottom: 1rem;
             }
 
             .profile-picture {
@@ -104,7 +117,7 @@
             }
 
             .first-last {
-                font-size: 32px;
+                font-size: 2rem;
                 font-weight: bold;
                 text-align: left;
             }
@@ -112,19 +125,19 @@
             .profile-fee {
                 font-size: 1.5rem;
                 font-weight: bold;
-                margin-left: 2.5rem;
+                margin-left: 1.5rem;
             }
 
             .profile-skill {
-                margin-left: 2.5rem;
+                margin-left: 1.5rem;
             }
 
             .reviews {
-                margin-left: 2.5rem;
+                margin-left: 1.5rem;
             }
 
             .post-review {
-                margin-left: 2.5rem;
+                margin-left: 1.5rem;
             }
 
             .review-str {

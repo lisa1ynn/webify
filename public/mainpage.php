@@ -8,12 +8,13 @@
     <link rel="stylesheet" href="./general.css?v=<?php echo time(); ?>"/>
     <style>
       .freelancers-container {
-        display: grid;
+        display: flex;
         grid-template-columns: repeat(auto-fit, minmax(20rem, 2fr));
+        flex-wrap: wrap;
         grid-column-gap: 2rem;
         grid-row-gap: 2rem;
         padding-top: 5rem;
-        place-items: center;
+        margin-left: 80px;
       }
 
       .individual-freelancer {
@@ -209,7 +210,7 @@
     <!-- Filter Start -->
       <div id="filter-section" class="filters-form">
         <!-- Once search is clicked, sends data localhost to be used -->
-        <form id="filter-options-form" action="<?php $_SERVER['PHP_SELF']; ?>" method="post">
+        <form id="filter-options-form" action="<?php $_SERVER['PHP_SELF']; ?>" method="post" for='filter'>
           <p>Filter desired skills: </p>
           <!-- Grid to display all filters in one column and search in another -->
           <div class="filter-grid-struct">
@@ -220,7 +221,9 @@
               // to generate all skill filters to match db
               while ($skill_row = $skills_query_filter->fetch_assoc()){
                 $skill_id = $skill_row['skill_id'];?>
-                <label for="skills_<?php echo $skill_row['skill'];?>" id='<?php echo $skill_id;?>' onclick="changeColor(id)"><input type="checkbox" name="skills[]" id="skills_<?php echo $skill_row['skill'];?>" value="<?php echo $skill_row['skill'];?>" ><?php echo $skill_row['skill'];?></label>
+                <label for="skills_<?php echo $skill_row['skill'];?>" id='<?php echo $skill_id;?>' onclick="changeColor(id)">
+                <input type="checkbox" name="skills[]" id="skills_<?php echo $skill_row['skill'];?>" value="<?php echo $skill_row['skill'];?>" >
+                <?php echo $skill_row['skill'];?></label>
               <?php } ?>
             </div>
             <input type="submit" name="submit" value="Search" class="search-btn"/>
@@ -229,7 +232,6 @@
             // changes colour of clikced filters to make them noticable to user
             function changeColor(id) {
               var text = document.getElementById(id)
-              console.log(id)
               text.style.color = '#FF511C';
               text.style.fontWeight = 'bold';
             }
@@ -271,8 +273,30 @@
           // adds freelancers from db to indivodual div elements
           while($user = $users_skills->fetch_assoc()){
             $user_row = $user;
+            $id = $user_row['id'];
+            
+            // query for advanced filter option -> only shows users w all matching skills on filter
+            $query = 'SELECT skill, id
+            FROM freelancer AS f, freelancerskill AS fs, skills AS s
+            WHERE f.id = fs.freelancer_id
+            AND fs.skill_id = s.skill_id
+            AND id = '.$id.'';
+
+            $individual_skills_to_use_for_filter = $database->query($query);
+
+            // array for comparison of skills to filter
+            $skills_to_compare = array();
+
+            // puts all individual user skills into array
+            while ($check_the_skills = $individual_skills_to_use_for_filter->fetch_assoc()){
+              $skills_to_compare[] = $check_the_skills['skill'];}
+            
+            // had errors with just while loop methid, this removes any duplicates in the array -> fixed error
+            $skills_to_compare_unique = array_unique($skills_to_compare);
+
             // get all users with desired skill
-            if (in_array($user_row['skill'], $filter) || in_array('All', $filter)) {
+            if ((count(array_intersect($skills_to_compare_unique, $filter)) === count($filter)) || in_array('All', $filter)) {
+            
             // need to check if user is unique
               if (!in_array($user_row['id'], $users_tracker)){
                 // add unique users into tracker
