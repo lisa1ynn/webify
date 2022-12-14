@@ -107,17 +107,26 @@ a.login-btn {
   background: #ff511c;
   color: #262626;
 }
+
 /*For hero element below menu bar*/
 .hero-mainpg {
   width: 100%;
   position: relative;
   text-align: center;
   padding-top: 10%;
+  z-index: 1;
+  background-image: url('./pictures/mainpg-background.png');
+  background-position: center;
+  background-color: #262626;
+  box-shadow: 0px 1px black;
+  padding-bottom: 20px;
+
 }
 
 h1 {
   color: #ffffff;
   font-weight: bold;
+  font-size: xx-large;
   font-size: xxx-large;
   font-family: sans-serif;
   letter-spacing: 0.05em;
@@ -162,10 +171,12 @@ h1 {
   letter-spacing: 0.3em;
   font-family: arial;
   font-size: small;
+  text-shadow: 0px 2px 4px #151515;
 }
 
 .white-text-small {
   color: #ffffff;
+  text-shadow: 0px 2px 4px #151515;
   font-family: sans-serif;
 }
 
@@ -175,6 +186,7 @@ h1 {
   color: #ffffff;
   margin-top: 10%;
   margin-bottom: 5%;
+  text-shadow: 0px 2px 4px #151515;
 }
 
 .scroll-down-arrow {
