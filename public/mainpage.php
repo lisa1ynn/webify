@@ -4,7 +4,8 @@
 <head>
   <meta charset="utf-8" />
   <title>Home</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css?family=Archivo:500|Open+Sans:300,700" rel="stylesheet">
   <link rel="stylesheet" href="./general.css?v=<?php echo time(); ?>" />
   <style>
@@ -15,7 +16,10 @@
       grid-column-gap: 2rem;
       grid-row-gap: 2rem;
       padding-top: 5rem;
-      margin-left: 80px;
+      font-size: 0.9rem;
+      justify-content: space-between;
+      margin-left: 50px;
+      margin-right: 50px;
     }
 
     .individual-freelancer {
@@ -23,12 +27,12 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 22rem;
+      width: 20rem;
     }
 
     .freelancer-tbl-top {
       border-radius: 50px;
-      background: #262626;
+      background: #8888;
       border: solid;
       border-color: black;
       display: grid;
@@ -42,7 +46,7 @@
     }
 
     .freelance-img-projects {
-      width: 350px;
+      width: 20rem;
       height: 250px;
       border-radius: 45px;
       justify-self: center;
@@ -54,7 +58,7 @@
       display: grid;
       grid-template-columns: 50% 50%;
       width: 90%;
-      padding-bottom: 10%;
+      padding-bottom: 1%;
       padding-top: 5%;
     }
 
@@ -71,7 +75,7 @@
       height: 40px;
       border-radius: 100%;
       margin: 0 auto;
-      margin-top: 15px;
+      margin-top: 5px;
     }
 
     .usern-tbl {
@@ -82,13 +86,12 @@
 
     .user-info {
       justify-self: center;
-      padding-bottom: 10%;
       padding-left: 15%;
       color: white;
       font-weight: bold;
       display: grid;
       grid-template-rows: 20px 20px;
-      margin-top: 8px;
+      margin-top: 2px;
     }
 
     .review-str {
@@ -105,8 +108,17 @@
       padding-right: 40px;
     }
 
-    .freelancer-tbl-top:hover>.show-more {
-      text-shadow: 1px 2px 4px black;
+    .freelancer-tbl-top>.show-more {
+      color: white;
+      font-size: 0.7rem;
+      margin-bottom: 50px;
+      width: 80%;
+      text-align: justify;
+      word-break: keep-all;
+    }
+
+    .show-more-text:hover {
+      text-decoration: underline;
     }
 
     .show-more>h1 {
@@ -244,7 +256,7 @@
     <!-- Filter End -->
     <?php
     // inner join table to get skills that each user has and each users features
-    $users_skills = $database->query("SELECT skill, fname, lname, points, reviews, profilep, projects, fee, id
+    $users_skills = $database->query("SELECT skill, fname, lname, points, reviews, profilep, projects, fee, id, intro
             FROM freelancer AS f, freelancerskill AS fs, skills AS s
             WHERE f.id = fs.freelancer_id
             AND fs.skill_id = s.skill_id
@@ -321,7 +333,7 @@
             $review = number_format($user_row['points'] / $user_row['reviews'], 2);
             $id = $user_row['id'];
       ?>
-            <div class="individual-freelancer" id="freelancer-individual" onclick="sendDataToPHPpage(<?php echo $id; ?>)">
+            <a onclick="sendDataToPHPpage(<?php echo $id; ?>)" href="#" ><div class="individual-freelancer" id="freelancer-individual" >
               <script>
                 // allows for individual freelancers to be shown, sends data to another php page
                 function sendDataToPHPpage(id) {
@@ -344,10 +356,18 @@
                   </div>
                 </div>
                 <div class="show-more">
-                  <h1>. . .</h1>
+                  <?php 
+                    $introAll = $user_row['intro'];
+                    $showmore = '';
+
+                    for ($inx = 0; $inx < 110; $inx ++) {
+                      $showmore .= $introAll[$inx];
+                    }
+                    ?>
+                  <p class="show-more-text"><?php echo $showmore; ?> . . . Show more</p>
                 </div>
               </div>
-            </div>
+            </div></a>
       <?php }
         }
       }

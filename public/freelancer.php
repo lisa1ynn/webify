@@ -3,9 +3,9 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
+        <title>Profile</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="./general.css">
         <link href="https://fonts.googleapis.com/css?family=Archivo:500|Open+Sans:300,700" rel="stylesheet">
         <style>
             body {
@@ -192,7 +192,7 @@
     </head>
     <body>
         <?php
-        include './components/menubar.php';
+        include './components/Header.php';
         include '../private/initialize.php';
 
             $profile = explode(",",$_GET['profile']);
@@ -242,6 +242,9 @@
                         }?></p>
                     </div>
                 </div>
+                
+                <!-- Add link to portfolio onto info section -->
+
                 <div class="reviews-see-post">
                     <div class="reviews">
                         <p class="review-rating"> <img src="./pictures/reviewstr.png" alt="Reviews: " class="review-str"> <?php echo $review; ?>/5 | <?php echo $profile_features['reviews']; ?> Reviews</p>
