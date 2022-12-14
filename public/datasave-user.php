@@ -46,7 +46,7 @@
 
         ?>
   <!--Button to sign in-->
-  <form action="./sign-in.html">
+  <form action="./sign-in.php">
     <input type="submit" value="Sign in">
     </input>
   </form>
