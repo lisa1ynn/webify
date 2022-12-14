@@ -80,8 +80,9 @@
             }
 
             .profile-info-area {
-                height: 57%;
-                display: grid;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
                 grid-template-rows: 30% 40% 30%;
                 border: solid #FF511C;
                 border-radius: 20px;
@@ -132,6 +133,10 @@
                 margin-left: 1.5rem;
             }
 
+            .reviews-see-post {
+                height: 100%;
+            }
+
             .reviews {
                 margin-left: 1.5rem;
             }
@@ -143,6 +148,38 @@
             .review-str {
                 width: 15px;
                 height: 15px;
+            }
+
+            .post-review {
+                margin-bottom: 10px;
+                padding-bottom: 5px;
+            }
+
+            .choose-rating-dropdown {
+                background-color: #FF511C;
+                color: #C0C0C0;
+                padding: 2px;
+            }
+
+            .choose-rating-dropdown:hover {
+                font-weight: bold;
+                text-shadow: 0px 1px 2px black;
+            }
+
+
+            .submit-btn-review {
+                color: #C0C0C0;
+                background-color: #FF511C;
+                padding: 2px;
+                border: none;
+                border-radius: 20px;
+                width: 8rem;
+                border: solid #FF511C;
+            }
+
+            .submit-btn-review:hover {
+                background-color: #262626;
+                color: #FF511C;
             }
 
         </style>
@@ -211,14 +248,14 @@
                     </div>
                     <div class="post-review">
                         <form class="review-submit-form" action="<?php $_SERVER['PHP_SELF']; ?>" method="post">
-                            <select id="review-rating" name="review">
+                            <select id="review-rating" name="review" class='choose-rating-dropdown'>
                                 <option value=1>1</option>
                                 <option value=2>2</option>
                                 <option value=3>3</option>
                                 <option value=4>4</option>
                                 <option value=5 selected>5</option>
                             </select>
-                            <input type="submit" value="Submit review">
+                            <input type="submit" value="Submit review" class="submit-btn-review">
                         </form>
                         <?php
                             if ($_SERVER["REQUEST_METHOD"] == "POST") {

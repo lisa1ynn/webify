@@ -3,9 +3,11 @@
   <head>
     <meta charset="utf-8" />
     <title>Home</title>
+    <link href="https://fonts.googleapis.com/css?family=Archivo:500|Open+Sans:300,700" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
         .top-bar-container {
+          font-family: 'Open Sans', sans-serif;
           background-color: #262626;
           position: sticky;
           top: 0;
@@ -94,7 +96,7 @@
       </div>
       <div class="navigation-bar">
         <li><a class="nav-item" href="/webify/public/mainpage.php">Home</a></li>
-        <li><a class="nav-item" href="#about">About</a></li>
+        <li><a class="nav-item" href="/webify/public/about.php">About</a></li>
         <li><a class="nav-item" href="#contact">Contact</a></li>
       </div>
       <div class="login-button">

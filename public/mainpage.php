@@ -18,7 +18,7 @@
       }
 
       .individual-freelancer {
-        border-radius: 100px;
+        border-radius: 50px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -26,7 +26,7 @@
       }
 
       .freelancer-tbl-top {
-        border-radius: 100px;
+        border-radius: 50px;
         background: #262626;
         border: solid;
         border-color: black;
@@ -43,7 +43,7 @@
       .freelance-img-projects {
         width: 350px;
         height: 250px;
-        border-radius: 90px;
+        border-radius: 45px;
         justify-self: center;
         border-bottom: solid;
         border-color: black;
@@ -144,14 +144,9 @@
 
       .filter-grid-options > label:hover {
         color: #FF511C;
-        font-weight: bold;
       }
 
-      .filter-grid-options > label:focus {
-        color: #FF511C;
-        font-weight: bold;
-      }
-
+      
       .search-btn {
         padding: 10px;
         border-radius: 20px;
@@ -216,12 +211,12 @@
           <div class="filter-grid-struct">
             <!-- This one contains all filters to be used -->
             <div class="filter-grid-options">
-              <label for="skills_all" id='all' onclick="changeColor(id)"><input type="checkbox" name="skills[]" id="skills_all" value="All" >All </label>
+              <label for="skills_all" id='all' onclick="changeColor(id, 'skills_all')"><input type="checkbox" name="skills[]" id="skills_all" value="All" >All </label>
               <?php
               // to generate all skill filters to match db
               while ($skill_row = $skills_query_filter->fetch_assoc()){
                 $skill_id = $skill_row['skill_id'];?>
-                <label for="skills_<?php echo $skill_row['skill'];?>" id='<?php echo $skill_id;?>' onclick="changeColor(id)">
+                <label for="skills_<?php echo $skill_row['skill'];?>" id='<?php echo $skill_id;?>' onclick="changeColor(id, 'skills_<?php echo $skill_row['skill'];?>')">
                 <input type="checkbox" name="skills[]" id="skills_<?php echo $skill_row['skill'];?>" value="<?php echo $skill_row['skill'];?>" >
                 <?php echo $skill_row['skill'];?></label>
               <?php } ?>
@@ -230,10 +225,16 @@
           </div>
           <script>
             // changes colour of clikced filters to make them noticable to user
-            function changeColor(id) {
+            function changeColor(id, idInput) {
               var text = document.getElementById(id)
-              text.style.color = '#FF511C';
-              text.style.fontWeight = 'bold';
+              var tick = document.getElementById(idInput)
+              if (tick.checked === false) {
+                text.style.color = '#C0C0C0';
+                text.style.fontWeight = 300;
+              } else {
+                text.style.color = '#FF511C';
+                text.style.fontWeight = 'bold';
+              }
             }
           </script>
         </form>
@@ -251,8 +252,16 @@
           $filter = array();
           // stores filters
           if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            foreach($_POST['skills'] as $skill) {
-              $filter[] = $skill;
+            if (isset($_POST['skills'])) {
+              if (!in_array('All', $_POST['skills'])) {
+                foreach($_POST['skills'] as $skill) {
+                  $filter[] = $skill;
+                }
+              } else {
+                $filter[] = 'All';
+              }
+            } else {
+              $filter[] = 'All';
             }
           } else {
               $filter[] = 'All';
@@ -261,9 +270,13 @@
           ?>
         <!-- Shows user which filters they have selected to be shown -->
         <p class="current-search">Currently showing skills: | <?php
-          foreach($filter as $skill) {
-            echo $skill." | ";
-          }
+        if (!in_array('All', $filter)) {
+            foreach($filter as $skill) {
+              echo $skill." | ";
+            }
+        } else {
+          echo " All | ";
+        }
         ?></p>
         <div class="freelancers-container">
           <?php
