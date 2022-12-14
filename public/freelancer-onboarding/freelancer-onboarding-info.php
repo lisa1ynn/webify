@@ -33,7 +33,7 @@
 </head>
 
 <body>
-  <?php include '../Header.php' ?>
+  <?php include '../components/Header.php' ?>
   <section>
     <div class='info-page-row'>
       <div class='info-col'>
@@ -74,5 +74,7 @@
     </div>
   </section>
 </body>
+
+</html>
 
 </html>

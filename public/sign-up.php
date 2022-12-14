@@ -17,7 +17,13 @@
   }
 
   .hero-signup-col {
-    background-color: #7d80ff;
+    background-color: #7d80ff !important;
+    background-image: none !important;
+    box-shadow: none !important;
+  }
+
+  .hero-text-small {
+    text-shadow: none !important;
   }
 
   .cool-text-background {
@@ -68,7 +74,7 @@
 </head>
 
 <body>
-  <?php include './Header.php' ?>
+  <?php include './components/Header.php' ?>
   <!--Hero element column start-->
   <section>
     <div class="signup-row">
