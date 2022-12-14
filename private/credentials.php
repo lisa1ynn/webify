@@ -4,3 +4,4 @@ define("DB_SERVER", 'localhost');
 define("DB_USER", 'webify');
 define("DB_PASS", 'kosmasisgreat');
 define("DB_NAME", 'webify');
+?>
