@@ -81,24 +81,7 @@
 </head>
 
 <body>
-  <!--menu bar start-->
-  <header class="top-bar-container">
-    <img class="logo-bar" src="" alt="Logo" />
-    <div class="navigation-bar">
-      <li><a class="nav-item" href="#experts">Hire</a></li>
-      <li><a class="nav-item" href="#how works">Purpose</a></li>
-      <li><a class="nav-item" href="#about">About</a></li>
-      <li><a class="nav-item" href="#contact">Contact</a></li>
-    </div>
-    <div class="login-button">
-      <a href="./freelancer-onboarding/freelancer-onboarding-info.php" class="login-btn">Become a freelancer</a>
-    </div>
-    <div class="login-button">
-      <a href="./sign-in.php" class="login-btn">Login</a>
-    </div>
-  </header>
-  <!--menu bar end-->
-  <!--Hero element start-->
+  <?php include './Header.php' ?>
   <section class="hero-mainpg">
     <!--Span element used to make the gradient text effect-->
     <h1>Welcome to <span class="cool-text">Webify</span></h1>

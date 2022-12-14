@@ -40,35 +40,6 @@ hr {
   border-radius: 30px;
 }
 
-/*For top menu bar*/
-.top-bar-container {
-  background-color: #262626;
-  position: sticky;
-  top: 0;
-  width: 100%;
-  text-align: center;
-  display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
-  font-family: sans-serif;
-  letter-spacing: 0.1em;
-}
-
-.logo-bar {
-  width: 30px;
-  height: 30px;
-  padding-top: 14%;
-  margin: 0 auto;
-}
-
-.navigation-bar {
-  color: #ffffff;
-}
-.navigation-bar li {
-  display: inline-block;
-  padding: 5%;
-  font-size: large;
-}
-
 a:link {
   color: #ffffff;
   text-decoration: none;
@@ -82,15 +53,10 @@ a:visited {
 
 a:hover {
   color: #7d80ff;
-  text-shadow: 2px 2px 4px black;
 }
 
 .login-button {
   display: inline;
-  padding-top: 9%;
-}
-a.login-btn {
-  padding: 3% 10%;
   border-radius: 30px;
   width: 60%;
   background: #ffffff;
@@ -100,25 +66,6 @@ a.login-btn {
   box-shadow: 0px 0px 0px black;
 }
 
-.login-btn:hover {
-  background: #ffa88e;
-  animation: shadow 0.5s forwards;
-  text-shadow: none;
-}
-
-@keyframes shadow {
-  0% {
-    box-shadow: 0px 0px 0px black;
-  }
-  100% {
-    box-shadow: 0px 8px 20px black;
-  }
-}
-
-.login-btn:active {
-  background: #ff511c;
-  color: #262626;
-}
 /*For hero element below menu bar*/
 .hero-mainpg {
   width: 100%;
@@ -178,8 +125,11 @@ h1 {
 
 .white-text-small {
   color: #ffffff;
-  font-family: "Courier New", Courier, monospace;
   line-height: 150%;
+}
+
+.computer-font {
+  font-family: "Courier New", Courier, monospace;
 }
 
 /*Indicator for user to scroll down*/
@@ -228,14 +178,44 @@ input.wrong-password::placeholder {
   background-color: #333;
 }
 
+.header-nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
 .header-ul {
   margin: 0;
   padding: 0;
   list-style: none;
+  display: inline-block;
 }
 
 .header-li {
   display: inline-block;
-  margin-left: 20px;
+  margin-left: 40px;
   font-size: xx-large;
+}
+
+.header-link {
+  font-size: x-large;
+  padding-top: 5px;
+  margin-left: 100px !important;
+}
+
+.header-button {
+  font-size: x-large;
+  padding: 5px 15px;
+  border-radius: 50px;
+  background-color: #7d80ff;
+}
+
+.header-button:hover {
+  color: #ffffff;
+  background-color: #ffa88e;
+}
+
+.header-button:active {
+  color: #ffffff !important;
+  background-color: #ff511c;
 }

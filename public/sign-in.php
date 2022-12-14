@@ -50,14 +50,6 @@
     margin-top: 80px;
     text-align: center;
   }
-
-  a:link {
-    color: #b5bbff !important;
-  }
-
-  a:visited {
-    color: #b5bbff !important;
-  }
   </style>
   <link rel="stylesheet" href="./general.css?v=<?php echo time(); ?>" />
 </head>
@@ -89,11 +81,14 @@
               placeholder="  Password" />
             <!--Add a error message if password is wrong-->
             <div style="text-align: end">
-              <a href="#">Forgot Password?</a>
+              <a href="#" style="color: #b5bbff">Forgot Password?</a>
             </div>
-            <input class="button-white" type="submit" name="Sign-in" value="Sign in now"></input>
+            <div style="text-align: center; margin-top: 20px;">
+              <input class="button-white" type="submit" name="Sign-in" value="Sign in now"></input>
+            </div>
           </form>
-          <div class="to-sign-up white-text-small">No account, yet? <a href="./sign-up.php">Sign up</a></div>
+          <div class="to-sign-up white-text-small">No account, yet? <a href="./sign-up.php" style="color: #b5bbff">Sign
+              up</a></div>
           <!--Hover does not work for some reason-->
         </div>
       </div>

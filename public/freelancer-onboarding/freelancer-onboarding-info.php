@@ -8,12 +8,11 @@
   <style>
   .info-page-row {
     display: flex;
-    min-height: 100vh;
   }
 
   .info-col {
     flex: 60%;
-    margin: 40px;
+    margin: 0px 40px;
   }
 
   .image-col {
@@ -22,13 +21,12 @@
 
   .button-white {
     padding: 6px 12px !important;
-    margin-top: 40px;
-    font-size: large;
-    font-family: "Courier New", Courier, monospace;
+    margin-top: 30px;
+    font-size: x-large;
   }
 
   .white-text-small {
-    font-size: large !important;
+    font-size: x-large !important;
   }
   </style>
   <link rel="stylesheet" href="../general.css?v=<?php echo time(); ?>" />
@@ -43,7 +41,7 @@
           Become a<br />
           <span class="cool-text">Webify freelancer</span>
         </h1>
-        <p class="white-text-small">
+        <p class="white-text-small computer-font">
           Welcome to webify!<br /><br />
 
           We're excited to have you on board as one of our web development
@@ -64,9 +62,9 @@
           The webify team
         </p>
         <div style="display: flex; justify-content: center; align-items: center">
-          <button class="button-white" type="button"
+          <button class="button-white computer-font" type="button"
             onclick="window.location.href='./freelancer-onboarding-form.html';">
-            Create freelancer profile
+            Create profile
           </button>
         </div>
       </div>
