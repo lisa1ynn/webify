@@ -16,10 +16,9 @@
 	}
 
 	// Taking values from the form data(input)
-	// Taking values from the form data(input)
-
-	$email = $_REQUEST['email'];
-	$password = $_REQUEST['password'];
+	if (isset($_POST['submit'])){
+		$email = $_POST['email'];
+		$password = $_POST['password'];
 	
 	// 2 sperate queries so that we can check if the user if a freelancer or a normal user
 	// SQL query for the password of the email entered
@@ -63,9 +62,8 @@
 			};
 		}
 	// nothing found
-	else {
+	} else {
 		echo 'did not work';
-		echo $email;
 	}
 
 	
