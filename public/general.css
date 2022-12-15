@@ -68,7 +68,7 @@ a:hover {
 
 /*For hero element below menu bar*/
 .hero-mainpg {
-  width: 100%;
+  width: 100vw;
   height: 70vh;
   position: relative;
   text-align: center;
@@ -192,6 +192,7 @@ input.wrong-password::placeholder {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  margin: 0 auto;
 }
 
 .header-ul {
@@ -209,6 +210,14 @@ input.wrong-password::placeholder {
   text-align: center;
   margin-left: 184px;
   
+}
+
+.header-ul-links-in {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-align: center;
+  margin-left: 70px;
 }
 
 .header-li {

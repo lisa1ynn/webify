@@ -17,11 +17,20 @@
     <ul class='header-ul'>
       <li class='header-li cool-text'><a href='../public/mainpage.php'>Webify</a></li>
     </ul>
-    <ul class='header-ul-links'>
-      <li class='header-li header-link'><a href='../public/mainpage.php'>Home</a></li>
-      <li class='header-li header-link'><a href='../public/about.php'>About</a></li>
-      <li class='header-li header-link'><a href='#contact'>Contact</a></li>
-    </ul>
+    <?php
+    if (isset($_SESSION["userType"])) {?>
+      <ul class='header-ul-links-in'>
+        <li class='header-li header-link'><a href='../public/mainpage.php'>Home</a></li>
+        <li class='header-li header-link'><a href='../public/about.php'>About</a></li>
+        <li class='header-li header-link'><a href='#contact'>Contact</a></li>
+      </ul>
+    <?php } else {?>
+      <ul class='header-ul-links'>
+        <li class='header-li header-link'><a href='../public/mainpage.php'>Home</a></li>
+        <li class='header-li header-link'><a href='../public/about.php'>About</a></li>
+        <li class='header-li header-link'><a href='#contact'>Contact</a></li>
+      </ul>
+      <?php } ?>
     <ul class='header-ul'>
       <?php
       // user logged in -> can access profile
