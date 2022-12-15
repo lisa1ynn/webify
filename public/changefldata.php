@@ -1,3 +1,4 @@
+<?php require_once './components/Header.php' ?>
 <!DOCTYPE html>
 <html>
 
@@ -17,19 +18,20 @@
                 die("Connection failed: " . $database->connect_error);
         }
 
-        // Taking all values from the form data(input)
+        // Taking all values from the form data(input) and the id from the session
         $firstname =  $_REQUEST['fname'];
         $lastname = $_REQUEST['lname'];
         $intro = $_REQUEST['intro'];
         $fee = $_REQUEST['fee'];
+        $id = $_SESSION['userid'];
 
 
 
-        // Inserts new user data into the users table
+        // Inserts new user data into the freelancer table
         
                 $sql = ("UPDATE freelancer
                 SET fname = '$firstname', lname = '$lastname', intro = '$intro', fee = '$fee'
-                WHERE id = '$_SESSION['userid']'");
+                WHERE id = '$id'");
         
         // Check for entry error
         if ($database->query($sql) === TRUE) {
@@ -42,7 +44,7 @@
 
         ?>
   <!--Button to sign in-->
-<?php header("Location: editfreelancer.php")?>
+<?php header("Location: profile.php")?>
   </form>
 
 

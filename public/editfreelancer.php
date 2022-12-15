@@ -1,3 +1,4 @@
+<?php require_once './components/Header.php' ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -208,21 +209,18 @@
             }
             .editbox{
                 background-color:#7d80ff; /* Distinct editbox colour */
-                width:60%;
-                padding:5%;
-                border-radius:5%;
-                color:black;
+                width:60%; /* The position of the editbox */
+                padding:5%; /* size of the box */
+                border-radius:5%; /* Nice round corners */
+                color:black; /* text colour black */
 
             }
             .edittext{
-                font-weight:bold;
-            }
-            .small{
-                padding:0px;
-                margin:0px;
+                font-weight:bold; /* makes the font bold */
+
             }
             .inline{
-                display:inline;
+                display:inline; /* displays some elements in the same line, that otherwise default to a new block */
             }
         </style>
         <script>
@@ -238,6 +236,8 @@
 
 
     // function to display the hidden element to edit other data
+    // Additionally, this code already fills in the input fields
+    // This is so that when the input fields update the DB, the unchanged elements are updated with the same values
     function editdata(){
         
         fname=document.getElementById("n8").innerHTML;
@@ -255,24 +255,22 @@
       // function to cancel the editing of the bio
     function canceledit(){
         const editbio=document.getElementById("n2");
-        editbio.style.display="none";
+        editbio.style.display="none"; // The display CSS value is again none, hiding the element
     }
 
-    // function to cancel the editing of the other data
-    function canceldataedit(){
-        const editdata=document.getElementById("n4");
-        editdata.style.display="none";
-    }
+
     </script>
     </head>
     <body>
         <?php
-        include './components/header.php';
         include '../private/initialize.php';
 
-            $profile = explode(",",$_GET['profile']);
-            $id = (int)$profile[0];
 
+            $id = $_SESSION['userid']; // The id is defined by the global session variable, which is defined as the user logs in
+
+
+            // All elements of the page are displayed the same as freelancers are viewed by users, except for the rating
+            // We don't want to allow freelancers to rate themselves
             $profile_features_query = $database->query("SELECT skill, fname, lname, points, reviews, intro, profilep, projects, fee
                 FROM freelancer AS f, freelancerskill AS fs, skills AS s
                 WHERE f.id = fs.freelancer_id
@@ -287,6 +285,7 @@
         <section class="main-area-profile-info">
             <div class="projects-description-area">
                 <div class="projects-img-container">
+                    <!-- Displays the edit button -->
                 <button class="header-button button" onclick=editdata()>Edit</button>
                     <img src="<?php echo 'data:image/png;base64,'.base64_encode($profile_features['projects']).''; ?>" alt="Portfolio Image" class="projects-img">
                 </div>
@@ -294,10 +293,11 @@
                     <h1>About:</h1>
                     <p id="n1"><?php echo $profile_features['intro']; ?></p>
 
-                    <!-- Form to edit the bio -->
+                    <!-- Form to edit the bio, different div tags are needed, to blur out the background and to present a nice field -->
                     <div class="hidden" id="n2">
                     <div class="editbox">
-                    <form action="changefldata.php">
+                    <form action="changefldata.php"> 
+                        <!-- data is sent to another file, which sends it to the DB for the update -->
                         <p class="edittext">Bio</p><textarea id="n3" class="input" rows=10 cols=100 name="intro"></textarea>
                         <p class="edittext">First name</p><textarea id="n5" class="input" rows=1 cols=10 name="fname"></textarea>
                         <p class="edittext">Last name</p><textarea id="n6" class="input" rows=1 cols=10 name="lname"></textarea>
@@ -305,6 +305,7 @@
                         <button class="header-button button" type="submit" name="submit" value="Submit">Submit</button>
                         
                     </form>
+                    <!-- the button is displayed after the form, we don't want the cancel button to submit -->
                     <button class="header-button button inline" onclick=canceledit()>Cancel</button>
                     </div>
                     </div>
@@ -337,7 +338,6 @@
                     <div class="reviews">
                         <p class="review-rating"> <img src="./pictures/reviewstr.png" alt="Reviews: " class="review-str"> <?php echo $review; ?>/5 | <?php echo $profile_features['reviews']; ?> Reviews</p>
                     </div>
-                    <!-- Form to change other data about the freelancer-->
                    
                         <?php
                             if ($_SERVER["REQUEST_METHOD"] == "POST") {
