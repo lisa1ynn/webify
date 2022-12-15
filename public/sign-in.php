@@ -82,10 +82,9 @@
 
         <div class="signin-table">
           <form action="validate-user.php">
-            <input class="signin-input input-field" type="email" id="email" name="email" placeholder="  E-mail" />
+            <input class="signin-input input-field" type="email" id="email" name="email" placeholder="E-mail" />
             <input class="signin-input input-field" type="password" id="password" name="password"
-              placeholder="  Password" />
-            <!--Add a error message if password is wrong-->
+              placeholder="Password" />
             <div style="text-align: end">
               <a href="#" style="color: #b5bbff">Forgot Password?</a>
             </div>
@@ -95,7 +94,6 @@
           </form>
           <div class="to-sign-up white-text-small">No account, yet? <a href="./sign-up.php" style="color: #b5bbff">Sign
               up</a></div>
-          <!--Hover does not work for some reason-->
         </div>
       </div>
       <!--Signin form element end-->
