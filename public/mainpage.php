@@ -17,8 +17,8 @@
       grid-row-gap: 2rem;
       padding-top: 5rem;
       font-size: 0.9rem;
-      justify-content: space-between;
-      margin-left: 50px;
+      justify-content: flex-start;
+      margin-left: 80px;
       margin-right: 50px;
     }
 
