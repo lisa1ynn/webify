@@ -81,7 +81,7 @@
         </h2>
 
         <div class="signin-table">
-          <form action="validate-user.php">
+          <form method="post" action="validate-user.php">
             <input class="signin-input input-field" type="email" id="email" name="email" placeholder="  E-mail" />
             <input class="signin-input input-field" type="password" id="password" name="password"
               placeholder="  Password" />
@@ -90,7 +90,7 @@
               <a href="#" style="color: #b5bbff">Forgot Password?</a>
             </div>
             <div style="text-align: center; margin-top: 20px;">
-              <input class="button-white" type="submit" name="Sign-in" value="Sign in now"></input>
+              <input class="button-white" type="submit" name="submit" value="Sign in now"></input>
             </div>
           </form>
           <div class="to-sign-up white-text-small">No account, yet? <a href="./sign-up.php" style="color: #b5bbff">Sign

@@ -16,29 +16,54 @@
 	}
 
 	// Taking values from the form data(input)
-
-	$email = $_REQUEST['email'];
-	$password = $_REQUEST['password'];
+	if (isset($_POST['submit'])){
+		$email = $_POST['email'];
+		$password = $_POST['password'];
+	
 
 	// SQL query for the password of the email entered
-	$sql = "SELECT password FROM users WHERE email='$email'";
-	$result = $database->query($sql);
+	$sqlUser = "SELECT * FROM users WHERE email='$email'";
+	$resultUser = $database->query($sqlUser);
 
-	if ($result->num_rows > 0) {
+	$sqlFreel = "SELECT * FROM freelancer WHERE email='$email'";
+	$resultFreel = $database->query($sqlFreel);
+
+	if ($resultUser->num_rows > 0) {
 		// Checking if the passwords match
-		while ($row = $result->fetch_assoc()) {
-			if ($password == $row["password"]) {
+			$rowU = $resultUser->fetch_assoc();
+			if ($password === $rowU["password"]) {
+				session_start();
+				$_SESSION['userid'] = $rowU["userID"];
+				$_SESSION['userType'] = 'user';
+				$_SESSION['username'] = $rowU["fname"];
+
 				header("Location: mainpage.php");
+
 			} else {
-				header("Location: sign-in.html?wrongPassword=1");
+				header("Location: sign-in.php?wrongPassword=1");
+			};
+
+	// check for freelancer
+	} else if ($resultFreel->num_rows > 0) {
+			$rowF = $resultFreel->fetch_assoc();
+			if ($password === $rowF["password"]) {
+				session_start();
+				$_SESSION['userid'] = $rowF["id"];
+				$_SESSION['userType'] = 'freelancer';
+				$_SESSION['username'] = $rowF["fname"];
+
+				header("Location: mainpage.php");
+				
+			} else {
+				header("Location: sign-in.php?wrongPassword=1");
 			};
 		}
+	// nothing found
 	} else {
-		echo "0 results";
+		echo 'did not work';
 	}
 
-
-	$database->close();
+	
 
 	?>
 

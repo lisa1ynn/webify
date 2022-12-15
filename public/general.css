@@ -67,38 +67,19 @@ a:hover {
 }
 
 /*For hero element below menu bar*/
-
-@media screen and (max-height: 715px) {
-  .hero-mainpg {
-    width: 100%;
-    position: relative;
-    text-align: center;
-    padding-top: 10%;
-    z-index: 1;
-    background-image: url("./pictures/mainpg-background.png");
-    background-position: center;
-    background-color: #262626;
-    box-shadow: 0px 1px black;
-    padding-bottom: 20px;
-    background-repeat: no-repeat;
-  }
-}
-
-@media screen and (min-height: 715px) {
-  .hero-mainpg {
-    width: 100%;
-    height: 1000px;
-    position: relative;
-    text-align: center;
-    padding-top: 10%;
-    z-index: 1;
-    background-image: url("./pictures/mainpg-background.png");
-    background-position: center;
-    background-color: #262626;
-    box-shadow: 0px 1px black;
-    padding-bottom: 20px;
-    background-repeat: no-repeat;
-  }
+.hero-mainpg {
+  width: 100%;
+  height: 70vh;
+  position: relative;
+  text-align: center;
+  padding-top: 10%;
+  z-index: 1;
+  background-image: url("./pictures/mainpg-background.png");
+  background-position: center;
+  background-color: #262626;
+  box-shadow: 0px 1px black;
+  padding-bottom: 20px;
+  background-repeat: no-repeat;
 }
 
 h1 {

@@ -108,25 +108,18 @@
       padding-right: 40px;
     }
 
-    .freelancer-tbl-top>.show-more {
+    .show-more {
       color: white;
       font-size: 0.7rem;
       margin-bottom: 50px;
       width: 80%;
       text-align: justify;
       word-break: keep-all;
+      display: inline;
     }
 
-    .show-more-text:hover {
+    .show-more-underline:hover {
       text-decoration: underline;
-    }
-
-    .show-more>h1 {
-      color: #ffffff;
-      font-weight: bold;
-      font-size: xx-large;
-      font-family: sans-serif;
-      letter-spacing: 0.05em;
     }
 
     .filters-form,
@@ -364,7 +357,7 @@
                       $showmore .= $introAll[$inx];
                     }
                     ?>
-                  <p class="show-more-text"><?php echo $showmore; ?> . . . Show more</p>
+                  <p class="show-more-text"><?php echo $showmore; ?> . . . <span class="show-more-underline">Show more</span></p>
                 </div>
               </div>
             </div></a>
