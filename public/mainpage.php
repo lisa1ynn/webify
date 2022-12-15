@@ -259,17 +259,23 @@
     $filter = array();
     // stores filters
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
+      // checks if filter is empty, puts default All
       if (isset($_POST['skills'])) {
+        // if filter contains 'All', just display All
         if (!in_array('All', $_POST['skills'])) {
+          // sorts all skills in filter into array for later use
           foreach ($_POST['skills'] as $skill) {
             $filter[] = $skill;
           }
+
         } else {
           $filter[] = 'All';
         }
+
       } else {
         $filter[] = 'All';
       }
+
     } else {
       $filter[] = 'All';
     }
@@ -350,6 +356,7 @@
                 </div>
                 <div class="show-more">
                   <?php 
+                  // for displaying part of freelancers about section
                     $introAll = $user_row['intro'];
                     $showmore = '';
 

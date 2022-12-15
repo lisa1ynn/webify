@@ -20,7 +20,7 @@
 		$email = $_POST['email'];
 		$password = $_POST['password'];
 	
-
+	// 2 sperate queries so that we can check if the user if a freelancer or a normal user
 	// SQL query for the password of the email entered
 	$sqlUser = "SELECT * FROM users WHERE email='$email'";
 	$resultUser = $database->query($sqlUser);
@@ -33,6 +33,9 @@
 			$rowU = $resultUser->fetch_assoc();
 			if ($password === $rowU["password"]) {
 				session_start();
+				// all of this to session variables -> get user id to be able to display right profile page
+				// userType -> Distinc between freelancer and normal user for profile page purposes
+				// username -> in case we want to display name somewhere for the user
 				$_SESSION['userid'] = $rowU["userID"];
 				$_SESSION['userType'] = 'user';
 				$_SESSION['username'] = $rowU["fname"];
