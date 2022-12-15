@@ -181,6 +181,11 @@
                 background-color: #262626;
                 color: #FF511C;
             }
+            .button{
+            margin:2%;
+            margin-left:4%;
+            padding:1%;
+            }
 
         </style>
         <script>
@@ -209,6 +214,9 @@
 
             $review = number_format($profile_features['points']/$profile_features['reviews'], 2);
         ?>
+        <div>
+            <button class="header-button button"><a href="about.php">Edit your page</a></button>
+    </div>
         <section class="main-area-profile-info">
             <div class="projects-description-area">
                 <div class="projects-img-container">
@@ -270,8 +278,9 @@
                     </div>
                 </div>
             </div>
+         </section>
 
-        </section>
+
         <?php include "footer.php"?>
     </body>
 </html>

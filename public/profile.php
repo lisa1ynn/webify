@@ -1,4 +1,4 @@
-<?php include './components/menubar.php' ?>
+<?php include './components/Header.php' ?>
 <!DOCTYPE html>
 <html>
     <head>

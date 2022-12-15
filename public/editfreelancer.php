@@ -181,13 +181,88 @@
                 background-color: #262626;
                 color: #FF511C;
             }
+            .button{
+            margin:2%;
+            margin-left:4%;
+            padding:1%;
+            }
+            
+            .input {
+            background-color: #daddff;
+            margin-bottom: 15px;
+            border-radius: 15px;
+            padding: 2px 10px;
+            }
+            .hidden{
+                display:none; /* Hides the element*/
+                position: fixed; /* Stay in place */
+                z-index: 1; /* Sit on top */
+                padding-top: 2%; /* Location of the box */
+                padding-left:10%; 
+                top: 0;
+                width: 100%; /* Full width */
+                height: 100%; /* Full height */
+                overflow: auto; /* Enable scroll if needed */
+                background-color: rgb(0,0,0); /* Fallback color */
+                background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            }
+            .editbox{
+                background-color:#7d80ff; /* Distinct editbox colour */
+                width:60%;
+                padding:5%;
+                border-radius:5%;
+                color:black;
 
+            }
+            .edittext{
+                font-weight:bold;
+            }
+            .small{
+                padding:0px;
+                margin:0px;
+            }
+            .inline{
+                display:inline;
+            }
         </style>
         <script>
       // removes alers showed if pagae refresed or exited if review is made
       if ( window.history.replaceState ) {
           window.history.replaceState( null, null, window.location.href );
       }
+
+      // defines the editbio variable
+    
+    
+    // function to display the hidden element to edit the bio
+
+
+    // function to display the hidden element to edit other data
+    function editdata(){
+        
+        fname=document.getElementById("n8").innerHTML;
+        document.getElementById("n5").innerHTML=fname;
+        lname=document.getElementById("n9").innerHTML;
+        document.getElementById("n6").innerHTML=lname;
+        fname=document.getElementById("n10").innerHTML;
+        document.getElementById("n7").innerHTML=fname;
+        const editbio=document.getElementById("n2");
+        bio=document.getElementById("n1").innerHTML;
+        document.getElementById("n3").innerHTML=bio;
+        editbio.style.display="block";
+    }
+
+      // function to cancel the editing of the bio
+    function canceledit(){
+        const editbio=document.getElementById("n2");
+        editbio.style.display="none";
+    }
+
+    // function to cancel the editing of the other data
+    function canceldataedit(){
+        const editdata=document.getElementById("n4");
+        editdata.style.display="none";
+    }
     </script>
     </head>
     <body>
@@ -212,11 +287,27 @@
         <section class="main-area-profile-info">
             <div class="projects-description-area">
                 <div class="projects-img-container">
+                <button class="header-button button" onclick=editdata()>Edit</button>
                     <img src="<?php echo 'data:image/png;base64,'.base64_encode($profile_features['projects']).''; ?>" alt="Portfolio Image" class="projects-img">
                 </div>
                 <div class="description-container">
                     <h1>About:</h1>
-                    <p><?php echo $profile_features['intro']; ?></p>
+                    <p id="n1"><?php echo $profile_features['intro']; ?></p>
+
+                    <!-- Form to edit the bio -->
+                    <div class="hidden" id="n2">
+                    <div class="editbox">
+                    <form action="changefldata.php">
+                        <p class="edittext">Bio</p><textarea id="n3" class="input" rows=10 cols=100 name="intro"></textarea>
+                        <p class="edittext">First name</p><textarea id="n5" class="input" rows=1 cols=10 name="fname"></textarea>
+                        <p class="edittext">Last name</p><textarea id="n6" class="input" rows=1 cols=10 name="lname"></textarea>
+                        <p class="edittext">Fee</p><textarea id="n7" class="input" rows=1 cols=10 name="fee"></textarea>
+                        <button class="header-button button" type="submit" name="submit" value="Submit">Submit</button>
+                        
+                    </form>
+                    <button class="header-button button inline" onclick=canceledit()>Cancel</button>
+                    </div>
+                    </div>
                 </div>
             </div>
             <div class="profile-info-area">
@@ -225,12 +316,12 @@
                         <img src="<?php echo 'data:image/png;base64,'.base64_encode($profile_features['profilep']).''; ?>" alt="Profile Picture" class="profile-picture">
                     </div>
                     <div class="first-last">
-                        <p><?php echo $profile_features['fname']; ?></p>
-                        <p><?php echo $profile_features['lname']; ?></p>
+                        <p id="n8"><?php echo $profile_features['fname']; ?></p>
+                        <p id="n9"><?php echo $profile_features['lname']; ?></p>
                     </div>
                 </div>
                 <div class="profile-info-fee-skills-offer">
-                    <div class="profile-fee"><p>Fee: £<?php echo $profile_features['fee']; ?>/hr</p></div>
+                    <div class="profile-fee"><p class="inline">Fee: £<p id="n10" class="inline"><?php echo $profile_features['fee']; ?></p>/hr</p></div>
                     <div class="profile-skill"><p>Expertise: | <?php 
                         // make sure no duplicate skills, display all skills one by one with the loop
                         $skill_tracker = array();
@@ -246,17 +337,8 @@
                     <div class="reviews">
                         <p class="review-rating"> <img src="./pictures/reviewstr.png" alt="Reviews: " class="review-str"> <?php echo $review; ?>/5 | <?php echo $profile_features['reviews']; ?> Reviews</p>
                     </div>
-                    <div class="post-review">
-                        <form class="review-submit-form" action="<?php $_SERVER['PHP_SELF']; ?>" method="post">
-                            <select id="review-rating" name="review" class='choose-rating-dropdown'>
-                                <option value=1>1</option>
-                                <option value=2>2</option>
-                                <option value=3>3</option>
-                                <option value=4>4</option>
-                                <option value=5 selected>5</option>
-                            </select>
-                            <input type="submit" value="Submit review" class="submit-btn-review">
-                        </form>
+                    <!-- Form to change other data about the freelancer-->
+                   
                         <?php
                             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 $user_review = $_POST['review'];
