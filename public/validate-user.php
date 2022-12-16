@@ -7,7 +7,6 @@
 
 <body>
 
-	<p>Hello</p>
 	<?php
 	include('../private/initialize.php');
 
@@ -16,20 +15,33 @@
 	}
 
 	// Taking values from the form data(input)
-	if (isset($_POST['submit'])){
+	if (isset($_POST['submit'])) {
 		$email = $_POST['email'];
 		$password = $_POST['password'];
-	
-	// 2 sperate queries so that we can check if the user if a freelancer or a normal user
-	// SQL query for the password of the email entered
-	$sqlUser = "SELECT * FROM users WHERE email='$email'";
-	$resultUser = $database->query($sqlUser);
 
-	$sqlFreel = "SELECT * FROM freelancer WHERE email='$email'";
-	$resultFreel = $database->query($sqlFreel);
+		// 2 sperate queries so that we can check if the user if a freelancer or a normal user
+		// SQL query for the password of the email entered
+		$sqlUser = "SELECT * FROM users WHERE email='$email'";
+		$resultUser = $database->query($sqlUser);
 
-	if ($resultUser->num_rows > 0) {
-		// Checking if the passwords match
+		$sqlFreel = "SELECT * FROM freelancer WHERE email='$email'";
+		$resultFreel = $database->query($sqlFreel);
+
+		if ($resultFreel->num_rows > 0) {
+			$rowF = $resultFreel->fetch_assoc();
+			if ($password === $rowF["password"]) {
+				session_start();
+				$_SESSION['userid'] = $rowF["id"];
+				$_SESSION['userType'] = 'freelancer';
+				$_SESSION['username'] = $rowF["fname"];
+
+				header("Location: mainpage.php");
+			} else {
+				header("Location: sign-in.php?wrongPassword=1");
+			};
+			// check for freelancer
+		} else if ($resultUser->num_rows > 0) {
+			// Checking if the passwords match
 			$rowU = $resultUser->fetch_assoc();
 			if ($password === $rowU["password"]) {
 				session_start();
@@ -41,38 +53,16 @@
 				$_SESSION['username'] = $rowU["fname"];
 
 				header("Location: mainpage.php");
-
-			} else {
-				header("Location: sign-in.php?wrongPassword=1");
-			};
-
-	// check for freelancer
-	} else if ($resultFreel->num_rows > 0) {
-			$rowF = $resultFreel->fetch_assoc();
-			if ($password === $rowF["password"]) {
-				session_start();
-				$_SESSION['userid'] = $rowF["id"];
-				$_SESSION['userType'] = 'freelancer';
-				$_SESSION['username'] = $rowF["fname"];
-
-				header("Location: mainpage.php");
-				
 			} else {
 				header("Location: sign-in.php?wrongPassword=1");
 			};
 		}
-	// nothing found
+		// nothing found
 	} else {
 		echo 'did not work';
 	}
 
-	
-
 	?>
-
-
-
-
 
 </body>
 
