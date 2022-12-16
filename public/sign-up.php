@@ -96,13 +96,13 @@
         <div class="signup-table">
           <form action="./datasave-user.php" method="post">
             <input class="signup-input input-field" type="text" id="firstname" name="firstname"
-              placeholder="First name" />
-            <input class="signup-input input-field" type="text" id="lastname" name="lastname" placeholder="Last-name" />
-            <input class="signup-input input-field" type="email" id="email" name="email" placeholder="E-mail" />
+              placeholder="First name" required/>
+            <input class="signup-input input-field" type="text" id="lastname" name="lastname" placeholder="Last-name" required/>
+            <input class="signup-input input-field" type="email" id="email" name="email" placeholder="E-mail" required/>
             <input class="signup-input input-field" type="password" id="password" name="password"
-              placeholder="Password" />
+              placeholder="Password" required/>
             <!--Add a tooltip for password requirements-->
-            <input class="terms-conditions-checkbox white-text-small" type="checkbox" name="termsAndConditions"></input>
+            <input class="terms-conditions-checkbox white-text-small" type="checkbox" name="termsAndConditions" required></input>
             <div class="terms-conditions-text">By signing up, I accept the terms and conditions of webify.</div>
             <div style="text-align: center; margin-top: 20px;">
               <input class="button-white" type="submit" name="Sign-up" value="Sign up now"></input>
@@ -116,6 +116,23 @@
       </div>
     </div>
   </section>
+  <script>
+    // Creates a new variable to read the url, specifically to read the usedEmail url appendix
+    const urlParams = new URLSearchParams(window.location.search);
+    const usedEmail = urlParams.get('usedEmail');
+    const wrongEntry = urlParams.get('entryerror');
+    // If the url includes usedEmail=1, the class wrong-password is appended to the class of the password element (refer to the general.css)
+    if (usedEmail) {
+      const input = document.getElementById("email");
+
+      input.className = input.className + " wrong-password";
+      alert("Already used e-mail");
+    }
+    // If there is an invalid entry, the signup page resets and the user is alerted about the invalid entry
+    if (wrongEntry) {
+      alert("Invalid entry");
+    }
+  </script>
   <?php include "./components/footer.php"?>
 </body>
 

@@ -312,7 +312,6 @@
               <button class="header-button button inline" type="button" onclick=canceledit()>Cancel</button>
               <button class="header-button button" type="submit" name="submit" value="Submit">Submit</button>
             </form>
-            <!-- the button is displayed after the form, we don't want the cancel button to submit -->
           </div>
         </div>
       </div>
