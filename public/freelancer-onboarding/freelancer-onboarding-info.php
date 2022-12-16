@@ -25,6 +25,12 @@
     font-size: x-large;
   }
 
+  .primary {
+    background-color: #7d80ff !important;
+    color: #daddff !important;
+    border-color: #daddff !important;
+  }
+
   .white-text-small {
     font-size: x-large !important;
   }
@@ -62,19 +68,17 @@
           The webify team
         </p>
         <div style="display: flex; justify-content: center; align-items: center">
-          <button class="button-white computer-font" type="button"
-            onclick="window.location.href='./freelancer-onboarding-form.html';">
+          <button class="primary button-white" type="button"
+            onclick="window.location.href='./freelancer-onboarding-form.php';">
             Create profile
           </button>
         </div>
       </div>
       <div class='image-col'>
-        <img src="../pictures/coding-unsplash.jpg" alt="Coding" width="800" height="1100">
+        <img src="../pictures/coding-unsplash.jpg" alt="Coding" width="100%" height="auto">
       </div>
     </div>
   </section>
 </body>
-
-</html>
 
 </html>

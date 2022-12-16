@@ -5,7 +5,6 @@
     <title>Responsive Animated Website Footer</title>
     <style>
         
-
 footer
 {
     position: relative;
@@ -19,6 +18,7 @@ footer
     flex-direction: column;
     margin-top:200px;
     margin-left:3px;
+    z-index: 0;
 }
 footer  .social_icon,
 footer .menu    
