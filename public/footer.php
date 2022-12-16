@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Responsive Animated Website Footer</title>
-    <link rel="stylesheet" href="./general.css" />
     <style>
         
 

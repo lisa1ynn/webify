@@ -25,11 +25,16 @@
         $password = $_REQUEST['password'];
 
         // Checking if the email is already taken by another user
-        $select = mysqli_query($database, "SELECT * FROM users WHERE email = '$email'");
-        if (mysqli_num_rows($select)) {
+        $selectusers = mysqli_query($database, "SELECT * FROM users WHERE email = '$email'");
+        $selectfreel = mysqli_query($database, "SELECT * FROM freelancer WHERE email = '$email'");
+        if (mysqli_num_rows($selectusers)) {
                 echo "Go back, this email address is already used!";
                 exit;
-        } else
+        } elseif (mysqli_num_rows($selectfreel)){
+                echo "Go back, this email address is already used!";
+                exit;
+        }  
+        else
         // Inserts new user data into the users table
         {
                 $sql = "INSERT INTO users (fname, lname, email, password)

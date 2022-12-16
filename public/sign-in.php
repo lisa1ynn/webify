@@ -81,7 +81,7 @@
         </h2>
 
         <div class="signin-table">
-          <form action="validate-user.php">
+          <form method="post" action="validate-user.php">
             <input class="signin-input input-field" type="email" id="email" name="email" placeholder="E-mail" />
             <input class="signin-input input-field" type="password" id="password" name="password"
               placeholder="Password" />
@@ -89,7 +89,7 @@
               <a href="#" style="color: #b5bbff">Forgot Password?</a>
             </div>
             <div style="text-align: center; margin-top: 20px;">
-              <input class="button-white" type="submit" name="Sign-in" value="Sign in now"></input>
+              <input class="button-white" type="submit" name="submit" value="Sign in now"></input>
             </div>
           </form>
           <div class="to-sign-up white-text-small">No account, yet? <a href="./sign-up.php" style="color: #b5bbff">Sign
@@ -101,15 +101,17 @@
     </div>
   </section>
   <script>
+  // Creates a new variable to read the url, specifically to read the wrongPassword url appendix
   const urlParams = new URLSearchParams(window.location.search);
   const wrongPassword = urlParams.get('wrongPassword');
-
+  // If the url includes wrongPassword=1, the class wrong-password is appended to the class of the password element
   if (wrongPassword) {
     const input = document.getElementById("password");
 
     input.className = input.className + " wrong-password"
   }
   </script>
+  <?php include "footer.php" ?>
 </body>
 
 </html>
