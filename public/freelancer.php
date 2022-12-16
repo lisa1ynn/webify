@@ -53,6 +53,16 @@ ini_set('display_errors', 0);
                 row-gap: 2rem;
             }
 
+            .contact {
+                display: block;
+                margin-top:50%;
+                grid-template-rows: 30% 5%;
+                place-items: center;
+                height: 50%;
+                position:relative;
+                left:-20%;
+            }
+
             .projects-img-container {
                 width: 90%;
                 height: 100%;
@@ -186,13 +196,66 @@ ini_set('display_errors', 0);
                 background-color: #262626;
                 color: #FF511C;
             }
+            .button{
+            margin-left:4%;
+            padding:1%;
+            }
+            
+            .input {
+            background-color: #daddff;
+            margin-bottom: 15px;
+            border-radius: 15px;
+            padding: 2px 10px;
+            }
+            .hidden{
+                display:none; /* Hides the element*/
+                position: fixed; /* Stay in place */
+                z-index: 1; /* Sit on top */
+                padding-top: 2%; /* Location of the box */
+                padding-left:10%; 
+                top: 0;
+                width: 100%; /* Full width */
+                height: 100%; /* Full height */
+                overflow: auto; /* Enable scroll if needed */
+                background-color: rgb(0,0,0); /* Fallback color */
+                background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            }
+            .message{
+                background-color:#7d80ff; /* Distinct editbox colour */
+                width:60%; /* The position of the editbox */
+                padding:5%; /* size of the box */
+                border-radius:5%; /* Nice round corners */
+                color:black; /* text colour black */
+                margin-top:5%; /* extra margin so that full editbox is shown */
 
+  }
+
+  .edittext {
+    font-weight: bold;
+    /* makes the font bold */
+
+            }
+            .inline{
+                display:inline; /* displays some elements in the same line, that otherwise default to a new block */
+            }
         </style>
         <script>
       // removes alers showed if pagae refresed or exited if review is made
       if ( window.history.replaceState ) {
           window.history.replaceState( null, null, window.location.href );
       }
+    // function to display the hidden element to send the message
+    function sendmessage(){
+        
+        const message=document.getElementById("n2"); // defines the editbio variable
+        message.style.display="block";
+    }
+
+  // function to cancel the editing of the bio
+  function cancelmessage() {
+    const message = document.getElementById("n2");
+    message.style.display = "none"; // The display CSS value is again none, hiding the element
+  }
     </script>
     </head>
     <body>
@@ -282,7 +345,20 @@ ini_set('display_errors', 0);
                     </div>
                 </div>
             </div>
-
+            <div class="contact">
+            <button class="header-button button" style="padding:10%;" onclick=sendmessage()>Contact</button>
+                        </div>
+              <!-- Form to send the message, different div tags are needed, to blur out the background and to present a nice field -->
+        <div class="hidden" id="n2">
+          <div class="message">
+            <form action="changefldata.php">
+              <!-- data is sent to another file, which sends it to the DB for the update -->
+              <p class="edittext">Message for the freelancer</p><textarea id="n3" class="input" rows=10 cols=80 name="intro"></textarea>
+              <button class="header-button button inline" type="button" onclick=cancelmessage()>Cancel</button>
+              <button class="header-button button" type="submit" name="submit" value="Submit">Submit</button>
+            </form>
+          </div>
+        </div>
         </section>
         <?php include "./components/footer.php"?>
     </body>

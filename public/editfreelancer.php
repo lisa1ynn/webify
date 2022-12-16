@@ -185,58 +185,41 @@
     border: solid #FF511C;
   }
 
-  .submit-btn-review:hover {
-    background-color: #262626;
-    color: #FF511C;
-  }
-
-  .button {
-    margin-left: 4%;
-    padding: 1%;
-  }
-
-  .input {
-    background-color: #daddff;
-    margin-bottom: 15px;
-    border-radius: 15px;
-    padding: 2px 10px;
-  }
-
-  .hidden {
-    display: none;
-    /* Hides the element*/
-    position: fixed;
-    /* Stay in place */
-    z-index: 1;
-    /* Sit on top */
-    padding-top: 2%;
-    /* Location of the box */
-    padding-left: 10%;
-    top: 0;
-    width: 100%;
-    /* Full width */
-    height: 100%;
-    /* Full height */
-    overflow: auto;
-    /* Enable scroll if needed */
-    background-color: rgb(0, 0, 0);
-    /* Fallback color */
-    background-color: rgba(0, 0, 0, 0.4);
-    /* Black w/ opacity */
-  }
-
-  .editbox {
-    background-color: #7d80ff;
-    /* Distinct editbox colour */
-    width: 60%;
-    /* The position of the editbox */
-    padding: 5%;
-    /* size of the box */
-    border-radius: 5%;
-    /* Nice round corners */
-    color: black;
-    /* text colour black */
-    z-index: 5;
+            .submit-btn-review:hover {
+                background-color: #262626;
+                color: #FF511C;
+            }
+            .button{
+            margin-left:4%;
+            padding:1%;
+            }
+            
+            .input {
+            background-color: #daddff;
+            margin-bottom: 15px;
+            border-radius: 15px;
+            padding: 2px 10px;
+            }
+            .hidden{
+                display:none; /* Hides the element*/
+                position: fixed; /* Stay in place */
+                z-index: 1; /* Sit on top */
+                padding-top: 2%; /* Location of the box */
+                padding-left:10%; 
+                top: 0;
+                width: 100%; /* Full width */
+                height: 100%; /* Full height */
+                overflow: auto; /* Enable scroll if needed */
+                background-color: rgb(0,0,0); /* Fallback color */
+                background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            }
+            .editbox{
+                background-color:#7d80ff; /* Distinct editbox colour */
+                width:60%; /* The position of the editbox */
+                padding:5%; /* size of the box */
+                border-radius:5%; /* Nice round corners */
+                color:black; /* text colour black */
+                margin-top:5%; /* extra margin so that full editbox is shown */
 
   }
 
@@ -244,41 +227,33 @@
     font-weight: bold;
     /* makes the font bold */
 
-  }
+            }
+            .inline{
+                display:inline; /* displays some elements in the same line, that otherwise default to a new block */
+            }
+        </style>
+        <script>
+      // removes alers showed if pagae refresed or exited if review is made
+      if ( window.history.replaceState ) {
+          window.history.replaceState( null, null, window.location.href );
+      }
 
-  .inline {
-    display: inline;
-    /* displays some elements in the same line, that otherwise default to a new block */
-  }
-  </style>
-  <script>
-  // removes alers showed if pagae refresed or exited if review is made
-  if (window.history.replaceState) {
-    window.history.replaceState(null, null, window.location.href);
-  }
-
-  // defines the editbio variable
-
-
-  // function to display the hidden element to edit the bio
-
-
-  // function to display the hidden element to edit other data
-  // Additionally, this code already fills in the input fields
-  // This is so that when the input fields update the DB, the unchanged elements are updated with the same values
-  function editdata() {
-
-    fname = document.getElementById("n8").innerHTML;
-    document.getElementById("n5").innerHTML = fname;
-    lname = document.getElementById("n9").innerHTML;
-    document.getElementById("n6").innerHTML = lname;
-    fname = document.getElementById("n10").innerHTML;
-    document.getElementById("n7").innerHTML = fname;
-    const editbio = document.getElementById("n2");
-    bio = document.getElementById("n1").innerHTML;
-    document.getElementById("n3").innerHTML = bio;
-    editbio.style.display = "block";
-  }
+    // function to display the hidden element to edit the data
+    // Additionally, this code already fills in the input fields
+    // This is so that when the input fields update the DB, the unchanged elements are updated with the same values
+    function editdata(){
+        
+        fname=document.getElementById("n8").innerHTML;
+        document.getElementById("n5").innerHTML=fname;
+        lname=document.getElementById("n9").innerHTML;
+        document.getElementById("n6").innerHTML=lname;
+        fname=document.getElementById("n10").innerHTML;
+        document.getElementById("n7").innerHTML=fname;
+        bio=document.getElementById("n1").innerHTML;
+        document.getElementById("n3").innerHTML=bio;
+        const editbio=document.getElementById("n2"); // defines the editbio variable
+        editbio.style.display="block";
+    }
 
   // function to cancel the editing of the bio
   function canceledit() {
@@ -337,7 +312,6 @@
               <button class="header-button button inline" type="button" onclick=canceledit()>Cancel</button>
               <button class="header-button button" type="submit" name="submit" value="Submit">Submit</button>
             </form>
-            <!-- the button is displayed after the form, we don't want the cancel button to submit -->
           </div>
         </div>
       </div>
