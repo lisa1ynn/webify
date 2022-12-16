@@ -1,8 +1,9 @@
 <?php
+header('Content-Type: text/html; charset=utf-8');
 session_start();
 //IMAGE UPLOADS
 
-$target_dir = "freelancer-uploads/";
+$target_dir = "./freelancer-uploads/";
 
 //PROFILE PICTURE
 
@@ -48,6 +49,8 @@ if ($uploadOK_profilepic == 0) {
   echo "Sorry, your profile picture file was not uploaded.<br />";
   // if everything is ok, try to upload file
 } else {
+  $profilePicture = $_FILES["profilepicture"]["tmp_name"];
+  $profilePictureContent = addslashes(file_get_contents($profilePicture));
   if (move_uploaded_file($_FILES["profilepicture"]["tmp_name"], $target_file_profilepic)) {
     echo "The file " . htmlspecialchars(basename($_FILES["profilepicture"]["name"])) . " has been uploaded.<br />";
   } else {
@@ -99,6 +102,8 @@ if ($uploadOK_thumbnail == 0) {
   echo "Sorry, your thumbnail file was not uploaded.<br />";
   // if everything is ok, try to upload file
 } else {
+  $thumbnailPicture = $_FILES["thumbnail"]["tmp_name"];
+  $thumbnailPictureContent = addslashes(file_get_contents($thumbnailPicture));
   if (move_uploaded_file($_FILES["thumbnail"]["tmp_name"], $target_file_thumbnail)) {
     echo "The file " . htmlspecialchars(basename($_FILES["thumbnail"]["name"])) . " has been uploaded.<br />";
   } else {
@@ -129,8 +134,8 @@ $email = $user_array['email'];
 $password = $user_array['password'];
 $skillsArray = $_POST['skills'];
 
-$profilepic_pic = basename($_FILES["profilepicture"]["name"]);
-$thumbnail_pic = basename($_FILES["thumbnail"]["name"]);
+$profilepic_pic = $profilePictureContent;
+$thumbnail_pic = $thumbnailPictureContent;
 $description = $_POST['description'];
 $fee = (int)$_POST['fee'];
 
