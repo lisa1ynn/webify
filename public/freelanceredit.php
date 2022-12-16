@@ -1,16 +1,11 @@
-<?php
-error_reporting(0);
-ini_set('display_errors', 0);
-?>
-
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Profile</title>
+        <title></title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="./general.css">
+        <link rel="stylesheet" href="general.css?v=<?php echo time(); ?>" >
         <link href="https://fonts.googleapis.com/css?family=Archivo:500|Open+Sans:300,700" rel="stylesheet">
         <style>
             body {
@@ -186,6 +181,11 @@ ini_set('display_errors', 0);
                 background-color: #262626;
                 color: #FF511C;
             }
+            .button{
+            margin:2%;
+            margin-left:4%;
+            padding:1%;
+            }
 
         </style>
         <script>
@@ -197,7 +197,7 @@ ini_set('display_errors', 0);
     </head>
     <body>
         <?php
-        include './components/Header.php';
+        include './components/header.php';
         include '../private/initialize.php';
 
             $profile = explode(",",$_GET['profile']);
@@ -214,6 +214,9 @@ ini_set('display_errors', 0);
 
             $review = number_format($profile_features['points']/$profile_features['reviews'], 2);
         ?>
+        <div>
+            <button class="header-button button"><a href="about.php">Edit your page</a></button>
+    </div>
         <section class="main-area-profile-info">
             <div class="projects-description-area">
                 <div class="projects-img-container">
@@ -247,9 +250,6 @@ ini_set('display_errors', 0);
                         }?></p>
                     </div>
                 </div>
-                
-                <!-- Add link to portfolio onto info section -->
-
                 <div class="reviews-see-post">
                     <div class="reviews">
                         <p class="review-rating"> <img src="./pictures/reviewstr.png" alt="Reviews: " class="review-str"> <?php echo $review; ?>/5 | <?php echo $profile_features['reviews']; ?> Reviews</p>
@@ -278,8 +278,9 @@ ini_set('display_errors', 0);
                     </div>
                 </div>
             </div>
+         </section>
 
-        </section>
+
         <?php include "footer.php"?>
     </body>
 </html>
