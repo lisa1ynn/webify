@@ -210,6 +210,7 @@
             .editbox{
                 background-color:#7d80ff; /* Distinct editbox colour */
                 width:60%; /* The position of the editbox */
+                margin-top:5%;
                 padding:5%; /* size of the box */
                 border-radius:5%; /* Nice round corners */
                 color:black; /* text colour black */
@@ -229,13 +230,7 @@
           window.history.replaceState( null, null, window.location.href );
       }
 
-      // defines the editbio variable
-    
-    
-    // function to display the hidden element to edit the bio
-
-
-    // function to display the hidden element to edit other data
+    // function to display the hidden element to edit the data
     // Additionally, this code already fills in the input fields
     // This is so that when the input fields update the DB, the unchanged elements are updated with the same values
     function editdata(){
@@ -246,9 +241,9 @@
         document.getElementById("n6").innerHTML=lname;
         fname=document.getElementById("n10").innerHTML;
         document.getElementById("n7").innerHTML=fname;
-        const editbio=document.getElementById("n2");
         bio=document.getElementById("n1").innerHTML;
         document.getElementById("n3").innerHTML=bio;
+        const editbio=document.getElementById("n2"); // defines the editbio variable
         editbio.style.display="block";
     }
 
@@ -322,6 +317,7 @@
                     </div>
                 </div>
                 <div class="profile-info-fee-skills-offer">
+                    <!-- an additional p tag is created with a class inline, as the new p element otherwise defaults to a new line -->
                     <div class="profile-fee"><p class="inline">Fee: £<p id="n10" class="inline"><?php echo $profile_features['fee']; ?></p>/hr</p></div>
                     <div class="profile-skill"><p>Expertise: | <?php 
                         // make sure no duplicate skills, display all skills one by one with the loop
@@ -354,6 +350,6 @@
             </div>
 
         </section>
-        <?php include "footer.php"?>
+        <?php include "./components/Footer.php"?>
     </body>
 </html>

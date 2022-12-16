@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Responsive Animated Website Footer</title>
-    <link rel="stylesheet"  href="style.css">
+    
     <style>
         @import url('https://fonts//googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
         *
@@ -15,7 +15,7 @@
         }
         body
         {
-            display: flex;
+            
             justify-content: flex-end;
             align-items: flex-end;
             min-height: 100vh;

@@ -173,6 +173,6 @@
             };
             window.addEventListener("scroll", handleScroll)
         </script>
-        <?php include "footer.php"?>
+        <?php include "./components/Footer.php"?>
     </body>
 </html>

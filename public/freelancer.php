@@ -280,6 +280,6 @@ ini_set('display_errors', 0);
             </div>
 
         </section>
-        <?php include "footer.php"?>
+        <?php include "./components/Footer.php"?>
     </body>
 </html>
