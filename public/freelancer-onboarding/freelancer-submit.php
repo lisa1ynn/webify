@@ -7,7 +7,7 @@ $target_dir = "freelancer-uploads/";
 
 $target_file_profilepic = $target_dir . basename($_FILES["profilepicture"]["name"]);
 $uploadOK_profilepic = 1;
-$imageFileType = strtolower(pathinfo($target_file_profilepic, PATHINFO_EXTENSION));
+$imageFileType_profilepic = strtolower(pathinfo($target_file_profilepic, PATHINFO_EXTENSION));
 
 // Check if image file is a actual image or fake image
 if (isset($_POST["submit"])) {
@@ -29,7 +29,7 @@ if ($_FILES["profilepicture"]["size"] > 500000) {
 
 // Allow certain file formats
 if (
-  $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+  $imageFileType_profilepic != "jpg" && $imageFileType_profilepic != "png" && $imageFileType_profilepic != "jpeg"
 ) {
   echo "Sorry, only JPG, JPEG & PNG files are allowed.<br />";
   $uploadOK_profilepic = 0;
@@ -58,7 +58,7 @@ if ($uploadOK_profilepic == 0) {
 
 $target_file_thumbnail = $target_dir . basename($_FILES["thumbnail"]["name"]);
 $uploadOK_thumbnail = 1;
-$imageFileType = strtolower(pathinfo($target_file_thumbnail, PATHINFO_EXTENSION));
+$imageFileType_thumbnail = strtolower(pathinfo($target_file_thumbnail, PATHINFO_EXTENSION));
 
 // Check if image file is a actual image or fake image
 if (isset($_POST["submit"])) {
@@ -80,7 +80,7 @@ if ($_FILES["thumbnail"]["size"] > 500000) {
 
 // Allow certain file formats
 if (
-  $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+  $imageFileType_thumbnail != "jpg" && $imageFileType_thumbnail != "png" && $imageFileType_thumbnail != "jpeg"
 ) {
   echo "Sorry, only JPG, JPEG & PNG files are allowed. (Thumbnail)<br />";
   $uploadOK_thumbnail = 0;
@@ -107,26 +107,35 @@ if ($uploadOK_thumbnail == 0) {
 
 //DATABASE CONNECTION
 
-include '.../private/initialize.php';
+include '../../private/initialize.php';
 
 if ($database->connect_error) {
   die("Connection failed: " . $database->connect_error);
 }
 
-$profilepic_name = $_FILES['profilepicture']['name'];
-$profilepic_size = $_FILES['profilepicture']['size'];
+//ADD FREELANCER TO DATABASE
 
-$thumbnail_name = $_FILES['thumbnail']['name'];
-$thumbnail_size = $_FILES['thumbnail']['size'];
+//Get user data from user table
+$user_array = $database->query("SELECT * FROM users WHERE id = $_SESSION[userid];");
 
+//Put all neccessary data into variables
+$fname = $user_array['fname'];
+$lname = $user_array['lname'];
+$email = $user_array['email'];
+$password = $user_array['password'];
+
+echo $fname . $lname . $email . $password;
+
+$profilepic_pic = basename($_FILES["profilepicture"]["name"]);
+$thumbnail_pic = basename($_FILES["thumbnail"]["name"]);
 $description = $_POST['description'];
 
+//Add all freelancer data into database
+$sql = "INSERT INTO freelancer (fname, lname, email, password, profilep, intro, projects) VALUES ('$fname', '$lname', '$email', '$password', '$profilepic_pic', '$description', '$thumbnail_pic')";
 
-$sql = "INSERT INTO freelancer (profilepic, intro, projects) 
-        VALUES ('$profilepic_name', '$description', '$thumbnail_name')";
 
 if ($database->query($sql) === TRUE) {
-  echo "New record created successfully";
+  echo "New images added successfully";
 } else {
   echo "Error: "
     . $sql . "<br>" . $database->error;

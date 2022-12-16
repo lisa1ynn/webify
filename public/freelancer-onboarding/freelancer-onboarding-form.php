@@ -61,6 +61,12 @@
     color: white;
     font-size: x-large;
   }
+
+  .freelancer-input-field {
+    width: 100%;
+    font-size: large;
+
+  }
   </style>
 </head>
 
@@ -96,11 +102,26 @@
                 </td>
               </tr><br />
               <tr class="form-row">
-                <td class="form-cell-label"><label class="form-label" for="image">Description: </label>
+                <td class="form-cell-label"><label class="form-label" for="description">Description: </label>
                 </td>
                 <td class="form-cell-input">
-                  <textarea class="freelancer-input-field" name="description" id="description" rows="6"
-                    cols="80"></textarea>
+                  <textarea class="freelancer-input-field" style="margin-bottom: 70px;" name="description"
+                    id="description" rows="6" cols="80"></textarea>
+                </td>
+              </tr><br />
+              <tr class="form-row">
+                <td class="form-cell-label"><label class="form-label" for="fee">Fee per hour (£): </label>
+                </td>
+                <td class="form-cell-input">
+                  <input class="freelancer-input-field" type="number" name="fee" id="fee" min="1"></input>
+                </td>
+              </tr><br />
+              <!-- still working on the skills -->
+              <tr class="form-row">
+                <td class="form-cell-label"><label class="form-label" for="image">Skills: </label>
+                </td>
+                <td class="form-cell-input">
+                  <input class="freelancer-input-field" type="checkbox" name="skills" id="skills"></input>
                 </td>
               </tr><br />
               <tr class="form-row">
