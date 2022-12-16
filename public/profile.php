@@ -1,4 +1,3 @@
-<?php require_once './components/Header.php' ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,6 +13,18 @@
         }
     </style>
     <body>
-<?php include 'editfreelancer.php'?>
+    <?php 
+    // only allow freelancers to edit their profile, users do not need this feature at this point
+    if ($_SESSION['userType'] === 'freelancer'){
+        include 'editfreelancer.php';
+    } else {?>
+        <script> 
+        if (window.confirm("This profile is not a freelancer profile.")) {
+            window.location.href = "./mainpage.php";
+        }
+        </script>
+    <?php }
+    
+    ?>
     </body>
 </html>

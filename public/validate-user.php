@@ -65,15 +65,7 @@
 	} else {
 		echo 'did not work';
 	}
-
-	
-
 	?>
-
-
-
-
-
 </body>
 
 </html>
