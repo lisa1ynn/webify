@@ -46,7 +46,7 @@ session_start();
         } else {
           // allow login and signup
           echo "<li class='header-li header-button'><a href='../public/sign-in.php'>Login</a></li>";
-          echo "<li class='header-li header-button'><a href='../public/freelancer-onboarding/freelancer-onboarding-info.php'>Become a freelancer</a></li>";
+          echo "<li class='header-li header-button'><a href='../public/sign-up.php'>Sign up</a></li>";
         }
         ?>
       </ul>
