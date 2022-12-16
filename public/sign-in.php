@@ -113,7 +113,7 @@
     input.className = input.className + " wrong-password"
   }
   </script>
-  <?php include "./components/Footer.php"?>
+  <?php include "./components/footer.php"?>
 </body>
 
 </html>
