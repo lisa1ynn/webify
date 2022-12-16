@@ -116,7 +116,7 @@ if ($database->connect_error) {
 //ADD FREELANCER TO DATABASE
 
 //Get user data from user table
-$user_array = $database->query("SELECT * FROM users WHERE id = $_SESSION[userid];");
+$user_array = $database->query("SELECT * FROM users WHERE id = $_SESSION[userid];"); //$_SESSION[userid] does not work
 
 //Put all neccessary data into variables
 $fname = $user_array['fname'];
