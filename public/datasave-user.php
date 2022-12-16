@@ -30,11 +30,10 @@
         if (mysqli_num_rows($selectusers)) {
                 echo "Go back, this email address is already used!";
                 exit;
-        } elseif (mysqli_num_rows($selectfreel)){
+        } elseif (mysqli_num_rows($selectfreel)) {
                 echo "Go back, this email address is already used!";
                 exit;
-        }  
-        else
+        } else
         // Inserts new user data into the users table
         {
                 $sql = "INSERT INTO users (fname, lname, email, password)
@@ -42,9 +41,9 @@
         }
         // Check for entry error
         if ($database->query($sql) === TRUE) {
-                echo "New record created successfully";
+                header("Location: sign-in.php");
         } else {
-                echo "Error: " . $sql . "<br>" . $database->error;
+                header("Location: sign-up.php");
         }
 
         $database->close();

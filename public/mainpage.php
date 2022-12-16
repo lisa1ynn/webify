@@ -4,8 +4,8 @@
 <head>
   <meta charset="utf-8" />
   <title>Home</title>
-  
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css?family=Archivo:500|Open+Sans:300,700" rel="stylesheet">
   <link rel="stylesheet" href="./general.css?v=<?php echo time(); ?>" />
   <style>
@@ -267,15 +267,12 @@
           foreach ($_POST['skills'] as $skill) {
             $filter[] = $skill;
           }
-
         } else {
           $filter[] = 'All';
         }
-
       } else {
         $filter[] = 'All';
       }
-
     } else {
       $filter[] = 'All';
     }
@@ -329,55 +326,58 @@
             // add unique users into tracker
             $users_tracker[] = $user_row['id'];
             // calculates #/5 stars
-            if ($user_row['reviews'] !=0) {
+            if ($user_row['reviews'] != 0) {
               $review = number_format($user_row['points'] / $user_row['reviews'], 2);
             } else {
               $review = 0;
             }
             $id = $user_row['id'];
       ?>
-            <a onclick="sendDataToPHPpage(<?php echo $id; ?>)" href="#" ><div class="individual-freelancer" id="freelancer-individual" >
-              <script>
-                // allows for individual freelancers to be shown, sends data to another php page
-                function sendDataToPHPpage(id) {
-                  var identifier = id;
-                  const src = "freelancer.php?profile=" + identifier;
-                  window.location.href = src;
-                }
-              </script>
-              <div class="freelancer-tbl-top">
-                <img src="<?php echo 'data:image/png;base64,' . base64_encode($user_row['projects']) . ''; ?>" alt="Portfolio Image" class="freelance-img-projects">
-                <div class="user-name-picture-review-fee">
-                  <div class="user-p-n">
-                    <img src="<?php echo 'data:image/png;base64,' . base64_encode($user_row['profilep']) . ''; ?>" alt="Profile Picture" class="profile-p-tbl">
-                    <p class="usern-tbl"><?php echo $user_row['fname'] . " " . $user_row['lname']; ?></p>
+            <a onclick="sendDataToPHPpage(<?php echo $id; ?>)" href="#">
+              <div class="individual-freelancer" id="freelancer-individual">
+                <script>
+                  // allows for individual freelancers to be shown, sends data to another php page
+                  function sendDataToPHPpage(id) {
+                    var identifier = id;
+                    const src = "freelancer.php?profile=" + identifier;
+                    window.location.href = src;
+                  }
+                </script>
+                <div class="freelancer-tbl-top">
+                  <img src="<?php echo 'data:image/png;base64,' . base64_encode($user_row['projects']) . ''; ?>" alt="Portfolio Image" class="freelance-img-projects">
+                  <div class="user-name-picture-review-fee">
+                    <div class="user-p-n">
+                      <img src="<?php echo 'data:image/png;base64,' . base64_encode($user_row['profilep']) . ''; ?>" alt="Profile Picture" class="profile-p-tbl">
+                      <p class="usern-tbl"><?php echo $user_row['fname'] . " " . $user_row['lname']; ?></p>
+                    </div>
+                    <div class="user-info">
+                      <p class="review-rating"> <img src="./pictures/reviewstr.png" alt="Reviews: " class="review-str">
+                        <?php echo $review; ?>/5</p>
+                      <p class="price">Fee: £<?php echo $user_row['fee']; ?>/hr </p>
+                    </div>
                   </div>
-                  <div class="user-info">
-                    <p class="review-rating"> <img src="./pictures/reviewstr.png" alt="Reviews: " class="review-str">
-                      <?php echo $review; ?>/5</p>
-                    <p class="price">Fee: £<?php echo $user_row['fee']; ?>/hr </p>
-                  </div>
-                </div>
-                <div class="show-more">
-                  <?php 
-                  // for displaying part of freelancers about section
+                  <div class="show-more">
+                    <?php
+                    // for displaying part of freelancers about section
                     $introAll = $user_row['intro'];
                     $showmore = '';
 
-                    for ($inx = 0; $inx < 110; $inx ++) {
-                      $showmore .= $introAll[$inx];
+                    for ($inx = 0; $inx < 110; $inx++) {
+                      $showmore .= $introAll[$inx]; //error here 
                     }
                     ?>
-                  <p class="show-more-text"><?php echo $showmore; ?> . . . <span class="show-more-underline">Show more</span></p>
+                    <p class="show-more-text"><?php echo $showmore; ?> . . . <span class="show-more-underline">Show more</span></p>
+                  </div>
                 </div>
               </div>
-            </div></a>
+            </a>
       <?php }
         }
       }
       mysqli_close($database); ?>
     </div>
   </section>
-  <?php include "./components/footer.php"?>
+  <?php include "./components/footer.php" ?>
 </body>
+
 </html>

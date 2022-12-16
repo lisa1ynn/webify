@@ -6,56 +6,56 @@
   <title>Sign-in page</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-  .signin-row {
-    display: flex;
-    min-height: 100vh;
-  }
+    .signin-row {
+      display: flex;
+      min-height: 100vh;
+    }
 
-  .signin-col {
-    flex: 50%;
-    padding-top: 250px !important;
-  }
+    .signin-col {
+      flex: 50%;
+      padding-top: 250px !important;
+    }
 
-  .hero-signin-col {
-    background-color: #7d80ff !important;
-    background-image: none !important;
-    box-shadow: none !important;
-  }
+    .hero-signin-col {
+      background-color: #7d80ff !important;
+      background-image: none !important;
+      box-shadow: none !important;
+    }
 
-  .hero-text-small {
-    text-shadow: none !important;
-  }
+    .hero-text-small {
+      text-shadow: none !important;
+    }
 
-  .cool-text-background {
-    background-color: #262626;
-    display: inline;
-    padding: 3px 10px;
-    border-radius: 15px;
-  }
+    .cool-text-background {
+      background-color: #262626;
+      display: inline;
+      padding: 3px 10px;
+      border-radius: 15px;
+    }
 
-  .signin-form-col {
-    padding-top: 250px;
-  }
+    .signin-form-col {
+      padding-top: 250px;
+    }
 
-  .h2-signin {
-    color: #7d80ff;
-    position: relative;
-    text-align: center;
-  }
+    .h2-signin {
+      color: #7d80ff;
+      position: relative;
+      text-align: center;
+    }
 
-  .signin-table {
-    margin: 0px auto;
-    width: 250px;
-  }
+    .signin-table {
+      margin: 0px auto;
+      width: 250px;
+    }
 
-  .signin-input {
-    width: 226px;
-  }
+    .signin-input {
+      width: 226px;
+    }
 
-  .to-sign-up {
-    margin-top: 80px;
-    text-align: center;
-  }
+    .to-sign-up {
+      margin-top: 80px;
+      text-align: center;
+    }
   </style>
   <link rel="stylesheet" href="./general.css?v=<?php echo time(); ?>" />
 </head>
@@ -83,8 +83,7 @@
         <div class="signin-table">
           <form method="post" action="validate-user.php">
             <input class="signin-input input-field" type="email" id="email" name="email" placeholder="E-mail" />
-            <input class="signin-input input-field" type="password" id="password" name="password"
-              placeholder="Password" />
+            <input class="signin-input input-field" type="password" id="password" name="password" placeholder="Password" />
             <div style="text-align: end">
               <a href="#" style="color: #b5bbff">Forgot Password?</a>
             </div>
@@ -101,15 +100,15 @@
     </div>
   </section>
   <script>
-  // Creates a new variable to read the url, specifically to read the wrongPassword url appendix
-  const urlParams = new URLSearchParams(window.location.search);
-  const wrongPassword = urlParams.get('wrongPassword');
-  // If the url includes wrongPassword=1, the class wrong-password is appended to the class of the password element
-  if (wrongPassword) {
-    const input = document.getElementById("password");
+    // Creates a new variable to read the url, specifically to read the wrongPassword url appendix
+    const urlParams = new URLSearchParams(window.location.search);
+    const wrongPassword = urlParams.get('wrongPassword');
+    // If the url includes wrongPassword=1, the class wrong-password is appended to the class of the password element
+    if (wrongPassword) {
+      const input = document.getElementById("password");
 
-    input.className = input.className + " wrong-password"
-  }
+      input.className = input.className + " wrong-password"
+    }
   </script>
   <?php include "./components/footer.php" ?>
 </body>

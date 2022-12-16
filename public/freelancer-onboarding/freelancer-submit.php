@@ -129,8 +129,6 @@ $email = $user_array['email'];
 $password = $user_array['password'];
 $skillsArray = $_POST['skills'];
 
-echo $fname . $lname . $email . $password;
-
 $profilepic_pic = basename($_FILES["profilepicture"]["name"]);
 $thumbnail_pic = basename($_FILES["thumbnail"]["name"]);
 $description = $_POST['description'];
@@ -162,14 +160,14 @@ foreach ($skillsArray as $skill) {
   $database->query($insertQuery);
 }
 
-// delete from users table to avoid conflict
+// delete from users table to avoid conflict 
 $deleteUser = "DELETE FROM users WHERE userID = '$id'";
 $database->query($deleteUser);
 
 // reasign session variables
 $_SESSION["userType"] = 'freelancer';
 $_SESSION["userid"] = $userId;
-// takes back to home once all done, don't know if you wanted to do like a thank you page or something?
-header("Location: ../../public/mainpage.php");
+// takes freelancer to end-of-onboarding page
+header("Location: ../../public/freelancer-onboarding/freelancer-onboarding-success.php");
 
 $database->close();
