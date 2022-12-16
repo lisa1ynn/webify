@@ -213,6 +213,7 @@
                 padding:5%; /* size of the box */
                 border-radius:5%; /* Nice round corners */
                 color:black; /* text colour black */
+                z-index: 5;
 
             }
             .edittext{
@@ -280,7 +281,11 @@
                 
             $profile_features = $profile_features_query->fetch_assoc();
 
-            $review = number_format($profile_features['points']/$profile_features['reviews'], 2);
+            if ($profile_features['reviews'] > 0) {
+                $review = number_format($profile_features['points'] / $profile_features['reviews'], 2);
+              } else {
+                $review = 0;
+              }
         ?>
         <section class="main-area-profile-info">
             <div class="projects-description-area">

@@ -212,7 +212,11 @@ ini_set('display_errors', 0);
                 
             $profile_features = $profile_features_query->fetch_assoc();
 
-            $review = number_format($profile_features['points']/$profile_features['reviews'], 2);
+            if ($profile_features['reviews'] > 0) {
+                $review = number_format($profile_features['points'] / $profile_features['reviews'], 2);
+              } else {
+                $review = 0;
+              }
         ?>
         <section class="main-area-profile-info">
             <div class="projects-description-area">

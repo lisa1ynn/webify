@@ -329,7 +329,11 @@
             // add unique users into tracker
             $users_tracker[] = $user_row['id'];
             // calculates #/5 stars
-            $review = number_format($user_row['points'] / $user_row['reviews'], 2);
+            if ($user_row['reviews'] !=0) {
+              $review = number_format($user_row['points'] / $user_row['reviews'], 2);
+            } else {
+              $review = 0;
+            }
             $id = $user_row['id'];
       ?>
             <a onclick="sendDataToPHPpage(<?php echo $id; ?>)" href="#" ><div class="individual-freelancer" id="freelancer-individual" >
@@ -376,5 +380,4 @@
   </section>
   <?php include "./components/footer.php"?>
 </body>
-
 </html>

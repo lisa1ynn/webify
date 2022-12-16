@@ -36,7 +36,11 @@ session_start();
       <ul class='header-ul'>
         <?php
         // user logged in -> can access profile
-        if (isset($_SESSION["userType"])) {
+        if (isset($_SESSION["userType"]) && $_SESSION["userType"] === 'user') {
+          echo "<li class='header-li header-button'><a href='../public/freelancer-onboarding/freelancer-onboarding-info.php'>Become a freelancer</a></li>";
+          echo "<li class='header-li header-button'><a href='../public/logout.php'>Log out</a></li>";
+
+        } else if (isset($_SESSION["userType"]) && $_SESSION["userType"] === 'freelancer') {
           echo "<li class='header-li header-button'><a href='../public/profile.php'>Profile</a></li>";
           echo "<li class='header-li header-button'><a href='../public/logout.php'>Log out</a></li>";
         } else {

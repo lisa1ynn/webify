@@ -1,4 +1,5 @@
 <?php
+session_start();
 //IMAGE UPLOADS
 
 $target_dir = "freelancer-uploads/";
@@ -116,22 +117,28 @@ if ($database->connect_error) {
 //ADD FREELANCER TO DATABASE
 
 //Get user data from user table
-$user_array = $database->query("SELECT * FROM users WHERE id = $_SESSION[userid];"); //$_SESSION[userid] does not work
+$idStr = $_SESSION['userid'];
+$id = (int)$idStr;
+$user_array_query = $database->query("SELECT * FROM users WHERE userID = $id"); // fixed
+$user_array = $user_array_query->fetch_assoc();
 
 //Put all neccessary data into variables
 $fname = $user_array['fname'];
 $lname = $user_array['lname'];
 $email = $user_array['email'];
 $password = $user_array['password'];
+$skillsArray = $_POST['skills'];
 
 echo $fname . $lname . $email . $password;
 
 $profilepic_pic = basename($_FILES["profilepicture"]["name"]);
 $thumbnail_pic = basename($_FILES["thumbnail"]["name"]);
 $description = $_POST['description'];
+$fee = (int)$_POST['fee'];
 
 //Add all freelancer data into database
-$sql = "INSERT INTO freelancer (fname, lname, email, password, profilep, intro, projects) VALUES ('$fname', '$lname', '$email', '$password', '$profilepic_pic', '$description', '$thumbnail_pic')";
+// need to add fee onto this query
+$sql = "INSERT INTO freelancer (fname, lname, email, password, profilep, intro, projects, fee) VALUES ('$fname', '$lname', '$email', '$password', '$profilepic_pic', '$description', '$thumbnail_pic', $fee)";
 
 
 if ($database->query($sql) === TRUE) {
@@ -140,5 +147,29 @@ if ($database->query($sql) === TRUE) {
   echo "Error: "
     . $sql . "<br>" . $database->error;
 }
+
+// add skills to user
+$getNewUser = "SELECT id FROM freelancer WHERE email='$email'";
+$userIdQuery = $database->query($getNewUser);
+$userIdGet = $userIdQuery->fetch_assoc();
+$userIdStr = $userIdGet['id'];
+$userId = (int)$userIdStr;
+
+// insert skills
+foreach ($skillsArray as $skill) {
+  $skillToInteger = (int)$skill;
+  $insertQuery = "INSERT INTO freelancerskill (freelancer_id, skill_id) VALUES ($userId, $skillToInteger)";
+  $database->query($insertQuery);
+}
+
+// delete from users table to avoid conflict
+$deleteUser = "DELETE FROM users WHERE userID = '$id'";
+$database->query($deleteUser);
+
+// reasign session variables
+$_SESSION["userType"] = 'freelancer';
+$_SESSION["userid"] = $userId;
+// takes back to home once all done, don't know if you wanted to do like a thank you page or something?
+header("Location: ../../public/mainpage.php");
 
 $database->close();

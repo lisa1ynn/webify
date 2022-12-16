@@ -121,7 +121,16 @@
                 <td class="form-cell-label"><label class="form-label" for="image">Skills: </label>
                 </td>
                 <td class="form-cell-input">
-                  <input class="freelancer-input-field" type="checkbox" name="skills" id="skills"></input>
+                <?php
+                // get skills onto form
+                  include '../../private/initialize.php';
+
+                  $skillsQuery = $database->query("SELECT * FROM skills");
+                  while ($skill = $skillsQuery->fetch_assoc()) {?>
+
+                  <input type="checkbox" name="skills[]" id="skills_<?php echo $skill['skill']; ?>" value="<?php echo $skill['skill_id']; ?>"><?php echo $skill['skill']; ?>
+
+                <?php } ?>
                 </td>
               </tr><br />
               <tr class="form-row">
