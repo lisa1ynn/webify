@@ -1,4 +1,4 @@
-<?php include './components/menubar.php' ?>
+<?php require_once './components/Header.php' ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,6 +14,6 @@
         }
     </style>
     <body>
-
+<?php include 'editfreelancer.php'?>
     </body>
 </html>

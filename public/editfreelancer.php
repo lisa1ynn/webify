@@ -1,16 +1,12 @@
-<?php
-error_reporting(0);
-ini_set('display_errors', 0);
-?>
-
+<?php require_once './components/Header.php' ?>
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Profile</title>
+        <title></title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="./general.css">
+        <link rel="stylesheet" href="general.css?v=<?php echo time(); ?>" >
         <link href="https://fonts.googleapis.com/css?family=Archivo:500|Open+Sans:300,700" rel="stylesheet">
         <style>
             body {
@@ -186,23 +182,95 @@ ini_set('display_errors', 0);
                 background-color: #262626;
                 color: #FF511C;
             }
+            .button{
+            margin:2%;
+            margin-left:4%;
+            padding:1%;
+            }
+            
+            .input {
+            background-color: #daddff;
+            margin-bottom: 15px;
+            border-radius: 15px;
+            padding: 2px 10px;
+            }
+            .hidden{
+                display:none; /* Hides the element*/
+                position: fixed; /* Stay in place */
+                z-index: 1; /* Sit on top */
+                padding-top: 2%; /* Location of the box */
+                padding-left:10%; 
+                top: 0;
+                width: 100%; /* Full width */
+                height: 100%; /* Full height */
+                overflow: auto; /* Enable scroll if needed */
+                background-color: rgb(0,0,0); /* Fallback color */
+                background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            }
+            .editbox{
+                background-color:#7d80ff; /* Distinct editbox colour */
+                width:60%; /* The position of the editbox */
+                padding:5%; /* size of the box */
+                border-radius:5%; /* Nice round corners */
+                color:black; /* text colour black */
 
+            }
+            .edittext{
+                font-weight:bold; /* makes the font bold */
+
+            }
+            .inline{
+                display:inline; /* displays some elements in the same line, that otherwise default to a new block */
+            }
         </style>
         <script>
       // removes alers showed if pagae refresed or exited if review is made
       if ( window.history.replaceState ) {
           window.history.replaceState( null, null, window.location.href );
       }
+
+      // defines the editbio variable
+    
+    
+    // function to display the hidden element to edit the bio
+
+
+    // function to display the hidden element to edit other data
+    // Additionally, this code already fills in the input fields
+    // This is so that when the input fields update the DB, the unchanged elements are updated with the same values
+    function editdata(){
+        
+        fname=document.getElementById("n8").innerHTML;
+        document.getElementById("n5").innerHTML=fname;
+        lname=document.getElementById("n9").innerHTML;
+        document.getElementById("n6").innerHTML=lname;
+        fname=document.getElementById("n10").innerHTML;
+        document.getElementById("n7").innerHTML=fname;
+        const editbio=document.getElementById("n2");
+        bio=document.getElementById("n1").innerHTML;
+        document.getElementById("n3").innerHTML=bio;
+        editbio.style.display="block";
+    }
+
+      // function to cancel the editing of the bio
+    function canceledit(){
+        const editbio=document.getElementById("n2");
+        editbio.style.display="none"; // The display CSS value is again none, hiding the element
+    }
+
+
     </script>
     </head>
     <body>
         <?php
-        include './components/Header.php';
         include '../private/initialize.php';
 
-            $profile = explode(",",$_GET['profile']);
-            $id = (int)$profile[0];
 
+            $id = $_SESSION['userid']; // The id is defined by the global session variable, which is defined as the user logs in
+
+
+            // All elements of the page are displayed the same as freelancers are viewed by users, except for the rating
+            // We don't want to allow freelancers to rate themselves
             $profile_features_query = $database->query("SELECT skill, fname, lname, points, reviews, intro, profilep, projects, fee
                 FROM freelancer AS f, freelancerskill AS fs, skills AS s
                 WHERE f.id = fs.freelancer_id
@@ -217,11 +285,30 @@ ini_set('display_errors', 0);
         <section class="main-area-profile-info">
             <div class="projects-description-area">
                 <div class="projects-img-container">
+                    <!-- Displays the edit button -->
+                <button class="header-button button" onclick=editdata()>Edit</button>
                     <img src="<?php echo 'data:image/png;base64,'.base64_encode($profile_features['projects']).''; ?>" alt="Portfolio Image" class="projects-img">
                 </div>
                 <div class="description-container">
                     <h1>About:</h1>
-                    <p><?php echo $profile_features['intro']; ?></p>
+                    <p id="n1"><?php echo $profile_features['intro']; ?></p>
+
+                    <!-- Form to edit the bio, different div tags are needed, to blur out the background and to present a nice field -->
+                    <div class="hidden" id="n2">
+                    <div class="editbox">
+                    <form action="changefldata.php"> 
+                        <!-- data is sent to another file, which sends it to the DB for the update -->
+                        <p class="edittext">Bio</p><textarea id="n3" class="input" rows=10 cols=100 name="intro"></textarea>
+                        <p class="edittext">First name</p><textarea id="n5" class="input" rows=1 cols=10 name="fname"></textarea>
+                        <p class="edittext">Last name</p><textarea id="n6" class="input" rows=1 cols=10 name="lname"></textarea>
+                        <p class="edittext">Fee</p><textarea id="n7" class="input" rows=1 cols=10 name="fee"></textarea>
+                        <button class="header-button button" type="submit" name="submit" value="Submit">Submit</button>
+                        
+                    </form>
+                    <!-- the button is displayed after the form, we don't want the cancel button to submit -->
+                    <button class="header-button button inline" onclick=canceledit()>Cancel</button>
+                    </div>
+                    </div>
                 </div>
             </div>
             <div class="profile-info-area">
@@ -230,12 +317,12 @@ ini_set('display_errors', 0);
                         <img src="<?php echo 'data:image/png;base64,'.base64_encode($profile_features['profilep']).''; ?>" alt="Profile Picture" class="profile-picture">
                     </div>
                     <div class="first-last">
-                        <p><?php echo $profile_features['fname']; ?></p>
-                        <p><?php echo $profile_features['lname']; ?></p>
+                        <p id="n8"><?php echo $profile_features['fname']; ?></p>
+                        <p id="n9"><?php echo $profile_features['lname']; ?></p>
                     </div>
                 </div>
                 <div class="profile-info-fee-skills-offer">
-                    <div class="profile-fee"><p>Fee: £<?php echo $profile_features['fee']; ?>/hr</p></div>
+                    <div class="profile-fee"><p class="inline">Fee: £<p id="n10" class="inline"><?php echo $profile_features['fee']; ?></p>/hr</p></div>
                     <div class="profile-skill"><p>Expertise: | <?php 
                         // make sure no duplicate skills, display all skills one by one with the loop
                         $skill_tracker = array();
@@ -247,24 +334,11 @@ ini_set('display_errors', 0);
                         }?></p>
                     </div>
                 </div>
-                
-                <!-- Add link to portfolio onto info section -->
-
                 <div class="reviews-see-post">
                     <div class="reviews">
                         <p class="review-rating"> <img src="./pictures/reviewstr.png" alt="Reviews: " class="review-str"> <?php echo $review; ?>/5 | <?php echo $profile_features['reviews']; ?> Reviews</p>
                     </div>
-                    <div class="post-review">
-                        <form class="review-submit-form" action="<?php $_SERVER['PHP_SELF']; ?>" method="post">
-                            <select id="review-rating" name="review" class='choose-rating-dropdown'>
-                                <option value=1>1</option>
-                                <option value=2>2</option>
-                                <option value=3>3</option>
-                                <option value=4>4</option>
-                                <option value=5 selected>5</option>
-                            </select>
-                            <input type="submit" value="Submit review" class="submit-btn-review">
-                        </form>
+                   
                         <?php
                             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 $user_review = $_POST['review'];
