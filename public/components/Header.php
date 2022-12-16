@@ -21,17 +21,17 @@ session_start();
       </ul>
       <?php
       if (isset($_SESSION["userType"])) { ?>
-      <ul class='header-ul-links-in'>
-        <li class='header-li header-link'><a href='/Projects/webify/public/mainpage.php'>Home</a></li>
-        <li class='header-li header-link'><a href='/Projects/webify/public/about.php'>About</a></li>
-        <li class='header-li header-link'><a href='#contact'>Contact</a></li>
-      </ul>
+        <ul class='header-ul-links-in'>
+          <li class='header-li header-link'><a href='/Projects/webify/public/mainpage.php'>Home</a></li>
+          <li class='header-li header-link'><a href='/Projects/webify/public/about.php'>About</a></li>
+          <li class='header-li header-link'><a href='#contact'>Contact</a></li>
+        </ul>
       <?php } else { ?>
-      <ul class='header-ul-links'>
-        <li class='header-li header-link'><a href='/Projects/webify/public/mainpage.php'>Home</a></li>
-        <li class='header-li header-link'><a href='/Projects/webify/public/about.php'>About</a></li>
-        <li class='header-li header-link'><a href='#contact'>Contact</a></li>
-      </ul>
+        <ul class='header-ul-links'>
+          <li class='header-li header-link'><a href='/Projects/webify/public/mainpage.php'>Home</a></li>
+          <li class='header-li header-link'><a href='/Projects/webify/public/about.php'>About</a></li>
+          <li class='header-li header-link'><a href='#contact'>Contact</a></li>
+        </ul>
       <?php } ?>
       <ul class='header-ul'>
         <?php
@@ -45,7 +45,7 @@ session_start();
         } else {
           // allow login and signup
           echo "<li class='header-li header-button'><a href='/Projects/webify/public/sign-in.php'>Login</a></li>";
-          echo "<li class='header-li header-button'><a href='/Projects/webify/public/freelancer-onboarding/freelancer-onboarding-info.php'>Become a freelancer</a></li>";
+          echo "<li class='header-li header-button'><a href='/Projects/webify/public/sign-up.php'>Sign up</a></li>";
         }
         ?>
       </ul>
