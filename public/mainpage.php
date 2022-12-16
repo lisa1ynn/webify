@@ -374,7 +374,7 @@
       mysqli_close($database); ?>
     </div>
   </section>
-  <?php include "footer.php"?>
+  <?php include "./components/footer.php"?>
 </body>
 
 </html>
