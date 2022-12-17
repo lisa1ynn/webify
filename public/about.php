@@ -21,28 +21,33 @@
                 z-index: 0;
                 transition: 0.3s;
                 object-fit: none;
+                /* background images fixed on top of each other */
             }
 
             body .background-img:nth-child(1) {
                 width: 200px;
                 top: 30px;
+                /* First hald of image -> initial scroll image*/
             }
 
             body .background-img:nth-child(2) {
                 width: 400px;
                 left: 500px;
                 top: 300px;
+                /* main body of image positioned, once 300px from top */
             }
 
             body .background-img:nth-child(3) {
                 width: 100px;
                 left: 60px;
                 top: 600px;
+                /* starts once scrolled to 600px from top */
             }
 
             .content {
                 position: relative;
                 z-index: 1;
+                /* page content placed on top of background */
             }
 
             .section-1 {
@@ -159,19 +164,19 @@
             const handleScroll = event => {
                 const scrollPosition =
                     event
-                        .target
-                        .scrollingElement
-                        .scrollTop;
+                        .target // tracks object
+                        .scrollingElement // tracking linked to the scrolling of the page
+                        .scrollTop; // gets number of pixels from top from scrolling
                 
                 const images = 
-                    document.querySelectorAll(".background-img");
+                    document.querySelectorAll(".background-img"); // gets images
 
                 images.forEach((element) => {
                     element.style.transform =
-                        `translate(0, ${scrollPosition / 50}px)`;
+                        `translate(0, ${scrollPosition / 50}px)`; // as scrolling, move images 50th of the page movement
                 });
             };
-            window.addEventListener("scroll", handleScroll)
+            window.addEventListener("scroll", handleScroll) // tracks when scrolling occurs
         </script>
         <?php include "./components/footer.php"?>
     </body>
