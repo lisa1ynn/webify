@@ -28,10 +28,10 @@
         $selectusers = mysqli_query($database, "SELECT * FROM users WHERE email = '$email'");
         $selectfreel = mysqli_query($database, "SELECT * FROM freelancer WHERE email = '$email'");
         if (mysqli_num_rows($selectusers)) {
-                echo "Go back, this email address is already used!";
+                header("Location: sign-up.php?usedEmail=1");
                 exit;
         } elseif (mysqli_num_rows($selectfreel)) {
-                echo "Go back, this email address is already used!";
+                header("Location: sign-up.php?usedEmail=1");
                 exit;
         } else
         // Inserts new user data into the users table
@@ -43,7 +43,7 @@
         if ($database->query($sql) === TRUE) {
                 header("Location: sign-in.php");
         } else {
-                header("Location: sign-up.php");
+                header("Location: sign-up.php?entryerror=1");
         }
 
         $database->close();
