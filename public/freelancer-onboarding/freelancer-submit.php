@@ -23,7 +23,7 @@ if (isset($_POST["submit"])) {
 }
 
 // Check file size
-if ($_FILES["profilepicture"]["size"] > 500000) {
+if ($_FILES["profilepicture"]["size"] > 5000000) {
   echo "Sorry, your profile picture file is too large.<br />";
   $uploadOK_profilepic = 0;
 }

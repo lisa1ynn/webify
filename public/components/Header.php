@@ -21,17 +21,17 @@ session_start();
       </ul>
       <?php
       if (isset($_SESSION["userType"])) { ?>
-        <ul class='header-ul-links-in'>
-          <li class='header-li header-link'><a href='/Projects/webify/public/mainpage.php'>Home</a></li>
-          <li class='header-li header-link'><a href='/Projects/webify/public/about.php'>About</a></li>
-          <li class='header-li header-link'><a href='#contact'>Contact</a></li>
-        </ul>
+      <ul class='header-ul-links-in'>
+        <li class='header-li header-link'><a href='/Projects/webify/public/mainpage.php'>Home</a></li>
+        <li class='header-li header-link'><a href='/Projects/webify/public/about.php'>About</a></li>
+        <li class='header-li header-link'><a href='/Projects/webify/public/contact.php'>Contact</a></li>
+      </ul>
       <?php } else { ?>
-        <ul class='header-ul-links'>
-          <li class='header-li header-link'><a href='/Projects/webify/public/mainpage.php'>Home</a></li>
-          <li class='header-li header-link'><a href='/Projects/webify/public/about.php'>About</a></li>
-          <li class='header-li header-link'><a href='#contact'>Contact</a></li>
-        </ul>
+      <ul class='header-ul-links'>
+        <li class='header-li header-link'><a href='/Projects/webify/public/mainpage.php'>Home</a></li>
+        <li class='header-li header-link'><a href='/Projects/webify/public/about.php'>About</a></li>
+        <li class='header-li header-link'><a href='#contact'>Contact</a></li>
+      </ul>
       <?php } ?>
       <ul class='header-ul'>
         <?php

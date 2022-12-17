@@ -203,7 +203,6 @@ input.wrong-password::placeholder {
   padding: 0;
   list-style: none;
   display: inline-block;
-
 }
 
 .header-ul-links {
@@ -211,8 +210,7 @@ input.wrong-password::placeholder {
   margin: 0;
   list-style: none;
   text-align: center;
-  margin-left: 184px;
-  
+  margin-left: 45px;
 }
 
 .header-ul-links-in {
