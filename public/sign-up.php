@@ -65,8 +65,9 @@
     font-size: smaller;
   }
 
-  a:link {
+  .link:link {
     text-decoration: underline !important;
+    color: #b5bbff !important;
   }
 
   .to-sign-in {
@@ -114,7 +115,7 @@
             <!--Terms and conditions checkbox input field-->
             <input class="terms-conditions-checkbox white-text-small" type="checkbox" name="termsAndConditions"
               required></input>
-            <div class="terms-conditions-text">By signing up, I accept the <a
+            <div class="terms-conditions-text">By signing up, I accept the <a class="link"
                 href="/Projects/webify/public/terms-and-conditions.php">terms and conditions</a> of webify.</div>
             <!--Button to submit/ sign up-->
             <div style="text-align: center; margin-top: 20px;">
@@ -122,8 +123,8 @@
             </div>
           </form>
           <!--Link to signup if they already have account-->
-          <div class="to-sign-in white-text-small">Already have an account? <a href="./sign-in.php"
-              style="color: #b5bbff">Sign in</a></div>
+          <div class="to-sign-in white-text-small">Already have an account? <a class="link" href="./sign-in.php">Sign
+              in</a></div>
           <!--Hover does not work for some reason-->
         </div>
         <!--signup form element end-->
