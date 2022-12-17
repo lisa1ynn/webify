@@ -75,7 +75,7 @@
 
 <body>
   <!-- Include header -->
-  <?php include '../components/Header.php' ?>
+  <?php include '../public/components/Header.php' ?>
   <section>
     <!-- Row with two columns: for main content and image -->
     <div class='info-page-row'>
@@ -133,7 +133,7 @@
                 <div class="image-input skills">
                   <?php
                   // Put skills onto database
-                  include '../../private/initialize.php';
+                  include '../private/initialize.php';
 
                   $skillsQuery = $database->query("SELECT * FROM skills");
                   while ($skill = $skillsQuery->fetch_assoc()) { ?> <label><input type="checkbox" name="skills[]"
@@ -152,7 +152,7 @@
                 <div class="image-input skills">
                   <?php
                   // get most proficient skill onto database
-                  include '../../private/initialize.php';
+                  include '../private/initialize.php';
                   $skillsQuery = $database->query("SELECT * FROM skills");
                   while ($proficientSkill = $skillsQuery->fetch_assoc()) { ?> <label><input type="radio"
                       name="proficientSkill" id="proficientSkill_<?php echo $proficientSkill['skill']; ?>"
@@ -178,7 +178,7 @@
       </div>
       <!-- Column for image -->
       <div class='image-col'>
-        <img src="../pictures/coder-guy-unsplash.jpg" alt="Coding" width="100%" height="auto">
+        <img src="./pictures/coder-guy-unsplash.jpg" alt="Coding" width="100%" height="auto">
       </div>
     </div>
   </section>

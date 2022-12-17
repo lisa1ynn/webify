@@ -40,7 +40,7 @@
 
 <body>
   <!-- Include header -->
-  <?php include '../components/Header.php' ?>
+  <?php include '../public/components/Header.php' ?>
   <section>
     <!-- Row with two columns: for main content and image -->
     <div class='info-page-row'>
@@ -80,7 +80,7 @@
       </div>
       <!-- Column for image -->
       <div class='image-col'>
-        <img src="../pictures/coding-unsplash.jpg" alt="Coding" width="100%" height="auto">
+        <img src="./pictures/coding-unsplash.jpg" alt="Coding" width="100%" height="auto">
       </div>
     </div>
   </section>
