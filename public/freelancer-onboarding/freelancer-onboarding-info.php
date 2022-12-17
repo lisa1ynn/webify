@@ -22,7 +22,7 @@
   .button-white {
     padding: 6px 12px !important;
     margin-top: 30px;
-    font-size: x-large;
+    font-size: large;
   }
 
   .primary {
@@ -32,7 +32,7 @@
   }
 
   .white-text-small {
-    font-size: x-large !important;
+    font-size: large !important;
   }
   </style>
   <link rel="stylesheet" href="../general.css?v=<?php echo time(); ?>" />

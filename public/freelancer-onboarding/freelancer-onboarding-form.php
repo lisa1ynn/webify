@@ -21,12 +21,11 @@
   }
 
   .freelancer-form {
-    margin: auto;
-    margin-top: 10%;
+    margin: 0;
   }
 
   .form-row {
-    height: 100px;
+    height: 70px;
   }
 
   .form-cell-label {
@@ -41,14 +40,14 @@
   .image-input {
     background-color: #7d80ff;
     width: 100%;
-    font-size: large;
+    font-size: medium;
   }
 
   .button-white {
     padding: 6px 12px !important;
     margin-top: 30px;
-    font-size: x-large;
-    margin: 70px 15px;
+    font-size: large;
+    margin: 40px 15px;
   }
 
   .primary {
@@ -59,13 +58,17 @@
 
   .form-label {
     color: white;
-    font-size: x-large;
+    font-size: large;
   }
 
   .freelancer-input-field {
     width: 100%;
     font-size: large;
 
+  }
+
+  .skills {
+    padding: 3px;
   }
   </style>
 </head>
@@ -75,76 +78,76 @@
   <section>
     <div class='info-page-row'>
       <div class='info-col'>
-        <h1>
+        <h1 style="margin-bottom: 50px;">
           Your<br />
-          <span class="cool-text">personal information</span>
+          <span class="cool-text">information</span>
         </h1>
-        <div>
-          <table class="freelancer-form">
-            <form action="freelancer-submit.php" method="POST" enctype="multipart/form-data"
-              onsubmit="window.location.href='./freelancer-onboarding-success.php';">
-              <tr class="form-row">
-                <td class="form-cell-label">
-                  <label class="form-label" for="profilepicture">Profile picture: </label>
-                </td>
-                <td class="form-cell-input">
-                  <input class="image-input" type="file" id="profilepicture" name="profilepicture"
-                    accept="image/png, image/jpeg">
-                </td>
-              </tr><br />
-              <tr class="form-row">
-                <td class="form-cell-label">
-                  <label class="form-label" for="thumbnail">Thumbnail: </label>
-                </td>
-                <td class="form-cell-input">
-                  <input class="image-input" type="file" id="thumbnail" name="thumbnail"
-                    accept="image/png, image/jpeg, image/jpg">
-                </td>
-              </tr><br />
-              <tr class="form-row">
-                <td class="form-cell-label"><label class="form-label" for="description">Description: </label>
-                </td>
-                <td class="form-cell-input">
-                  <textarea class="freelancer-input-field" style="margin-bottom: 70px;" name="description"
-                    id="description" rows="6" cols="80"></textarea>
-                </td>
-              </tr><br />
-              <tr class="form-row">
-                <td class="form-cell-label"><label class="form-label" for="fee">Fee per hour (£): </label>
-                </td>
-                <td class="form-cell-input">
-                  <input class="freelancer-input-field" type="number" name="fee" id="fee" min="1"></input>
-                </td>
-              </tr><br />
-              <!-- still working on the skills -->
-              <tr class="form-row">
-                <td class="form-cell-label"><label class="form-label" for="image">Skills: </label>
-                </td>
-                <td class="form-cell-input">
-                <?php
-                // get skills onto form
+        <table class="freelancer-form">
+          <form action="freelancer-submit.php" method="POST" enctype="multipart/form-data"
+            onsubmit="window.location.href='./freelancer-onboarding-success.php';">
+            <tr class="form-row">
+              <td class="form-cell-label">
+                <label class="form-label" for="profilepicture">Profile picture: </label>
+              </td>
+              <td class="form-cell-input">
+                <input class="image-input" type="file" id="profilepicture" name="profilepicture"
+                  accept="image/png, image/jpeg" required>
+              </td>
+            </tr>
+            <tr class="form-row">
+              <td class="form-cell-label">
+                <label class="form-label" for="thumbnail">Thumbnail: </label>
+              </td>
+              <td class="form-cell-input">
+                <input class="image-input" type="file" id="thumbnail" name="thumbnail"
+                  accept="image/png, image/jpeg, image/jpg" required>
+              </td>
+            </tr>
+            <tr class="form-row">
+              <td class="form-cell-label"><label class="form-label" for="description">Description: </label>
+              </td>
+              <td class="form-cell-input">
+                <textarea class="freelancer-input-field" style="margin-bottom: 40px;" name="description"
+                  id="description" rows="6" cols="80" required></textarea>
+              </td>
+            </tr>
+            <tr class="form-row">
+              <td class="form-cell-label"><label class="form-label" for="fee">Fee (£/hr): </label>
+              </td>
+              <td class="form-cell-input">
+                <input class="freelancer-input-field" type="number" name="fee" id="fee" min="1" required></input>
+              </td>
+            </tr>
+            <!-- still working on the skills -->
+            <tr class="form-row">
+              <td class="form-cell-label"><label class="form-label" for="image">Skills: </label>
+              </td>
+              <td class="form-cell-input">
+                <div class="image-input skills">
+                  <?php
+                  // get skills onto form
                   include '../../private/initialize.php';
 
                   $skillsQuery = $database->query("SELECT * FROM skills");
-                  while ($skill = $skillsQuery->fetch_assoc()) {?>
+                  while ($skill = $skillsQuery->fetch_assoc()) { ?> <label><input type="checkbox" name="skills[]"
+                      id="skills_<?php echo $skill['skill']; ?>"
+                      value="<?php echo $skill['skill_id']; ?>"><?php echo $skill['skill']; ?></label>
 
-                  <input type="checkbox" name="skills[]" id="skills_<?php echo $skill['skill']; ?>" value="<?php echo $skill['skill_id']; ?>"><?php echo $skill['skill']; ?>
-
-                <?php } ?>
-                </td>
-              </tr><br />
-              <tr class="form-row">
-                <td colspan="2" class="form-cell-label" style="text-align: center;">
-                  <button class="button-white" type="button"
-                    onclick="window.location.href='./freelancer-onboarding-info.php';">
-                    Back
-                  </button>
-                  <input class="primary button-white" type="submit" id="submit" name="submit" value="Next" />
-                </td>
-              </tr><br />
-            </form>
-          </table>
-        </div>
+                  <?php } ?>
+                </div>
+              </td>
+            </tr>
+            <tr class="form-row">
+              <td colspan="2" class="form-cell-label" style="text-align: center;">
+                <button class="button-white" type="button"
+                  onclick="window.location.href='./freelancer-onboarding-info.php';">
+                  Back
+                </button>
+                <input class="primary button-white" type="submit" id="submit" name="submit" value="Next" />
+              </td>
+            </tr>
+          </form>
+        </table>
       </div>
       <div class='image-col'>
         <img src="../pictures/coder-guy-unsplash.jpg" alt="Coding" width="100%" height="auto">
