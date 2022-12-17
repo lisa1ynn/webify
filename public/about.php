@@ -62,11 +62,12 @@
             
             /* changes all images */
             .section-img {
-                width: 40rem;
-                height: 35rem;
+                width: 30rem;
+                height: 25rem;
                 margin: 0 auto;
-                height: 100%;
                 vertical-align: middle;
+                margin-top: 22%;
+                margin-bottom: 18%;
             }
 
             .text-section-1 {
@@ -125,7 +126,7 @@
             
             /* button design */
             .getstarted_button {
-                background-color: #7D80FF;
+                background-color: #262626;
                 color: white;
                 font-family: 'Courier New', Courier, monospace;
                 font-weight: bold;
@@ -212,7 +213,7 @@
 
             <!-- button to redirect to sign in page -->
             <div>
-                <button id="startButton" class="getstarted_button"><span>Get Started!</span></button>
+                <button id="startButton" class="getstarted_button"><span class="cool-text">Get Started!</span></button>
                 <script type="text/javascript">
                     document.getElementById("startButton").onclick = function () {
                     location.href = "./sign-in.php";
