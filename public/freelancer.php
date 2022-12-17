@@ -6,254 +6,231 @@ ini_set('display_errors', 0);
 
 <!DOCTYPE html>
 <html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Profile</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./general.css">
+        <link href="https://fonts.googleapis.com/css?family=Archivo:500|Open+Sans:300,700" rel="stylesheet">
+        <style>
+            body {
+                margin: 0px;
+                background-color: #262626;
+                color: #C0C0C0;
+                font-family: 'Open Sans', sans-serif;
+                font-weight: 300;
+            }
 
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Profile</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="./general.css?v=<?php echo time(); ?>">
-  <link href="https://fonts.googleapis.com/css?family=Archivo:500|Open+Sans:300,700" rel="stylesheet">
-  <style>
-  body {
-    margin: 0px;
-    background-color: #262626;
-    color: #C0C0C0;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
-  }
+            h1, h2, h3, h4, h5, h6 {
+                font-family: 'Archivo', sans-serif;
+                font-weight: 500;
+            }
+            @media screen and (max-width: 935px) {
+              .main-area-profile-info {
+                  display: flex;
+                  flex-direction: column;
+                  width: 100%;
+                  height: 100%;
+                  
+              }
+            }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: 'Archivo', sans-serif;
-    font-weight: 500;
-  }
+            @media screen and (min-width: 935px) {
+              .main-area-profile-info {
+                  display: flex;
+                  flex-direction: row;
+                  width: 100%;
+                  height: 100%;
+                  grid-template-columns: 60% 40%;
+              }
+            }
 
-  @media screen and (max-width: 935px) {
-    .main-area-profile-info {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      height: 100%;
+            .projects-description-area {
+                display: grid;
+                grid-template-rows: 70% 25%;
+                place-items: center;
+                height: 90%;
+                row-gap: 2rem;
+            }
 
-    }
-  }
+            .contact {
+                display: block;
+                margin-top:50%;
+                grid-template-rows: 30% 5%;
+                place-items: center;
+                height: 50%;
+                position:relative;
+                left:-20%;
+            }
 
-  @media screen and (min-width: 935px) {
-    .main-area-profile-info {
-      display: flex;
-      flex-direction: row;
-      width: 100%;
-      height: 100%;
-      grid-template-columns: 60% 40%;
-    }
-  }
+            .projects-img-container {
+                width: 90%;
+                height: 100%;
+                padding-top: 2%;
+                margin-right: 30px;
+            }
 
-  .projects-description-area {
-    display: grid;
-    grid-template-rows: 70% 25%;
-    place-items: center;
-    height: 90%;
-    row-gap: 2rem;
-  }
+            .projects-img {
+                width: 800px;
+                height: 600px;
+                border-radius: 30px;
+                box-shadow: 0px 8px 10px #151515;
+            }
 
-  .contact {
-    display: block;
-    margin-top: 50%;
-    grid-template-rows: 30% 5%;
-    place-items: center;
-    height: 50%;
-    position: relative;
-    left: -20%;
-  }
+            .description-container {
+                width: 90%;
+                border-radius: 20px;
+                margin-bottom: 2%;
+            }
 
-  .projects-img-container {
-    width: 90%;
-    height: 100%;
-    padding-top: 2%;
-  }
+            .description-container > h1 {
+                padding-top: 1%;
+                padding-left: 2%;
+                font-size: 32px;
+                font-weight: bold;
+            }
 
-  .projects-img {
-    width: 100%;
-    height: 90%;
-    border-radius: 30px;
-    box-shadow: 0px 8px 10px #151515;
-  }
+            .description-container > p {
+                font-size: 20px;
+                padding: 2%;
+            }
 
-  .description-container {
-    width: 90%;
-    border-radius: 20px;
-    margin-bottom: 2%;
-  }
+            .profile-info-area {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                grid-template-rows: 30% 40% 30%;
+                border: solid #FF511C;
+                border-radius: 20px;
+                padding-left: 1%;
+                margin-top: 2%;
+                margin-bottom: 2%;
+                margin-right: 2%;
+                box-shadow: 0px 8px 15px #151515;
+                grid-row-gap: 5%;
+                width: 100%;
+                padding-right: 100px;
+            }
 
-  .description-container>h1 {
-    padding-top: 1%;
-    padding-left: 2%;
-    font-size: 32px;
-    font-weight: bold;
-  }
+            .profile-picture-name {
+                display: grid;
+                grid-template-columns: 50% 50%;
+                place-items: center;
+            }
 
-  .description-container>p {
-    font-size: 20px;
-    padding: 2%;
-  }
+            .profile-picture-container {
+                height: 90%;
+                width: 90%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 1rem;
+            }
 
-  .profile-info-area {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    grid-template-rows: 30% 40% 30%;
-    border: solid #FF511C;
-    border-radius: 20px;
-    padding-left: 1%;
-    margin-top: 2%;
-    margin-bottom: 2%;
-    margin-right: 2%;
-    box-shadow: 0px 8px 15px #151515;
-    grid-row-gap: 5%;
-    width: 30%;
-  }
+            .profile-picture {
+                height: 150px;
+                width: 150px;
+                border-radius: 100%;
+                box-shadow: 0px 5px 10px #151515;
+            }
 
-  .profile-picture-name {
-    display: grid;
-    grid-template-columns: 50% 50%;
-    place-items: center;
-  }
+            .first-last {
+                font-size: 2rem;
+                font-weight: bold;
+                text-align: left;
+                padding-left: 20px;
+            }
 
-  .profile-picture-container {
-    height: 90%;
-    width: 90%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 1rem;
-  }
+            .profile-fee {
+                font-size: 1.5rem;
+                font-weight: bold;
+                margin-left: 1.5rem;
+            }
 
-  .profile-picture {
-    height: 150px;
-    width: 150px;
-    border-radius: 100%;
-    box-shadow: 0px 5px 10px #151515;
-  }
+            .profile-skill {
+                margin-left: 1.5rem;
+            }
 
-  .first-last {
-    font-size: 2rem;
-    font-weight: bold;
-    text-align: left;
-  }
+            .reviews-see-post {
+                height: 100%;
+            }
 
-  .profile-fee {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-left: 1.5rem;
-  }
+            .reviews {
+                margin-left: 1.5rem;
+            }
 
-  .profile-skill {
-    margin-left: 1.5rem;
-  }
+            .post-review {
+                margin-left: 1.5rem;
+            }
 
-  .reviews-see-post {
-    height: 100%;
-  }
+            .review-str {
+                width: 15px;
+                height: 15px;
+            }
 
-  .reviews {
-    margin-left: 1.5rem;
-  }
+            .post-review {
+                margin-bottom: 10px;
+                padding-bottom: 5px;
+            }
 
-  .post-review {
-    margin-left: 1.5rem;
-  }
+            .choose-rating-dropdown {
+                background-color: #FF511C;
+                color: #C0C0C0;
+                padding: 2px;
+            }
 
-  .review-str {
-    width: 15px;
-    height: 15px;
-  }
-
-  .post-review {
-    margin-bottom: 10px;
-    padding-bottom: 5px;
-  }
-
-  .choose-rating-dropdown {
-    background-color: #FF511C;
-    color: #C0C0C0;
-    padding: 2px;
-  }
-
-  .choose-rating-dropdown:hover {
-    font-weight: bold;
-    text-shadow: 0px 1px 2px black;
-  }
+            .choose-rating-dropdown:hover {
+                font-weight: bold;
+                text-shadow: 0px 1px 2px black;
+            }
 
 
-  .submit-btn-review {
-    color: #C0C0C0;
-    background-color: #FF511C;
-    padding: 2px;
-    border: none;
-    border-radius: 20px;
-    width: 8rem;
-    border: solid #FF511C;
-  }
+            .submit-btn-review {
+                color: #C0C0C0;
+                background-color: #FF511C;
+                padding: 2px;
+                border: none;
+                border-radius: 20px;
+                width: 8rem;
+                border: solid #FF511C;
+            }
 
-  .submit-btn-review:hover {
-    background-color: #262626;
-    color: #FF511C;
-  }
-
-  .button {
-    margin-left: 4%;
-    padding: 1%;
-  }
-
-  .input {
-    background-color: #daddff;
-    margin-bottom: 15px;
-    border-radius: 15px;
-    padding: 2px 10px;
-  }
-
-  .hidden {
-    display: none;
-    /* Hides the element*/
-    position: fixed;
-    /* Stay in place */
-    z-index: 1;
-    /* Sit on top */
-    padding-top: 2%;
-    /* Location of the box */
-    padding-left: 10%;
-    top: 0;
-    width: 100%;
-    /* Full width */
-    height: 100%;
-    /* Full height */
-    overflow: auto;
-    /* Enable scroll if needed */
-    background-color: rgb(0, 0, 0);
-    /* Fallback color */
-    background-color: rgba(0, 0, 0, 0.4);
-    /* Black w/ opacity */
-  }
-
-  .message {
-    background-color: #7d80ff;
-    /* Distinct editbox colour */
-    width: 60%;
-    /* The position of the editbox */
-    padding: 5%;
-    /* size of the box */
-    border-radius: 5%;
-    /* Nice round corners */
-    color: black;
-    /* text colour black */
-    margin-top: 5%;
-    /* extra margin so that full editbox is shown */
-
+            .submit-btn-review:hover {
+                background-color: #262626;
+                color: #FF511C;
+            }
+            .button{
+            margin-left:4%;
+            padding:1%;
+            }
+            
+            .input {
+            background-color: #daddff;
+            margin-bottom: 15px;
+            border-radius: 15px;
+            padding: 2px 10px;
+            }
+            .hidden{
+                display:none; /* Hides the element*/
+                position: fixed; /* Stay in place */
+                z-index: 1; /* Sit on top */
+                padding-top: 2%; /* Location of the box */
+                padding-left:10%; 
+                top: 0;
+                width: 100%; /* Full width */
+                height: 100%; /* Full height */
+                overflow: auto; /* Enable scroll if needed */
+                background-color: rgb(0,0,0); /* Fallback color */
+                background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            }
+            .message{
+                background-color:#7d80ff; /* Distinct editbox colour */
+                width:60%; /* The position of the editbox */
+                padding:5%; /* size of the box */
+                border-radius:5%; /* Nice round corners */
+                color:black; /* text colour black */
+                margin-top:5%; /* extra margin so that full editbox is shown */
   }
 
   .edittext {
@@ -295,7 +272,7 @@ ini_set('display_errors', 0);
     $profile = explode(",", $_GET['profile']);
     $id = (int)$profile[0];
 
-    $profile_features_query = $database->query("SELECT skill, fname, lname, points, reviews, intro, profilep, projects, fee
+    $profile_features_query = $database->query("SELECT skill, fname, lname, points, reviews, intro, profilep, projects, fee, proficientSkill, email
                 FROM freelancer AS f, freelancerskill AS fs, skills AS s
                 WHERE f.id = fs.freelancer_id
                 AND fs.skill_id = s.skill_id
@@ -346,6 +323,8 @@ ini_set('display_errors', 0);
                                             echo $skill['skill'] . ' | ';
                                         }
                                     } ?></p>
+            <p>Proficient at: <?php echo $profile_features['proficientSkill']; ?></p>
+            <p>Contact at: <?php echo $profile_features['email']; ?></p>
         </div>
       </div>
 
@@ -398,5 +377,4 @@ ini_set('display_errors', 0);
   </section>
   <?php include "./components/footer.php" ?>
 </body>
-
 </html>

@@ -22,28 +22,33 @@
                 z-index: 0;
                 transition: 0.3s;
                 object-fit: none;
+                /* background images fixed on top of each other */
             }
 
             body .background-img:nth-child(1) {
                 width: 200px;
                 top: 30px;
+                /* First hald of image -> initial scroll image*/
             }
 
             body .background-img:nth-child(2) {
                 width: 400px;
                 left: 500px;
                 top: 300px;
+                /* main body of image positioned, once 300px from top */
             }
 
             body .background-img:nth-child(3) {
                 width: 100px;
                 left: 60px;
                 top: 600px;
+                /* starts once scrolled to 600px from top */
             }
 
             .content {
                 position: relative;
                 z-index: 1;
+                /* page content placed on top of background */
             }
             
             /* purple boxes */
@@ -228,19 +233,21 @@
                 // tracks how many pixels the user has scrolled from the top of the page
                 const scrollPosition =
                     event
-                        .target
-                        .scrollingElement
-                        .scrollTop;
+                        .target // tracks object
+                        .scrollingElement // tracking linked to the scrolling of the page
+                        .scrollTop; // gets number of pixels from top from scrolling
                 
                 // all background images put into variables
                 const images = 
+
                     document.querySelectorAll(".background-img");
                 // for each background img while user scrolls - background img moves down 50th of actual scrolling distance, parallax effect
                 images.forEach((element) => {
                     element.style.transform =
-                        `translate(0, ${scrollPosition / 50}px)`;
+                        `translate(0, ${scrollPosition / 50}px)`; // as scrolling, move images 50th of the page movement
                 });
             };
+
             // first step to track whether the user is scrolling on the window, if scroll then handleScroll is called upon
             window.addEventListener("scroll", handleScroll)
         </script>
