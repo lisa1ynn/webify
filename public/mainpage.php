@@ -188,11 +188,13 @@ ini_set('display_errors', 0);
     margin-bottom: 280px;
     justify-content: center;
     align-items: center;
+    margin-left: 12px;
   }
   .navigation-home, .navigation-shwo16, .navigation-shwo8, .navigation-next {
     margin-right: 10px;
     width: 60px;
     text-align: center;
+    box-shadow: 0px 2px 4px black;
   }
 
   .navigation-home, .navigation-shwo16, .navigation-shwo8 {

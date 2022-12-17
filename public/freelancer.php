@@ -68,11 +68,12 @@ ini_set('display_errors', 0);
                 width: 90%;
                 height: 100%;
                 padding-top: 2%;
+                margin-right: 30px;
             }
 
             .projects-img {
-                width: 100%;
-                height: 80%;
+                width: 800px;
+                height: 600px;
                 border-radius: 30px;
                 box-shadow: 0px 8px 10px #151515;
             }
