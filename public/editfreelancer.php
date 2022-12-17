@@ -273,7 +273,7 @@
 
     // All elements of the page are displayed the same as freelancers are viewed by users, except for the rating
     // We don't want to allow freelancers to rate themselves
-    $profile_features_query = $database->query("SELECT skill, fname, lname, points, reviews, intro, profilep, projects, fee
+    $profile_features_query = $database->query("SELECT skill, fname, lname, points, reviews, intro, profilep, projects, fee, proficientSkill
                 FROM freelancer AS f, freelancerskill AS fs, skills AS s
                 WHERE f.id = fs.freelancer_id
                 AND fs.skill_id = s.skill_id
@@ -342,6 +342,7 @@
                                             echo $skill['skill'] . ' | ';
                                         }
                                     } ?></p>
+          <p>Proficient at: <?php echo $profile_features['proficientSkill']; ?></p>
         </div>
       </div>
       <div class="reviews-see-post">
