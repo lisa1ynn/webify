@@ -10,7 +10,7 @@ session_start();
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../general.css">
+  <link rel="stylesheet" href="/Projects/webify/public/general.css?v=<?php echo time(); ?>">
 </head>
 
 <body>
@@ -37,15 +37,15 @@ session_start();
         <?php
         // user logged in -> can access profile
         if (isset($_SESSION["userType"]) && $_SESSION["userType"] === 'freelancer') {
-          echo "<li class='header-li header-button'><a href='../public/profile.php'>Profile</a></li>";
-          echo "<li class='header-li header-button'><a href='../public/logout.php'>Log out</a></li>";
+          echo "<li class='header-li header-button'><a href='/Projects/webify/public/profile.php'>Profile</a></li>";
+          echo "<li class='header-li header-button'><a href='/Projects/webify/public/logout.php'>Log out</a></li>";
         } else if (isset($_SESSION["userType"]) && $_SESSION["userType"] === 'user') {
-          echo "<li class='header-li header-button'><a href='../public/freelancer-onboarding/freelancer-onboarding-info.php'>Become a freelancer</a></li>";
-          echo "<li class='header-li header-button'><a href='../public/logout.php'>Log out</a></li>";
+          echo "<li class='header-li header-button'><a href='/Projects/webify/public/freelancer-onboarding/freelancer-onboarding-info.php'>Become a freelancer</a></li>";
+          echo "<li class='header-li header-button'><a href='/Projects/webify/public/logout.php'>Log out</a></li>";
         } else {
           // allow login and signup
-          echo "<li class='header-li header-button'><a href='../public/sign-in.php'>Login</a></li>";
-          echo "<li class='header-li header-button'><a href='../public/sign-up.php'>Sign up</a></li>";
+          echo "<li class='header-li header-button'><a href='/Projects/webify/public/sign-in.php'>Login</a></li>";
+          echo "<li class='header-li header-button'><a href='/Projects/webify/public/sign-up.php'>Sign up</a></li>";
         }
         ?>
       </ul>

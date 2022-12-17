@@ -39,9 +39,12 @@
 </head>
 
 <body>
+  <!-- Include header -->
   <?php include '../components/Header.php' ?>
   <section>
+    <!-- Row with two columns: for main content and image -->
     <div class='info-page-row'>
+      <!-- Column with message what it means to become a freelancer -->
       <div class='info-col'>
         <h1>
           Become a<br />
@@ -68,12 +71,14 @@
           The webify team
         </p>
         <div style="display: flex; justify-content: center; align-items: center">
+          <!-- Button to proceed to onboarding form -->
           <button class="primary button-white" type="button"
             onclick="window.location.href='./freelancer-onboarding-form.php';">
             Create profile
           </button>
         </div>
       </div>
+      <!-- Column for image -->
       <div class='image-col'>
         <img src="../pictures/coding-unsplash.jpg" alt="Coding" width="100%" height="auto">
       </div>
