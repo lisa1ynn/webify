@@ -15,7 +15,8 @@
                 background-color: #262626;
                 margin: 0px;
             }
-
+            
+            /* small animation for background img while scrolling */
             .background-img {
                 position: fixed;
                 z-index: 0;
@@ -49,7 +50,8 @@
                 z-index: 1;
                 /* page content placed on top of background */
             }
-
+            
+            /* purple boxes */
             .section-1 {
                 font-family: 'Courier New', Courier, monospace;
                 border-radius: 100px 100px 100px 0px;
@@ -62,13 +64,15 @@
                 border: solid 2px black;
                 box-shadow: 0px 2px 4px #151515;
             }
-
+            
+            /* changes all images */
             .section-img {
-                width: 400px;
-                height: 400px;
+                width: 30rem;
+                height: 25rem;
                 margin: 0 auto;
-                height: 100%;
                 vertical-align: middle;
+                margin-top: 22%;
+                margin-bottom: 18%;
             }
 
             .text-section-1 {
@@ -84,7 +88,8 @@
             .text-section-1 > p, .text-section-2 > p, .text-section-3 > p {
                 font-size: 1.2rem;
             }
-
+            
+            /* that one annoying black box */
             .section-2 {
                 font-family: 'Courier New', Courier, monospace;
                 border-radius: 100px 100px 0px 100px;
@@ -123,10 +128,62 @@
                 text-shadow: 0px 1px 1px black;
                 padding: 100px 15%;
             }
+            
+            /* button design */
+            .getstarted_button {
+                background-color: #262626;
+                color: white;
+                font-family: 'Courier New', Courier, monospace;
+                font-weight: bold;
+                border: solid 2px black;
+                box-shadow: 0px 2px 4px #151515;
+                padding: 15px 32px;
+                text-align: center;
+                display: inline-block;
+                font-size: 2rem;
+                margin: 0;
+                position: absolute;
+                top: 85%;
+                left: 50%;
+                -ms-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+                width: 300px;
+            }
 
+            /* cursor, arrow animation on hover button */
+            button{
+                cursor: pointer;
+                display: inline-block;
+                position: relative;
+                transition: 0.5s;
+            }
+
+            button:after {
+                content: '»';
+                position: absolute;
+                opacity: 0;  
+                top: 14px;
+                right: -20px;
+                transition: 0.5s;
+                padding-left: 80px;
+            }
+
+            button:hover{
+                padding-right: 24px;
+                padding-left:8px;
+                width: 300px;
+            }
+
+            button:hover:after {
+                opacity: 1;
+                right: 10px;
+                padding-left: 80px;
+            }
 
         </style>
     </head>
+
+        <!-- small delayed transitions while scrolling while scrolling -->
     <body>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
@@ -135,18 +192,19 @@
         <img src="./pictures/abtbackground.png" class='background-img'/>
         <img src="./pictures/abtbackground.png" class='background-img'/>
         <img src="./pictures/abtbackground.png" class='background-img'/>
+        <!-- the sections -->
         <div class="content">
             <div class="section-1" data-aos="fade-right">
                 <img class="section-img" src="./pictures/abt-section-1.png" />
                 <div class="text-section-1">
-                    <h1>Connect.</h1>
-                    <p>Webify is for connecting professionals with freelance projects of all sizes</p>
+                    <h1>About...</h1>
+                    <p>Welcome to Webify, a platform that connects talented web designers with users looking to create their own websites. <br></br>Our mission is to make it easy for anyone to bring their vision to life online, regardless of their technical expertise or design skills.<br></br>We offer a variety of resources, including tutorials, templates, and one-on-one support, to make the process as seamless and stress-free as possible..</p>
                 </div>
             </div>
             <div class="section-2" data-aos="fade-left">
                 <div class="text-section-2">
                     <h1>How to use?</h1>
-                    <p>Sign up either as an user or a freelancer and get started on the magic.</p>
+                    <p>Sign up either as a user, or a freelancer on Webify. Signing up is quick and easy, and will allow you to access all of our services and resources.<br></br>
                 </div>
                 <img class="section-img" src="./pictures/abt-section-3.png" />
             </div>
@@ -154,29 +212,44 @@
                 <img class="section-img" src="./pictures/abt-section-2.png" />
                 <div class="text-section-1">
                     <h1>Hire.</h1>
-                    <p>As a freelancer you will recieve requests in form of forms, visible on your profile tab. If you decide to accept or reject the offer, respond accordingly via email to the user.</p>
+                    <p>As a freelancer you will receieve requests in form of forms, visible on your profile tab. If you decide to accept or reject the offer, respond accordingly via email to the user.<br></br>As a user you can browse through our selection of web design services to find the option that best fits your needs. Collaborate with your designer to bring your vision to life. Our designers will work with you to understand your goals and needs, and will use their expertise to create a website that truly reflects your brand and message.</p>
                 </div>
             </div>
 
-            
+            <!-- button to redirect to sign in page -->
+            <div>
+                <button id="startButton" class="getstarted_button"><span class="cool-text">Get Started!</span></button>
+                <script type="text/javascript">
+                    document.getElementById("startButton").onclick = function () {
+                    location.href = "./sign-in.php";
+                };
+            </script>
+
+           
         </div>
         <script>
+            // second step, function takes in the scrolling event
             const handleScroll = event => {
+                // tracks how many pixels the user has scrolled from the top of the page
                 const scrollPosition =
                     event
                         .target // tracks object
                         .scrollingElement // tracking linked to the scrolling of the page
                         .scrollTop; // gets number of pixels from top from scrolling
                 
+                // all background images put into variables
                 const images = 
-                    document.querySelectorAll(".background-img"); // gets images
 
+                    document.querySelectorAll(".background-img");
+                // for each background img while user scrolls - background img moves down 50th of actual scrolling distance, parallax effect
                 images.forEach((element) => {
                     element.style.transform =
                         `translate(0, ${scrollPosition / 50}px)`; // as scrolling, move images 50th of the page movement
                 });
             };
-            window.addEventListener("scroll", handleScroll) // tracks when scrolling occurs
+
+            // first step to track whether the user is scrolling on the window, if scroll then handleScroll is called upon
+            window.addEventListener("scroll", handleScroll)
         </script>
         <?php include "./components/footer.php"?>
     </body>

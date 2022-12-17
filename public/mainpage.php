@@ -223,7 +223,7 @@ ini_set('display_errors', 0);
 
   </style>
   <script>
-  // removes alers showed if page is refreshed when filters are applied
+  // removes alerts showed if page is refreshed when filters are applied
   if (window.history.replaceState) {
     window.history.replaceState(null, null, window.location.href);
   }
