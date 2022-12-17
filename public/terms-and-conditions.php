@@ -30,8 +30,10 @@
 </head>
 
 <body>
+  <!--Include header-->
   <?php include './components/Header.php' ?>
   <section>
+    <!--Terms and conditions-->
     <div class='terms-and-conditions'>
       <h1>
         <span class="cool-text">TERMS</span> AND <span class="cool-text">CONDITIONS</span>
@@ -123,6 +125,7 @@
         Services.<br><br>
       </p>
   </section>
+  <!--Include footer-->
   <?php include './components/Footer.php' ?>
 </body>
 

@@ -74,17 +74,21 @@
 </head>
 
 <body>
+  <!-- Include header -->
   <?php include '../components/Header.php' ?>
   <section>
+    <!-- Row with two columns: for main content and image -->
     <div class='info-page-row'>
       <div class='info-col'>
         <h1 style="margin-bottom: 50px;">
           Your<br />
           <span class="cool-text">information</span>
         </h1>
+        <!-- Table to format the form -->
         <table class="freelancer-form">
-          <form action="freelancer-submit.php" method="POST" enctype="multipart/form-data"
-            onsubmit="window.location.href='./freelancer-onboarding-success.php';">
+          <!-- Form with action to start freelancer-submit.php to submit data to database and save images-->
+          <form action="freelancer-submit.php" method="POST" enctype="multipart/form-data">
+            <!-- Profile picture input-->
             <tr class="form-row">
               <td class="form-cell-label">
                 <label class="form-label" for="profilepicture">Profile picture: </label>
@@ -94,6 +98,7 @@
                   accept="image/png, image/jpeg" required>
               </td>
             </tr>
+            <!-- Tumbnail input-->
             <tr class="form-row">
               <td class="form-cell-label">
                 <label class="form-label" for="thumbnail">Thumbnail: </label>
@@ -103,6 +108,7 @@
                   accept="image/png, image/jpeg, image/jpg" required>
               </td>
             </tr>
+            <!-- Description textarea input-->
             <tr class="form-row">
               <td class="form-cell-label"><label class="form-label" for="description">Description: </label>
               </td>
@@ -111,6 +117,7 @@
                   id="description" rows="6" cols="80" required></textarea>
               </td>
             </tr>
+            <!-- Fee input -->
             <tr class="form-row">
               <td class="form-cell-label"><label class="form-label" for="fee">Fee (£/hr): </label>
               </td>
@@ -118,14 +125,14 @@
                 <input class="freelancer-input-field" type="number" name="fee" id="fee" min="1" required></input>
               </td>
             </tr>
-            <!-- still working on the skills -->
+            <!-- Skills checkbox input -->
             <tr class="form-row">
               <td class="form-cell-label"><label class="form-label" for="image">Skills: </label>
               </td>
               <td class="form-cell-input">
                 <div class="image-input skills">
                   <?php
-                  // get skills onto database
+                  // Put skills onto database
                   include '../../private/initialize.php';
 
                   $skillsQuery = $database->query("SELECT * FROM skills");
@@ -137,7 +144,7 @@
                 </div>
               </td>
             </tr>
-            <!-- still working on the skills -->
+            <!-- Most proficient skill radio button input -->
             <tr class="form-row">
               <td class="form-cell-label"><label class="form-label" for="image">Most experience: </label>
               </td>
@@ -154,18 +161,22 @@
                 </div>
               </td>
             </tr>
+            <!-- Buttons -->
             <tr class="form-row">
               <td colspan="2" class="form-cell-label" style="text-align: center;">
+                <!-- Button to go back to info page -->
                 <button class="button-white" type="button"
                   onclick="window.location.href='./freelancer-onboarding-info.php';">
                   Back
                 </button>
+                <!-- Button to go back to submit form -->
                 <input class="primary button-white" type="submit" id="submit" name="submit" value="Next" />
               </td>
             </tr>
           </form>
         </table>
       </div>
+      <!-- Column for image -->
       <div class='image-col'>
         <img src="../pictures/coder-guy-unsplash.jpg" alt="Coding" width="100%" height="auto">
       </div>

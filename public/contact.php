@@ -6,40 +6,41 @@
   <title>Contact us</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    .contact {
-      margin: 0px 40px;
-    }
+  .contact {
+    margin: 0px 40px;
+  }
 
-    .input-field {
-      margin-bottom: 30px;
-      width: 300px;
-    }
+  .input-field {
+    margin-bottom: 30px;
+    width: 300px;
+  }
 
-    .message-input-field {
-      height: 100px !important;
-      margin: 0 !important;
-    }
+  .message-input-field {
+    height: 100px !important;
+    margin: 0 !important;
+  }
 
-    .button-white {
-      padding: 6px 12px !important;
-      margin-top: 30px;
-      font-size: large;
-    }
+  .button-white {
+    padding: 6px 12px !important;
+    margin-top: 30px;
+    font-size: large;
+  }
 
-    .primary {
-      background-color: #7d80ff !important;
-      color: #daddff !important;
-      border-color: #daddff !important;
-    }
+  .primary {
+    background-color: #7d80ff !important;
+    color: #daddff !important;
+    border-color: #daddff !important;
+  }
 
-    .white-text-small {
-      font-size: large !important;
-    }
+  .white-text-small {
+    font-size: large !important;
+  }
   </style>
   <link rel="stylesheet" href="./general.css?v=<?php echo time(); ?>" />
 </head>
 
 <body>
+  <!--Include header-->
   <?php include './components/Header.php' ?>
   <section>
     <div class='contact'>
@@ -53,6 +54,7 @@
 
       <h2 style="color: white">Our Team:</h2>
 
+      <!--Team information-->
       <ul class="white-text-small computer-font">
         <li>Ann Marie (Founder and CEO)</li>
         <li>Emil (Lead Developer)</li>
@@ -61,6 +63,7 @@
         <li>Lisa (Content Specialist)</li>
       </ul>
 
+      <!--Contact information-->
       <p class="white-text-small computer-font"><b>Phone:</b> +44 (123) 456-7890</p>
       <p class="white-text-small computer-font"><b>Email:</b> info@webify.com</p>
       <p class="white-text-small computer-font"><b>Address:</b> 123 Main Street, Suite 200, London, UK 12345</p>
@@ -69,6 +72,7 @@
 
       <h2 style="color: white">Contact Form:</h2>
 
+      <!--Contact form-->
       <form action="contact.php" method="post">
         <label class="white-text-small computer-font" for="name">Name:</label><br>
         <input class="input-field" type="text" id="name" name="name" required><br>

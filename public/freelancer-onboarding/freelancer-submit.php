@@ -142,7 +142,6 @@ $proficientSkill = $_POST['proficientSkill'];
 
 
 //Add all freelancer data into database
-// need to add fee onto this query
 $sql = "INSERT INTO freelancer (fname, lname, email, password, profilep, intro, projects, fee, proficientSkill) VALUES ('$fname', '$lname', '$email', '$password', '$profilepic_pic', '$description', '$thumbnail_pic', '$fee', '$proficientSkill')";
 
 
