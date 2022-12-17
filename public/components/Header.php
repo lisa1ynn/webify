@@ -10,7 +10,7 @@ session_start();
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="/Projects/webify/public/general.css?v=<?php echo time(); ?>">
+  <link rel="stylesheet" href="../public/general.css?v=<?php echo time(); ?>">
 </head>
 
 <body>

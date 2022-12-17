@@ -359,21 +359,21 @@ ini_set('display_errors', 0);
         </div>
       </div>
     </div>
-    <div class="contact">
+    <!-- <div class="contact">
       <button class="header-button button" style="padding:10%;" onclick=sendmessage()>Contact</button>
     </div>
-    <!-- Form to send the message, different div tags are needed, to blur out the background and to present a nice field -->
+    Form to send the message, different div tags are needed, to blur out the background and to present a nice field
     <div class="hidden" id="n2">
       <div class="message">
-        <form action="changefldata.php">
+        <form action="changefldata.php"> -->
           <!-- data is sent to another file, which sends it to the DB for the update -->
-          <p class="edittext">Message for the freelancer</p><textarea id="n3" class="input" rows=10 cols=80
+          <!-- <p class="edittext">Message for the freelancer</p><textarea id="n3" class="input" rows=10 cols=80
             name="intro"></textarea>
           <button class="header-button button inline" type="button" onclick=cancelmessage()>Cancel</button>
           <button class="header-button button" type="submit" name="submit" value="Submit">Submit</button>
         </form>
       </div>
-    </div>
+    </div> -->
   </section>
   <?php include "./components/footer.php" ?>
 </body>

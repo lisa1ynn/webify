@@ -154,11 +154,11 @@
                 </a></li>
         </ul>
         <ul class="menu">
-            <li><a href="/Projects/webify/public/mainpage.php">Home</a></li>
+            <li><a href="../public/mainpage.php">Home</a></li>
             <li><a href="#">Services</a></li>
-            <li><a href="/Projects/webify/public/terms-and-conditions.php">Terms & Conditions</a></li>
-            <li><a href="/Projects/webify/public/about.php">About</a></li>
-            <li><a href="/Projects/webify/public/contact.php">Contact</a></li>
+            <li><a href="../public/terms-and-conditions.php">Terms & Conditions</a></li>
+            <li><a href="../public/about.php">About</a></li>
+            <li><a href="../public/contact.php">Contact</a></li>
         </ul>
         <p> 2022 Webify® | All Rights Reserved</p>
     </footer>

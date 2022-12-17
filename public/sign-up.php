@@ -116,7 +116,7 @@
             <input class="terms-conditions-checkbox white-text-small" type="checkbox" name="termsAndConditions"
               required></input>
             <div class="terms-conditions-text">By signing up, I accept the <a class="link"
-                href="/Projects/webify/public/terms-and-conditions.php">terms and conditions</a> of webify.</div>
+                href="../public/terms-and-conditions.php">terms and conditions</a> of webify.</div>
             <!--Button to submit/ sign up-->
             <div style="text-align: center; margin-top: 20px;">
               <input class="button-white" type="submit" name="Sign-up" value="Sign up now"></input>
