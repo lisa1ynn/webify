@@ -132,16 +132,18 @@ $fname = $user_array['fname'];
 $lname = $user_array['lname'];
 $email = $user_array['email'];
 $password = $user_array['password'];
-$skillsArray = $_POST['skills'];
 
 $profilepic_pic = $profilePictureContent;
 $thumbnail_pic = $thumbnailPictureContent;
 $description = $_POST['description'];
 $fee = (int)$_POST['fee'];
+$skillsArray = $_POST['skills'];
+$proficientSkill = $_POST['proficientSkill'];
+
 
 //Add all freelancer data into database
 // need to add fee onto this query
-$sql = "INSERT INTO freelancer (fname, lname, email, password, profilep, intro, projects, fee) VALUES ('$fname', '$lname', '$email', '$password', '$profilepic_pic', '$description', '$thumbnail_pic', $fee)";
+$sql = "INSERT INTO freelancer (fname, lname, email, password, profilep, intro, projects, fee, proficientSkill) VALUES ('$fname', '$lname', '$email', '$password', '$profilepic_pic', '$description', '$thumbnail_pic', '$fee', '$proficientSkill')";
 
 
 if ($database->query($sql) === TRUE) {

@@ -125,7 +125,7 @@
               <td class="form-cell-input">
                 <div class="image-input skills">
                   <?php
-                  // get skills onto form
+                  // get skills onto database
                   include '../../private/initialize.php';
 
                   $skillsQuery = $database->query("SELECT * FROM skills");
@@ -133,6 +133,23 @@
                       id="skills_<?php echo $skill['skill']; ?>"
                       value="<?php echo $skill['skill_id']; ?>"><?php echo $skill['skill']; ?></label>
 
+                  <?php } ?>
+                </div>
+              </td>
+            </tr>
+            <!-- still working on the skills -->
+            <tr class="form-row">
+              <td class="form-cell-label"><label class="form-label" for="image">Most experience: </label>
+              </td>
+              <td class="form-cell-input">
+                <div class="image-input skills">
+                  <?php
+                  // get most proficient skill onto database
+                  include '../../private/initialize.php';
+                  $skillsQuery = $database->query("SELECT * FROM skills");
+                  while ($proficientSkill = $skillsQuery->fetch_assoc()) { ?> <label><input type="radio"
+                      name="proficientSkill" id="proficientSkill_<?php echo $proficientSkill['skill']; ?>"
+                      value="<?php echo $proficientSkill['skill']; ?>"><?php echo $proficientSkill['skill']; ?></label>
                   <?php } ?>
                 </div>
               </td>
