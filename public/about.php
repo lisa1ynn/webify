@@ -220,24 +220,28 @@
                 };
             </script>
 
-            
+           
         </div>
         <script>
+            // second step, function takes in the scrolling event
             const handleScroll = event => {
+                // tracks how many pixels the user has scrolled from the top of the page
                 const scrollPosition =
                     event
                         .target
                         .scrollingElement
                         .scrollTop;
                 
+                // all background images put into variables
                 const images = 
                     document.querySelectorAll(".background-img");
-
+                // for each background img while user scrolls - background img moves down 50th of actual scrolling distance, parallax effect
                 images.forEach((element) => {
                     element.style.transform =
                         `translate(0, ${scrollPosition / 50}px)`;
                 });
             };
+            // first step to track whether the user is scrolling on the window, if scroll then handleScroll is called upon
             window.addEventListener("scroll", handleScroll)
         </script>
         <?php include "./components/footer.php"?>
