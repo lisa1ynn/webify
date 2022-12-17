@@ -366,7 +366,7 @@
                     // for displaying part of freelancers about section
                     $introAll = $user_row['intro'];
                     $showmore = '';
-                    if (count(array($introAll)) > 110) {
+                    if (strlen($introAll) > 110) {
                       for ($inx = 0; $inx < 110; $inx ++) {
                         $showmore .= $introAll[$inx];
                       }
