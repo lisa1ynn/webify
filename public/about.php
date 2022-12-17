@@ -140,7 +140,8 @@
                 top: 85%;
                 left: 50%;
                 -ms-transform: translate(-50%, -50%);
-                transform: translate(-50%, -50%)
+                transform: translate(-50%, -50%);
+                width: 300px;
             }
 
             /* cursor, arrow animation on hover button */
@@ -158,16 +159,19 @@
                 top: 14px;
                 right: -20px;
                 transition: 0.5s;
+                padding-left: 80px;
             }
 
             button:hover{
                 padding-right: 24px;
                 padding-left:8px;
+                width: 300px;
             }
 
             button:hover:after {
                 opacity: 1;
                 right: 10px;
+                padding-left: 80px;
             }
 
         </style>
@@ -211,7 +215,7 @@
                 <button id="startButton" class="getstarted_button"><span>Get Started!</span></button>
                 <script type="text/javascript">
                     document.getElementById("startButton").onclick = function () {
-                    location.href = "http://localhost/webify/public/sign-in.php";
+                    location.href = "./sign-in.php";
                 };
             </script>
 
