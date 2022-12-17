@@ -231,139 +231,149 @@ ini_set('display_errors', 0);
                 border-radius:5%; /* Nice round corners */
                 color:black; /* text colour black */
                 margin-top:5%; /* extra margin so that full editbox is shown */
-
   }
 
   .edittext {
     font-weight: bold;
     /* makes the font bold */
 
-            }
-            .inline{
-                display:inline; /* displays some elements in the same line, that otherwise default to a new block */
-            }
-        </style>
-        <script>
-      // removes alers showed if pagae refresed or exited if review is made
-      if ( window.history.replaceState ) {
-          window.history.replaceState( null, null, window.location.href );
-      }
-    // function to display the hidden element to send the message
-    function sendmessage(){
-        
-        const message=document.getElementById("n2"); // defines the editbio variable
-        message.style.display="block";
-    }
+  }
+
+  .inline {
+    display: inline;
+    /* displays some elements in the same line, that otherwise default to a new block */
+  }
+  </style>
+  <script>
+  // removes alers showed if pagae refresed or exited if review is made
+  if (window.history.replaceState) {
+    window.history.replaceState(null, null, window.location.href);
+  }
+  // function to display the hidden element to send the message
+  function sendmessage() {
+
+    const message = document.getElementById("n2"); // defines the editbio variable
+    message.style.display = "block";
+  }
 
   // function to cancel the editing of the bio
   function cancelmessage() {
     const message = document.getElementById("n2");
     message.style.display = "none"; // The display CSS value is again none, hiding the element
   }
-    </script>
-    </head>
-    <body>
-        <?php
-        include './components/Header.php';
-        include '../private/initialize.php';
+  </script>
+</head>
 
-            $profile = explode(",",$_GET['profile']);
-            $id = (int)$profile[0];
+<body>
+  <?php
+    include './components/Header.php';
+    include '../private/initialize.php';
 
-            $profile_features_query = $database->query("SELECT skill, fname, lname, points, reviews, intro, profilep, projects, fee
+    $profile = explode(",", $_GET['profile']);
+    $id = (int)$profile[0];
+
+    $profile_features_query = $database->query("SELECT skill, fname, lname, points, reviews, intro, profilep, projects, fee
                 FROM freelancer AS f, freelancerskill AS fs, skills AS s
                 WHERE f.id = fs.freelancer_id
                 AND fs.skill_id = s.skill_id
                 AND f.id = $id
                 ");
-                
-            $profile_features = $profile_features_query->fetch_assoc();
 
-            if ($profile_features['reviews'] > 0) {
-                $review = number_format($profile_features['points'] / $profile_features['reviews'], 2);
-              } else {
-                $review = 0;
-              }
-        ?>
-        <section class="main-area-profile-info">
-            <div class="projects-description-area">
-                <div class="projects-img-container">
-                    <img src="<?php echo 'data:image/png;base64,'.base64_encode($profile_features['projects']).''; ?>" alt="Portfolio Image" class="projects-img">
-                </div>
-                <div class="description-container">
-                    <h1>About:</h1>
-                    <p><?php echo $profile_features['intro']; ?></p>
-                </div>
-            </div>
-            <div class="profile-info-area">
-                <div class="profile-picture-name">
-                    <div class="profile-picture-container">
-                        <img src="<?php echo 'data:image/png;base64,'.base64_encode($profile_features['profilep']).''; ?>" alt="Profile Picture" class="profile-picture">
-                    </div>
-                    <div class="first-last">
-                        <p><?php echo $profile_features['fname']; ?></p>
-                        <p><?php echo $profile_features['lname']; ?></p>
-                    </div>
-                </div>
-                <div class="profile-info-fee-skills-offer">
-                    <div class="profile-fee"><p>Fee: £<?php echo $profile_features['fee']; ?>/hr</p></div>
-                    <div class="profile-skill"><p>Expertise: | <?php 
-                        // make sure no duplicate skills, display all skills one by one with the loop
-                        $skill_tracker = array();
-                        while ($skill = $profile_features_query->fetch_assoc()){
-                            if (!in_array($skill['skill'], $skill_tracker)) {
-                                $skill_tracker[] = $skill['skill'];
-                                echo $skill['skill'].' | ';
-                            }
-                        }?></p>
-                    </div>
-                </div>
-                
-                <!-- Add link to portfolio onto info section -->
+    $profile_features = $profile_features_query->fetch_assoc();
 
-                <div class="reviews-see-post">
-                    <div class="reviews">
-                        <p class="review-rating"> <img src="./pictures/reviewstr.png" alt="Reviews: " class="review-str"> <?php echo $review; ?>/5 | <?php echo $profile_features['reviews']; ?> Reviews</p>
-                    </div>
-                    <div class="post-review">
-                        <form class="review-submit-form" action="<?php $_SERVER['PHP_SELF']; ?>" method="post">
-                            <select id="review-rating" name="review" class='choose-rating-dropdown'>
-                                <option value=1>1</option>
-                                <option value=2>2</option>
-                                <option value=3>3</option>
-                                <option value=4>4</option>
-                                <option value=5 selected>5</option>
-                            </select>
-                            <input type="submit" value="Submit review" class="submit-btn-review">
-                        </form>
-                        <?php
-                            if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                                $user_review = $_POST['review'];
-                                if (!empty($user_review)) {
-                                    $points = (int)$profile_features['points'] + (int)$user_review;
-                                    $new_reviews = (int)$profile_features['reviews'] + 1;
-                                    $database->query("UPDATE freelancer SET points='$points', reviews='$new_reviews' WHERE id=$id");
-                                }
-                            }
-                        ?>
-                    </div>
-                </div>
-            </div>
-            <div class="contact">
-            <button class="header-button button" style="padding:10%;" onclick=sendmessage()>Contact</button>
-                        </div>
-              <!-- Form to send the message, different div tags are needed, to blur out the background and to present a nice field -->
-        <div class="hidden" id="n2">
-          <div class="message">
-            <form action="changefldata.php">
-              <!-- data is sent to another file, which sends it to the DB for the update -->
-              <p class="edittext">Message for the freelancer</p><textarea id="n3" class="input" rows=10 cols=80 name="intro"></textarea>
-              <button class="header-button button inline" type="button" onclick=cancelmessage()>Cancel</button>
-              <button class="header-button button" type="submit" name="submit" value="Submit">Submit</button>
-            </form>
-          </div>
+    if ($profile_features['reviews'] > 0) {
+        $review = number_format($profile_features['points'] / $profile_features['reviews'], 2);
+    } else {
+        $review = 0;
+    }
+    ?>
+  <section class="main-area-profile-info">
+    <div class="projects-description-area">
+      <div class="projects-img-container">
+        <img src="<?php echo 'data:image/png;base64,' . base64_encode($profile_features['projects']) . ''; ?>"
+          alt="Portfolio Image" class="projects-img">
+      </div>
+      <div class="description-container">
+        <h1>About:</h1>
+        <p><?php echo $profile_features['intro']; ?></p>
+      </div>
+    </div>
+    <div class="profile-info-area">
+      <div class="profile-picture-name">
+        <div class="profile-picture-container">
+          <img src="<?php echo 'data:image/png;base64,' . base64_encode($profile_features['profilep']) . ''; ?>"
+            alt="Profile Picture" class="profile-picture">
         </div>
-        </section>
-        <?php include "./components/footer.php"?>
-    </body>
+        <div class="first-last">
+          <p><?php echo $profile_features['fname']; ?></p>
+          <p><?php echo $profile_features['lname']; ?></p>
+        </div>
+      </div>
+      <div class="profile-info-fee-skills-offer">
+        <div class="profile-fee">
+          <p>Fee: £<?php echo $profile_features['fee']; ?>/hr</p>
+        </div>
+        <div class="profile-skill">
+          <p>Expertise: | <?php
+                                    // make sure no duplicate skills, display all skills one by one with the loop
+                                    $skill_tracker = array();
+                                    while ($skill = $profile_features_query->fetch_assoc()) {
+                                        if (!in_array($skill['skill'], $skill_tracker)) {
+                                            $skill_tracker[] = $skill['skill'];
+                                            echo $skill['skill'] . ' | ';
+                                        }
+                                    } ?></p>
+        </div>
+      </div>
+
+      <!-- Add link to portfolio onto info section -->
+
+      <div class="reviews-see-post">
+        <div class="reviews">
+          <p class="review-rating"> <img src="./pictures/reviewstr.png" alt="Reviews: " class="review-str">
+            <?php echo $review; ?>/5 | <?php echo $profile_features['reviews']; ?> Reviews</p>
+        </div>
+        <div class="post-review">
+          <form class="review-submit-form" action="<?php $_SERVER['PHP_SELF']; ?>" method="post">
+            <select id="review-rating" name="review" class='choose-rating-dropdown'>
+              <option value=1>1</option>
+              <option value=2>2</option>
+              <option value=3>3</option>
+              <option value=4>4</option>
+              <option value=5 selected>5</option>
+            </select>
+            <input type="submit" value="Submit review" class="submit-btn-review">
+          </form>
+          <?php
+                    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                        $user_review = $_POST['review'];
+                        if (!empty($user_review)) {
+                            $points = (int)$profile_features['points'] + (int)$user_review;
+                            $new_reviews = (int)$profile_features['reviews'] + 1;
+                            $database->query("UPDATE freelancer SET points='$points', reviews='$new_reviews' WHERE id=$id");
+                        }
+                    }
+                    ?>
+        </div>
+      </div>
+    </div>
+    <div class="contact">
+      <button class="header-button button" style="padding:10%;" onclick=sendmessage()>Contact</button>
+    </div>
+    <!-- Form to send the message, different div tags are needed, to blur out the background and to present a nice field -->
+    <div class="hidden" id="n2">
+      <div class="message">
+        <form action="changefldata.php">
+          <!-- data is sent to another file, which sends it to the DB for the update -->
+          <p class="edittext">Message for the freelancer</p><textarea id="n3" class="input" rows=10 cols=80
+            name="intro"></textarea>
+          <button class="header-button button inline" type="button" onclick=cancelmessage()>Cancel</button>
+          <button class="header-button button" type="submit" name="submit" value="Submit">Submit</button>
+        </form>
+      </div>
+    </div>
+  </section>
+  <?php include "./components/footer.php" ?>
+</body>
+
 </html>

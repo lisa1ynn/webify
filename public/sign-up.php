@@ -43,7 +43,7 @@
     text-align: center;
   }
 
-  .signup-table {
+  .signup-form {
     margin: 0px auto;
     width: 250px;
   }
@@ -65,6 +65,10 @@
     font-size: smaller;
   }
 
+  a:link {
+    text-decoration: underline !important;
+  }
+
   .to-sign-in {
     margin-top: 80px;
     text-align: center;
@@ -74,40 +78,50 @@
 </head>
 
 <body>
+  <!-- Include header -->
   <?php include './components/Header.php' ?>
-  <!--Hero element column start-->
   <section>
+    <!-- Row with two columns: for hero and sign up form -->
     <div class="signup-row">
+      <!-- Column with Hero element -->
       <div class="signup-col hero-mainpg hero-signup-col">
-        <!--ADD OPTION TO GO BACK TO WEBSITE-->
         <h1>
           Welcome to
           <div class="cool-text-background"><span class="cool-text">Webify</span></div>
         </h1>
         <p class="hero-text-small" style="color: white;">For all website freelancing needs.</p>
       </div>
-      <!--Hero element column end-->
-      <!--signup form element start-->
+      <!--signup form element/ column start-->
       <div class="signup-col signup-form-col">
         <h2 class="h2-signup">
           Sign up to <span class="cool-text">Webify</span>
         </h2>
-
-        <div class="signup-table">
+        <!--Signup form-->
+        <div class="signup-form">
           <form action="./datasave-user.php" method="post">
-            <input class="signup-input input-field" type="text" id="firstname" name="firstname"
-              placeholder="First name" required/>
-            <input class="signup-input input-field" type="text" id="lastname" name="lastname" placeholder="Last-name" required/>
-            <input class="signup-input input-field" type="email" id="email" name="email" placeholder="E-mail" required/>
-            <input class="signup-input input-field" type="password" id="password" name="password"
-              placeholder="Password" required/>
-            <!--Add a tooltip for password requirements-->
-            <input class="terms-conditions-checkbox white-text-small" type="checkbox" name="termsAndConditions" required></input>
-            <div class="terms-conditions-text">By signing up, I accept the terms and conditions of webify.</div>
+            <!--First name input field-->
+            <input class="signup-input input-field" type="text" id="firstname" name="firstname" placeholder="First name"
+              required />
+            <!--Last name input field-->
+            <input class="signup-input input-field" type="text" id="lastname" name="lastname" placeholder="Last name"
+              required />
+            <!--Email input field-->
+            <input class="signup-input input-field" type="email" id="email" name="email" placeholder="E-mail"
+              required />
+            <!--Password input field-->
+            <input class="signup-input input-field" type="password" id="password" name="password" placeholder="Password"
+              required />
+            <!--Terms and conditions checkbox input field-->
+            <input class="terms-conditions-checkbox white-text-small" type="checkbox" name="termsAndConditions"
+              required></input>
+            <div class="terms-conditions-text">By signing up, I accept the <a
+                href="/Projects/webify/public/terms-and-conditions.php">terms and conditions</a> of webify.</div>
+            <!--Button to submit/ sign up-->
             <div style="text-align: center; margin-top: 20px;">
               <input class="button-white" type="submit" name="Sign-up" value="Sign up now"></input>
             </div>
           </form>
+          <!--Link to signup if they already have account-->
           <div class="to-sign-in white-text-small">Already have an account? <a href="./sign-in.php"
               style="color: #b5bbff">Sign in</a></div>
           <!--Hover does not work for some reason-->
@@ -117,23 +131,22 @@
     </div>
   </section>
   <script>
-    // Creates a new variable to read the url, specifically to read the usedEmail url appendix
-    const urlParams = new URLSearchParams(window.location.search);
-    const usedEmail = urlParams.get('usedEmail');
-    const wrongEntry = urlParams.get('entryerror');
-    // If the url includes usedEmail=1, the class wrong-password is appended to the class of the password element (refer to the general.css)
-    if (usedEmail) {
-      const input = document.getElementById("email");
+  // Creates a new variable to read the url, specifically to read the usedEmail url appendix
+  const urlParams = new URLSearchParams(window.location.search);
+  const usedEmail = urlParams.get('usedEmail');
+  const wrongEntry = urlParams.get('entryerror');
+  // If the url includes usedEmail=1, the class wrong-password is appended to the class of the password element (refer to the general.css)
+  if (usedEmail) {
+    const input = document.getElementById("email");
 
-      input.className = input.className + " wrong-password";
-      alert("Already used e-mail");
-    }
-    // If there is an invalid entry, the signup page resets and the user is alerted about the invalid entry
-    if (wrongEntry) {
-      alert("Invalid entry");
-    }
+    input.className = input.className + " wrong-password";
+    alert("Already used e-mail");
+  }
+  // If there is an invalid entry, the signup page resets and the user is alerted about the invalid entry
+  if (wrongEntry) {
+    alert("Invalid entry");
+  }
   </script>
-  <?php include "./components/footer.php"?>
 </body>
 
 </html>
