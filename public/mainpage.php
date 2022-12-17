@@ -189,6 +189,7 @@ ini_set('display_errors', 0);
     justify-content: center;
     align-items: center;
     margin-left: 12px;
+    font-size: 0.8rem;
   }
   .navigation-home, .navigation-shwo16, .navigation-shwo8, .navigation-next {
     margin-right: 10px;
