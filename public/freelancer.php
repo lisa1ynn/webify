@@ -72,7 +72,7 @@ ini_set('display_errors', 0);
 
             .projects-img {
                 width: 100%;
-                height: 90%;
+                height: 80%;
                 border-radius: 30px;
                 box-shadow: 0px 8px 10px #151515;
             }
@@ -108,7 +108,8 @@ ini_set('display_errors', 0);
                 margin-right: 2%;
                 box-shadow: 0px 8px 15px #151515;
                 grid-row-gap: 5%;
-                width: 30%;
+                width: 100%;
+                padding-right: 100px;
             }
 
             .profile-picture-name {
@@ -137,6 +138,7 @@ ini_set('display_errors', 0);
                 font-size: 2rem;
                 font-weight: bold;
                 text-align: left;
+                padding-left: 20px;
             }
 
             .profile-fee {

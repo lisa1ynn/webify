@@ -1,6 +1,11 @@
+<?php
+session_start();
+error_reporting(0);
+ini_set('display_errors', 0);
+?>
+
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="utf-8" />
   <title>Home</title>
@@ -175,6 +180,44 @@
   .current-search {
     margin-left: 10px;
   }
+
+  .navigation-buttons {
+    width: 100%;
+    display: flex;
+    margin-top: 80px;
+    margin-bottom: 280px;
+    justify-content: center;
+    align-items: center;
+  }
+  .navigation-home, .navigation-shwo16, .navigation-shwo8, .navigation-next {
+    margin-right: 10px;
+    width: 60px;
+    text-align: center;
+  }
+
+  .navigation-home, .navigation-shwo16, .navigation-shwo8 {
+    background-color: #FF511C;
+    border: solid #FF511C;
+    padding: 18px;
+    border-radius: 20px;
+  }
+  .navigation-home:hover, .navigation-shwo16:hover, .navigation-shwo8:hover {
+    color: #FF511C;
+    background-color: #262626;
+  }
+
+  .navigation-next {
+    background-color: #7D80FF;
+    border: solid #7D80FF;
+    padding: 18px;
+    border-radius: 20px;
+  }
+
+  .navigation-next:hover {
+    color: #7D80FF;
+    background-color: #262626;
+  }
+
   </style>
   <script>
   // removes alers showed if page is refreshed when filters are applied
@@ -190,6 +233,32 @@
   <?php include './components/Header.php';
   // initializes the database for the rest of the page
   include '../private/initialize.php';
+
+  // page pagination
+  $items_per_page = 8;
+  // checks how many items in page
+  $shown_items = 0;
+  // records index to start counting from and to show from
+  $start_index = 0;
+
+  if (isset($_GET['view16'])) {
+    // show 16
+    $items_per_page = 16;
+  } else if (isset($_GET['view8'])) {
+    // show 8
+    $items_per_page = 8;
+  } else {
+    $items_per_page = 8;
+  }
+
+  if (isset($_GET['changePage']) && $_GET['changePage'] === 'next') {
+    // next page
+    $start_index = $items_per_page;
+  } else if (isset($_GET['changePage']) && $_GET['changePage'] === 'back') {
+    // start
+    $start_index = 0;
+  }
+
   ?>
 
   <!--Hero element start-->
@@ -283,35 +352,41 @@
     ?>
     <!-- Shows user which filters they have selected to be shown -->
     <p class="current-search">Currently showing skills: | <?php
-                                                          if (!in_array('All', $filter)) {
-                                                            foreach ($filter as $skill) {
-                                                              echo $skill . " | ";
-                                                            }
-                                                          } else {
-                                                            echo " All | ";
-                                                          }
-                                                          ?></p>
+      if (!in_array('All', $filter)) {
+        foreach ($filter as $skill) {
+          echo $skill . " | ";
+        }
+      } else {
+        echo " All | ";
+      }
+      ?></p>
     <div class="freelancers-container">
       <?php
 
       // track unique users
       $users_tracker = array();
+      $showUsers = array();
       // adds freelancers from db to indivodual div elements
-      while ($user = $users_skills->fetch_assoc()) {
-        $user_row = $user;
+      while ($user_row = $users_skills->fetch_assoc()) {
         $id = $user_row['id'];
+        if (!in_array($id, $showUsers)) {
+          $showUsers[] = $id;
+        }
+        $showUsersRange = array_slice($showUsers, $start_index, ($start_index + $items_per_page));
 
         // query for advanced filter option -> only shows users w all matching skills on filter
-        $query = 'SELECT skill, id
+        $query = "SELECT skill, id
             FROM freelancer AS f, freelancerskill AS fs, skills AS s
             WHERE f.id = fs.freelancer_id
             AND fs.skill_id = s.skill_id
-            AND id = ' . $id . '';
+            AND id = '$id'";
 
         $individual_skills_to_use_for_filter = $database->query($query);
 
         // array for comparison of skills to filter
         $skills_to_compare = array();
+
+         $items_shown = 0;
 
         // puts all individual user skills into array
         while ($check_the_skills = $individual_skills_to_use_for_filter->fetch_assoc()) {
@@ -323,18 +398,18 @@
 
         // get all users with desired skill
         if ((count(array_intersect($skills_to_compare_unique, $filter)) === count($filter)) || in_array('All', $filter)) {
-
-          // need to check if user is unique
-          if (!in_array($user_row['id'], $users_tracker)) {
-            // add unique users into tracker
-            $users_tracker[] = $user_row['id'];
-            // calculates #/5 stars
-            if ($user_row['reviews'] != 0) {
-              $review = number_format($user_row['points'] / $user_row['reviews'], 2);
-            } else {
-              $review = 0;
-            }
-            $id = $user_row['id'];
+          if (($shown_items < $items_per_page)) {
+            // need to check if user is unique
+            if (!in_array($id, $users_tracker) && in_array($id, $showUsersRange)) {
+              // add unique users into tracker
+              $users_tracker[] = $id;
+              $shown_items += 1;
+              // calculates #/5 stars
+              if ($user_row['reviews'] != 0) {
+                $review = number_format($user_row['points'] / $user_row['reviews'], 2);
+              } else {
+                $review = 0;
+              }
       ?>
       <a onclick="sendDataToPHPpage(<?php echo $id; ?>)" href="#">
         <div class="individual-freelancer" id="freelancer-individual">
@@ -383,10 +458,17 @@
       <?php }
         }
       }
+      }
       mysqli_close($database); ?>
     </div>
+    <div class='navigation-buttons'>
+      <a class="navigation-home" href='mainpage.php?changePage=back'>START</a>
+      <a class="navigation-shwo16" href='mainpage.php?view16=16'>SHOW 16</a>
+      <a class="navigation-shwo8" href='mainpage.php?view8=8'>SHOW 8</a>
+      <a class="navigation-next" href='mainpage.php?changePage=next'>NEXT</a>
+    </div>
+    
   </section>
   <?php include "./components/footer.php" ?>
 </body>
-
 </html>
