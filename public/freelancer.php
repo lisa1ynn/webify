@@ -272,7 +272,7 @@ ini_set('display_errors', 0);
     $profile = explode(",", $_GET['profile']);
     $id = (int)$profile[0];
 
-    $profile_features_query = $database->query("SELECT skill, fname, lname, points, reviews, intro, profilep, projects, fee
+    $profile_features_query = $database->query("SELECT skill, fname, lname, points, reviews, intro, profilep, projects, fee, proficientSkill
                 FROM freelancer AS f, freelancerskill AS fs, skills AS s
                 WHERE f.id = fs.freelancer_id
                 AND fs.skill_id = s.skill_id
@@ -323,6 +323,7 @@ ini_set('display_errors', 0);
                                             echo $skill['skill'] . ' | ';
                                         }
                                     } ?></p>
+            <p>Proficient at: <?php echo $profile_features['proficientSkill']; ?></p>
         </div>
       </div>
 
@@ -375,5 +376,4 @@ ini_set('display_errors', 0);
   </section>
   <?php include "./components/footer.php" ?>
 </body>
-
 </html>
