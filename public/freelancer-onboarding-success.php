@@ -35,12 +35,12 @@
     font-size: large !important;
   }
   </style>
-  <link rel="stylesheet" href="../general.css?v=<?php echo time(); ?>" />
+  <link rel="stylesheet" href="./general.css?v=<?php echo time(); ?>" />
 </head>
 
 <body>
   <!-- Include header -->
-  <?php include '../components/Header.php' ?>
+  <?php include './components/Header.php' ?>
   <section>
     <!-- Row with two columns: for main content and image -->
     <div class='info-page-row'>
@@ -67,14 +67,14 @@
         </p>
         <div style="display: flex; justify-content: center; align-items: center">
           <!-- Button to go to newly created profile -->
-          <button class="primary button-white" type="button" onclick="window.location.href='./../profile.php';">
+          <button class="primary button-white" type="button" onclick="window.location.href='./profile.php';">
             Visit profile
           </button>
         </div>
       </div>
       <!-- Image column -->
       <div class='image-col'>
-        <img src="../pictures/codingdesk-unsplash.jpg" alt="Coding" width="100%" height="auto">
+        <img src="./pictures/codingdesk-unsplash.jpg" alt="Coding" width="100%" height="auto">
       </div>
     </div>
   </section>

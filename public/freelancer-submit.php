@@ -113,7 +113,7 @@ if ($uploadOK_thumbnail == 0) {
 
 //DATABASE CONNECTION
 
-include '../../private/initialize.php';
+include '../private/initialize.php';
 
 if ($database->connect_error) {
   die("Connection failed: " . $database->connect_error);
@@ -174,6 +174,6 @@ $database->query($deleteUser);
 $_SESSION["userType"] = 'freelancer';
 $_SESSION["userid"] = $userId;
 // takes freelancer to end-of-onboarding page
-header("Location: ../../public/freelancer-onboarding/freelancer-onboarding-success.php");
+header("Location: ./freelancer-onboarding-success.php");
 
 $database->close();
